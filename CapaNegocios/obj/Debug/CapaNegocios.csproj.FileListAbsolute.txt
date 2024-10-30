@@ -1,0 +1,4 @@
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\bin\Debug\CapaNegocios.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\bin\Debug\CapaNegocios.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\obj\Debug\CapaNegocios.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\obj\Debug\CapaNegocios.pdb

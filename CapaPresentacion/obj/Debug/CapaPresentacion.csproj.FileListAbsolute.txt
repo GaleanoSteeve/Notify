@@ -1,0 +1,6 @@
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\CapaPresentacion.dll.config
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\CapaPresentacion.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\CapaPresentacion.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\obj\Debug\CapaPresentacion.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\obj\Debug\CapaPresentacion.pdb

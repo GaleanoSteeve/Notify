@@ -1,0 +1,4 @@
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaObjetos\bin\Debug\CapaObjetos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaObjetos\bin\Debug\CapaObjetos.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaObjetos\obj\Debug\CapaObjetos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaObjetos\obj\Debug\CapaObjetos.pdb

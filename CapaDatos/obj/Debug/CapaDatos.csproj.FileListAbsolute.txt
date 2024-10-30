@@ -1,0 +1,4 @@
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\bin\Debug\CapaDatos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\bin\Debug\CapaDatos.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\obj\Debug\CapaDatos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\obj\Debug\CapaDatos.pdb
