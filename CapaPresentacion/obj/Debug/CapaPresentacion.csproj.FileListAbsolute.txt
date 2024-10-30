@@ -4,3 +4,12 @@ D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\CapaPresentacion
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\obj\Debug\CapaPresentacion.dll
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\obj\Debug\CapaPresentacion.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\assets\style.css
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\bootstrap-icons.css
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\bootstrap.min.css
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\boxicons.min.css
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\quill.bubble.css
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\quill.snow.css
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\remixicon.css
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\style.css
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\img\logo.png
