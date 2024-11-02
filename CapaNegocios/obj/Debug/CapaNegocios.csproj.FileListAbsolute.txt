@@ -1,4 +1,11 @@
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\bin\Debug\CapaNegocios.dll
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\bin\Debug\CapaNegocios.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\obj\Debug\CapaNegocios.csprojResolveAssemblyReference.cache
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\obj\Debug\CapaNegocios.dll
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\obj\Debug\CapaNegocios.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\bin\Debug\CapaCriptografia.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\bin\Debug\CapaDatos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\bin\Debug\CapaObjetos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\bin\Debug\CapaCriptografia.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\bin\Debug\CapaDatos.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaNegocios\bin\Debug\CapaObjetos.pdb

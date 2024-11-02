@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,7 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatConexionDB.cs" />
+    <Compile Include="DatUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaCriptografia\CapaCriptografia.csproj">
+      <Project>{0e70f7cf-c4ce-40e3-a720-da480e44e4e9}</Project>
+      <Name>CapaCriptografia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaObjetos\CapaObjetos.csproj">
+      <Project>{dd9ea098-e7f3-4d25-a9d6-f0e251d24d8d}</Project>
+      <Name>CapaObjetos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,6 +10,6 @@
 namespace CapaPresentacion {
     
     
-    public partial class FormLogin {
+    public partial class frmInicio {
     }
 }
