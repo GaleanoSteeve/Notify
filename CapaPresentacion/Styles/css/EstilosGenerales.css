@@ -1,0 +1,73 @@
+﻿body {
+
+}
+
+.modalBackground
+{
+    background-color: black;
+    filter: alpha(copacity=90) !important;
+    opacity: 0.6 !important;
+    z-index: 20;
+}
+
+.modalpopup
+{
+    padding: 20px 0px 24px 10px;
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+    height: auto;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.modalBackgroundAbonar
+{
+    background-color: black;
+    filter: alpha(copacity=90) !important;
+    opacity: 0.6 !important;
+    z-index: 20;
+}
+
+.modalpopupAbonar
+{
+    padding: 10px 10px 0px 10px;
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+    height: auto;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.modalBackgroundCargarPagina
+{
+    background-color: black;
+    filter: alpha(copacity=90) !important;
+    opacity: 0.6 !important;
+    z-index: 20;
+}
+
+.modalpopupCargarPagina
+{
+    position: relative;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.modalBackgroundPerfiles
+{
+    background-color: black;
+    filter: alpha(copacity=90) !important;
+    opacity: 0.6 !important;
+    z-index: 20;
+}
+
+.modalpopupPerfiles
+{
+    padding: 0px 0px 0px 30px;
+    position: relative;
+    margin: 0 auto;
+    width: 50%;
+    background-color: white;
+}

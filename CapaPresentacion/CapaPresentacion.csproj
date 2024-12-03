@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmConfiguracion.aspx" />
     <Content Include="frmInicio.aspx" />
     <Content Include="Maestra.Master" />
     <None Include="Web.Debug.config">
@@ -84,6 +85,15 @@
     <Content Include="Styles\css\boxicons.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Styles\css\dataTables.bootstrap.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Styles\css\EstilosGenerales.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Styles\css\jquery.dataTables.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Styles\css\quill.bubble.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -96,6 +106,12 @@
     <Content Include="Styles\css\semantic.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Styles\css\stackpath.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Styles\css\stackpathbootstrapcdn.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Styles\css\style.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -105,9 +121,31 @@
     <Content Include="Styles\scripts\alertify.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Styles\scripts\bootstrapcdn.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Styles\scripts\dataTables.bootstrap.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Styles\scripts\datatables.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Styles\scripts\jquery-3.1.1.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Styles\scripts\jsdelivr.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmConfiguracion.aspx.cs">
+      <DependentUpon>frmConfiguracion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmConfiguracion.aspx.designer.cs">
+      <DependentUpon>frmConfiguracion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmInicio.aspx.cs">
       <DependentUpon>frmInicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

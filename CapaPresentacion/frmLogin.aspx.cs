@@ -167,7 +167,7 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 string titulo = "Error";
-                string mensaje = "Error tratando validar el usuario: " + ex.Message.ToString().Replace("'", "");
+                string mensaje = "Error tratando de validar el usuario: " + ex.Message.ToString().Replace("'", "");
                 string str = "alertify.alert('" + titulo + "', '" + mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", str, true);
                 txtUsuario.Focus();

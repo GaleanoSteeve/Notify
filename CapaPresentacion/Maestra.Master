@@ -8,20 +8,40 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!--Archivos css-->
+    <!--Archivos CSS-->
+    <link href="Styles/css/style.css" rel="stylesheet" />
+    <link href="Styles/css/alertify.css" rel="stylesheet" />
+    <link href="Styles/css/semantic.css" rel="stylesheet" />
+    <link href="Styles/css/stackpath.css" rel="stylesheet" />
+    <link href="Styles/css/remixicon.css" rel="stylesheet" />
+    <link href="Styles/css/quill.snow.css" rel="stylesheet" />
+    <link href="Styles/css/boxicons.min.css" rel="stylesheet" />
+    <link href="Styles/css/quill.bubble.css" rel="stylesheet" />
     <link href="Styles/css/assets/style.css" rel="stylesheet" />
     <link href="Styles/css/bootstrap.min.css" rel="stylesheet" />
     <link href="Styles/css/bootstrap-icons.css" rel="stylesheet" />
-    <link href="Styles/css/boxicons.min.css" rel="stylesheet" />
-    <link href="Styles/css/quill.snow.css" rel="stylesheet" />
-    <link href="Styles/css/quill.bubble.css" rel="stylesheet" />
-    <link href="Styles/css/remixicon.css" rel="stylesheet" />
-    <link href="Styles/css/style.css" rel="stylesheet" />
+    <link href="Styles/css/EstilosGenerales.css" rel="stylesheet" />
+    <link href="Styles/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="Styles/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="Styles/css/stackpathbootstrapcdn.css" rel="stylesheet" />
 
-    <!--Archivos para los menajes tipo alerta-->
+    <!--Archivos JS-->
     <script src="Styles/scripts/alertify.js"></script>
-    <link href="Styles/css/alertify.css" rel="stylesheet" />
-    <link href="Styles/css/semantic.css" rel="stylesheet" />
+    <script src="Styles/scripts/jsdelivr.js"></script>
+    <script src="Styles/scripts/datatables.js"></script>
+    <script src="Styles/scripts/bootstrapcdn.js"></script>
+    <script src="Styles/scripts/jquery-3.1.1.js"></script>
+    <script src="Styles/scripts/dataTables.bootstrap.js"></script>
+
+    <script>
+        function Numeros(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            if (tecla == 8) return true;
+            patron = /^(\d|)*$/;
+            te = String.fromCharCode(tecla);
+            return patron.test(te);
+        }
+</script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -29,22 +49,9 @@
 <body>
     <form id="form1" runat="server" autocomplete="off">
         <div>
-            <aside id="sidebar" class="sidebar">
-                <ul class="sidebar-nav" id="sidebar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link " href="frmInicio.aspx">
-                            <i class="bi bi-grid"></i>
-                            <span>Configuración</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="frmInicio.aspx">
-                            <i class="bi bi-grid"></i>
-                            <span>Usuarios</span>
-                        </a>
-                    </li>
-                </ul>
-            </aside>
+            <section>
+                <asp:Label ID="labMenu" runat="server" Text=""></asp:Label>
+            </section>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

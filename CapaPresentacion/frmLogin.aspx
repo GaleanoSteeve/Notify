@@ -14,7 +14,7 @@
     <link href="Styles/css/remixicon.css" rel="stylesheet" />
     <link href="Styles/css/style.css" rel="stylesheet" />
 
-    <!--Archivos para los menajes tipo alerta-->
+    <!--Archivos para los mensajes tipo alerta-->
     <script src="Styles/scripts/alertify.js"></script>
     <link href="Styles/css/alertify.css" rel="stylesheet" />
     <link href="Styles/css/semantic.css" rel="stylesheet" />
