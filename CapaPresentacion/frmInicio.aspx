@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Principal" Language="C#" MasterPageFile="~/Maestra.Master" AutoEventWireup="true" CodeBehind="frmInicio.aspx.cs" Inherits="CapaPresentacion.frmInicio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Maestra.Master" AutoEventWireup="true" CodeBehind="frmInicio.aspx.cs" Inherits="CapaPresentacion.frmInicio" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

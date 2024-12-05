@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using CapaObjetos;
 using CapaNegocios;
 using System.Web.UI;
 
@@ -9,7 +10,10 @@ namespace CapaPresentacion
     {
         #region Variables
 
-        NegInformacionRegional objInformacionRegional = new NegInformacionRegional();
+        private ObjConfiguracion oConfiguracion = new ObjConfiguracion();
+
+        private NegConfiguracion objConfiguracion = new NegConfiguracion();
+        private NegInformacionRegional objInformacionRegional = new NegInformacionRegional();
 
         #endregion
 
@@ -20,15 +24,53 @@ namespace CapaPresentacion
             if (!IsPostBack)
             {
                 ListarComboDepartamentos();
-                ListarComboCiudades();
-                //ListarConfiguracion();
-            }
+                ListarConfiguracion();
+            }         
         }
 
         #endregion
 
         //Metodos
-        private void ListarComboCiudades()
+        private void ListarConfiguracion()
+        {
+            try
+            {
+                DataTable dtConfiguracion = objConfiguracion.ListarConfiguracion();
+
+                if (dtConfiguracion.Rows.Count > 0)
+                {
+                    string IdDepartamento = dtConfiguracion.Rows[0]["IdDepartamento"].ToString();
+
+                    txtNit.Text = dtConfiguracion.Rows[0]["Documento"].ToString();
+                    txtRazonSocial.Text = dtConfiguracion.Rows[0]["RazonSocial"].ToString();
+                    txtNombreComercial.Text = dtConfiguracion.Rows[0]["NombreComercial"].ToString();
+                    txtDireccion.Text = dtConfiguracion.Rows[0]["Direccion"].ToString();
+                    txtTelefono.Text = dtConfiguracion.Rows[0]["Telefono"].ToString();
+                    txtEmail.Text = dtConfiguracion.Rows[0]["Email"].ToString();
+                    cboDepartamentos.SelectedValue = IdDepartamento;
+                    ListarComboCiudadesPorDepartamento(IdDepartamento); //Listar combo ciudades
+                    cboCiudades.SelectedValue = dtConfiguracion.Rows[0]["IdCiudad"].ToString();
+                    txtNit.Enabled = false;
+                }
+                else
+                {
+                    txtNit.Enabled = true;
+                    ListarComboCiudadesNull();
+                    string Titulo = "Advertencia";
+                    string Mensaje = "No existen datos de la Configuración del sistema creados en base de datos.";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                string Titulo = "Error Cargando Configuración";
+                string Mensaje = "Error tratando de listar la Configuración del sistema: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+            }
+        }
+        private void ListarComboCiudadesNull()
         {
             try
             {
@@ -51,10 +93,10 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-                string Titulo = "Error";
-                string Mensaje = "Error tratando listar las ciudades: " + ex.Message.ToString().Replace("'", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                string Titulo = "Error Cargando Ciudades";
+                string Mensaje = "Error tratando de listar las Ciudades Null: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
         private void ListarComboDepartamentos()
@@ -73,21 +115,50 @@ namespace CapaPresentacion
                 else
                 {
                     string Titulo = "Advertencia";
-                    string Mensaje = "No existen departamentos creados en base de datos.";
+                    string Mensaje = "No existen Departamentos creados en base de datos.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 }
             }
             catch (Exception ex)
             {
-                string Titulo = "Error";
-                string Mensaje = "Error tratando listar los departamentos: " + ex.Message.ToString().Replace("'", "");
-                string str = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", str, true);
+                string Titulo = "Error Cargando Departamentos";
+                string Mensaje = "Error tratando de listar los Departamentos: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+            }
+        }
+        private void ListarComboCiudadesPorDepartamento(string IdDepartamento)
+        {
+            try
+            {
+                DataTable dtCiudades = objInformacionRegional.ListarCiudadPorDepartamento(IdDepartamento);
+
+                if (dtCiudades.Rows.Count > 0)
+                {
+                    cboCiudades.DataSource = dtCiudades;
+                    cboCiudades.DataValueField = "IdCiudad";
+                    cboCiudades.DataTextField = "Nombre";
+                    cboCiudades.DataBind();
+                }
+                else
+                {
+                    string Titulo = "Advertencia";
+                    string Mensaje = "No existen ciudades creadas en base de datos para el departamento seleccionado.";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                string Titulo = "Error Cargando Ciudades";
+                string Mensaje = "Error tratando de listar las Ciudades: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
 
-        //Eventos
+        //Controles
         protected void cboDepartamentos_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -96,56 +167,50 @@ namespace CapaPresentacion
 
                 if (Convert.ToInt16(IdDepartamento) > 0)
                 {
-                    DataTable dtCiudades = objInformacionRegional.ListarCiudadPorDepartamento(IdDepartamento);
-
-                    if (dtCiudades.Rows.Count > 0)
-                    {
-                        cboCiudades.DataSource = dtCiudades;
-                        cboCiudades.DataValueField = "IdCiudad";
-                        cboCiudades.DataTextField = "Nombre";
-                        cboCiudades.DataBind();
-                    }
-                    else
-                    {
-                        string Titulo = "Advertencia";
-                        string Mensaje = "No existen ciudades para el departamento seleccionado.";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
-                    }
+                    ListarComboCiudadesPorDepartamento(IdDepartamento);
                 }
                 else
                 {
                     string Titulo = "Advertencia";
                     string Mensaje = "Debe seleccionar un departamento.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
-
-                    ListarComboCiudades();
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 }
             }
             catch (Exception ex)
             {
-                string Titulo = "Error";
-                string Mensaje = "Error tratando listar las ciudades: " + ex.Message.ToString().Replace("'", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                string Titulo = "Error Cargando Ciudades";
+                string Mensaje = "Error tratando de listar las Ciudades: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
 
         //Guardar
         private bool ValidarEmail()
         {
-            string Email = txtEmail.Text.Trim();
-            string Patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            try
+            {
+                string Email = txtEmail.Text.Trim();
+                string Patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
 
-            if (System.Text.RegularExpressions.Regex.IsMatch(Email, Patron))
-            {
-                return true;
+                if (System.Text.RegularExpressions.Regex.IsMatch(Email, Patron))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                string Titulo = "Error Validando Email";
+                string Mensaje = "Error tratando de validar el Email: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 return false;
-            }
+            }            
         }
         private bool ValidarCampos()
         {
@@ -157,7 +222,7 @@ namespace CapaPresentacion
                     string Titulo = "Advertencia";
                     string Mensaje = "El campo Nit es obligatorio.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
                 else if (txtRazonSocial.Text.Trim() == "")
@@ -166,7 +231,7 @@ namespace CapaPresentacion
                     string Titulo = "Advertencia";
                     string Mensaje = "El campo Razón Social es obligatorio.";
                     string script = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", script, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", script, true);
                     return false;
                 }
                 else if (txtNombreComercial.Text.Trim() == "")
@@ -175,7 +240,7 @@ namespace CapaPresentacion
                     string Titulo = "Advertencia";
                     string Mensaje = "El campo Nombre Comercial es obligatorio.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
                 else if (txtDireccion.Text.Trim() == "")
@@ -184,7 +249,7 @@ namespace CapaPresentacion
                     string Titulo = "Advertencia";
                     string Mensaje = "El campo Dirección es obligatorio.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
                 else if (txtTelefono.Text.Trim() == "")
@@ -193,7 +258,7 @@ namespace CapaPresentacion
                     string Titulo = "Advertencia";
                     string Mensaje = "El campo Teléfono es obligatorio.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
                 else if (txtTelefono.Text.Trim().Length < 7)
@@ -202,7 +267,7 @@ namespace CapaPresentacion
                     string Titulo = "Advertencia";
                     string Mensaje = "El campo Teléfono no tiene el formato correcto.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
                 else if (txtEmail.Text.Trim() == "")
@@ -211,7 +276,7 @@ namespace CapaPresentacion
                     string Titulo = "Advertencia";
                     string Mensaje = " El campo Email es obligatorio.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
                 else if (!ValidarEmail())
@@ -220,35 +285,35 @@ namespace CapaPresentacion
                     string Titulo = "Advertencia";
                     string Mensaje = "El campo Email no tiene el formato correcto.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
-                else if (Convert.ToInt16(cboDepartamentos.SelectedValue) <= 0)
+                else if (Convert.ToInt32(cboDepartamentos.SelectedValue) <= 0)
                 {
                     cboDepartamentos.Focus();
                     string Titulo = "Advertencia";
                     string Mensaje = "Debe seleccionar un Departamento.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
-                else if (Convert.ToInt16(cboCiudades.SelectedValue) <= 0)
+                else if (Convert.ToInt32(cboCiudades.SelectedValue) <= 0)
                 {
                     cboCiudades.Focus();
                     string Titulo = "Advertencia";
                     string Mensaje = "Debe seleccionar una Ciudad.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
                 return true;
             }
             catch (Exception ex)
             {
-                string Titulo = "Error";
-                string Mensaje = "Error tratando validar los campos: " + ex.Message.ToString().Replace("'", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                string Titulo = "Error Validando Campos";
+                string Mensaje = "Error tratando de validar los campos: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 return false;
             }
         }
@@ -258,15 +323,50 @@ namespace CapaPresentacion
             {
                 if (ValidarCampos())
                 {
+                    oConfiguracion.Documento = Convert.ToInt64(txtNit.Text.Trim());
+                    oConfiguracion.RazonSocial = txtRazonSocial.Text.Trim();
+                    oConfiguracion.NombreComercial = txtNombreComercial.Text.Trim();
+                    oConfiguracion.IdDepartamento = cboDepartamentos.SelectedValue;
+                    oConfiguracion.Departamento = cboDepartamentos.SelectedItem.Text;
+                    oConfiguracion.IdCiudad = cboCiudades.SelectedValue;
+                    oConfiguracion.Ciudad = cboCiudades.SelectedItem.Text;
+                    oConfiguracion.Direccion = txtDireccion.Text.Trim();
+                    oConfiguracion.Telefono = Convert.ToInt64(txtTelefono.Text.Trim());
+                    oConfiguracion.Email = txtEmail.Text.Trim();
+                    oConfiguracion.UsuarioCreacion = Session["Usuario"].ToString();
+                    oConfiguracion.EquipoCreacion = System.Environment.MachineName;
 
+                    string Resultado = objConfiguracion.Guardar(oConfiguracion);
+
+                    if (Resultado == "C") //Crear
+                    {
+                        string Titulo = "Información";
+                        string Mensaje = "La configuración del sistema fue creada correctamente.";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    }
+                    else if (Resultado == "A") //Actualizar
+                    {
+                        string Titulo = "Información";
+                        string Mensaje = "La configuración del sistema fue actualizada correctamente.";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    }
+                    else
+                    {
+                        string Titulo = "Advertencia";
+                        string Mensaje = "Los datos de la configuración no pudieron se almacenados. Contacte al administrador del sistema.";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                string Titulo = "Error";
-                string Mensaje = "Error tratando guardar los datos: " + ex.Message.ToString().Replace("'", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", Tipo, true);
+                string Titulo = "Error Almacenando Configuración";
+                string Mensaje = "Error tratando guardar los datos de la Configuración: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
     }

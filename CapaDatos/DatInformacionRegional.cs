@@ -19,7 +19,7 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminInformacionRegional";
+                sqlCommand.CommandText = "stpInformacionRegional";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LC";
                 sqlDataAdapter.SelectCommand = sqlCommand;
@@ -52,7 +52,7 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminInformacionRegional";
+                sqlCommand.CommandText = "stpInformacionRegional";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LD";
                 sqlDataAdapter.SelectCommand = sqlCommand;
@@ -85,7 +85,7 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminInformacionRegional";
+                sqlCommand.CommandText = "stpInformacionRegional";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCD";
                 sqlCommand.Parameters.Add("@IdDepartamento", SqlDbType.VarChar, 10).Value = IdDepartamento;

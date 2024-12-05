@@ -1,6 +1,7 @@
 ﻿using System;
 using CapaNegocios;
 using System.Web.UI;
+using System.Web.Security;
 
 namespace CapaPresentacion
 {
@@ -18,24 +19,26 @@ namespace CapaPresentacion
         {
             try
             {
-                if (Session["IdPerfil"] != null && Convert.ToInt16(Session["IdPerfil"]) > 0)
+                if (Session["CodigoUsuario"] != null && Session["IdPerfil"] != null) //Sesion activa
                 {
                     string Usuario = Session["Usuario"].ToString();
                     int IdPerfil = Convert.ToInt32(Session["IdPerfil"]);
+
                     string Menu = objMenu.CrearMenu(IdPerfil, Usuario);
                     labMenu.Text = Menu;
                 }
                 else
                 {
+                    FormsAuthentication.SignOut();
                     Response.Redirect("frmLogin.aspx");
                 }
             }
             catch (Exception ex)
             {
-                string titulo = "Error";
-                string mensaje = "Error tratando de crear el menú: " + ex.Message.ToString().Replace("'", "");
-                string str = "alertify.alert('" + titulo + "', '" + mensaje + "');";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", str, true);
+                string Titulo = "Error Creando Menú";
+                string Mensaje = "Error tratando de crear el Menú: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmLogin.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
 

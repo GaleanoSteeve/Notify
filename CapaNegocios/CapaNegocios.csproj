@@ -39,9 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NegConfiguracion.cs" />
     <Compile Include="NegCriptografia.cs" />
     <Compile Include="NegInformacionRegional.cs" />
     <Compile Include="NegMenu.cs" />
+    <Compile Include="NegPerfiles.cs" />
     <Compile Include="NegUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

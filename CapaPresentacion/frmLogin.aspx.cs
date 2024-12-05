@@ -27,12 +27,11 @@ namespace CapaPresentacion
 
             if (!IsPostBack)
             {
-                txtUsuario.Focus();
                 txtContrasena.Text = "";
 
-                string sLoginOut = Request.QueryString["CerrarSesion"] ?? "0";
+                string SalirLogin = Request.QueryString["CerrarSesion"] ?? "0";
 
-                if (Convert.ToBoolean(sLoginOut == "-1" ? "True" : "False"))
+                if (Convert.ToBoolean(SalirLogin == "-1" ? "True" : "False"))
                 {
                     Session.Contents.RemoveAll();
                     Session["CodigoUsuario"] = null;
@@ -50,26 +49,26 @@ namespace CapaPresentacion
         {
             if (txtUsuario.Text.Trim() == "")
             {
-                string titulo = "Advertencia";
-                string mensaje = "El campo usuario es obligatorio.";
-                string script = "alertify.alert('" + titulo + "', '" + mensaje + "');";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", script, true);
+                string Titulo = "Advertencia";
+                string Mensaje = "El campo usuario es obligatorio.";
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 txtUsuario.Focus();
                 return false;
             }
             else if (txtContrasena.Text.Trim() == "")
             {
-                string titulo = "Advertencia";
-                string mensaje = "El campo contraseña es obligatorio.";
-                string script = "alertify.alert('" + titulo + "', '" + mensaje + "');";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", script, true);
+                string Titulo = "Advertencia";
+                string Mensaje = "El campo contraseña es obligatorio.";
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 txtContrasena.Focus();
                 return false;
             }
             return true;
         }
 
-        //Boton
+        //Ingresar
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
             try
@@ -110,67 +109,66 @@ namespace CapaPresentacion
                                         }
                                         else
                                         {
-                                            string titulo = "Advertencia";
-                                            string mensaje = "Perfil de usuario inactivo. Por favor comuníquese con el administrador.";
-                                            string script = "alertify.alert('" + titulo + "', '" + mensaje + "');";
-                                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", script, true);
+                                            string Titulo = "Advertencia";
+                                            string Mensaje = "Perfil del usuario inactivo. Por favor comuníquese con el administrador del sistema.";
+                                            string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                                             btnIngresar.Focus();
                                         }
                                     }
                                     else
                                     {
-                                        string titulo = "Advertencia";
-                                        string mensaje = "Usuario no tiene perfil asignado. Por favor comuníquese con el administrador.";
-                                        string script = "alertify.alert('" + titulo + "', '" + mensaje + "');";
-                                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", script, true);
+                                        string Titulo = "Advertencia";
+                                        string Mensaje = "Usuario no tiene perfil asignado. Por favor comuníquese con el administrador del sistema.";
+                                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                                         btnIngresar.Focus();
                                     }
                                 }
                                 else
                                 {
-                                    string titulo = "Advertencia";
-                                    string mensaje = "Usuario inactivo. Por favor comuníquese con el administrador.";
-                                    string script = "alertify.alert('" + titulo + "', '" + mensaje + "');";
-                                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", script, true);
+                                    string Titulo = "Advertencia";
+                                    string Mensaje = "Usuario inactivo. Por favor comuníquese con el administrador del sistema.";
+                                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                                     btnIngresar.Focus();
                                 }
                             }
                             else
                             {
-                                string titulo = "Advertencia";
-                                string mensaje = "Contraseña inválida.";
-                                string script = "alertify.alert('" + titulo + "', '" + mensaje + "');";
-                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", script, true);
+                                string Titulo = "Advertencia";
+                                string Mensaje = "Contraseña inválida.";
+                                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                                 txtContrasena.Text = "";
                                 txtContrasena.Focus();
                             }
                         }
                         else
                         {
-                            string titulo = "Advertencia";
-                            string mensaje = "Credenciales inválidas.";
-                            string script = "alertify.alert('" + titulo + "', '" + mensaje + "');";
-                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", script, true);
+                            string Titulo = "Advertencia";
+                            string Mensaje = "Credenciales inválidas.";
+                            string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                             txtUsuario.Focus();
                         }
                     }
                     else
                     {
-                        string titulo = "Advertencia";
-                        string mensaje = "La consulta no arrojó datos. Por favor comuníquese al administrador del sistema.";
-                        string script = "alertify.alert('" + titulo + "', '" + mensaje + "');";
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", script, true);
+                        string Titulo = "Advertencia";
+                        string Mensaje = "La consulta no arrojó datos. Por favor comuníquese al administrador del sistema.";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                         txtUsuario.Focus();
                     }
                 }
             }
             catch (Exception ex)
             {
-                string titulo = "Error";
-                string mensaje = "Error tratando de validar el usuario: " + ex.Message.ToString().Replace("'", "");
-                string str = "alertify.alert('" + titulo + "', '" + mensaje + "');";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "scriptID", str, true);
-                txtUsuario.Focus();
+                string Titulo = "Error Validando Usuario";
+                string Mensaje = "Error tratando de validar el usuario: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmLogin.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
     }

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Notify</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -47,7 +47,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server" autocomplete="off">
+    <form id="webMaster" runat="server" autocomplete="off">
         <div>
             <section>
                 <asp:Label ID="labMenu" runat="server" Text=""></asp:Label>

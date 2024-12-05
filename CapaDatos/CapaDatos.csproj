@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatConexionDB.cs" />
+    <Compile Include="DatConfiguracion.cs" />
     <Compile Include="DatInformacionRegional.cs" />
     <Compile Include="DatMenu.cs" />
+    <Compile Include="DatPerfiles.cs" />
     <Compile Include="DatUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

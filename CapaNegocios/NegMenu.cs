@@ -45,9 +45,9 @@ namespace CapaNegocios
                 }
 
                 this.Menu += "</li>";
-                this.Menu += "<li class=" + this.Comillas + "nav-item active" + this.Comillas + "><a class=" + this.Comillas + "nav-link" + this.Comillas + "href=" + this.Comillas + "frmAbout.aspx" + this.Comillas + ">Acerca de</a></li>";
                 this.Menu += "<li class=" + this.Comillas + "nav-item" + this.Comillas + "><a class=" + this.Comillas + "nav-link" + this.Comillas + " href=" + this.Comillas + "frmLogin.aspx?CerrarSesion=-1" + this.Comillas + ">Cerrar sesion</a></li>";
-                this.Menu += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>" + "Usuario: " + Usuario + "</span></p>";
+                this.Menu += "&nbsp;&nbsp;&nbsp;&nbsp;<li class=" + this.Comillas + "nav-item active" + this.Comillas + "><a class=" + this.Comillas + "nav-link" + this.Comillas + "href=" + this.Comillas + "frmAbout.aspx" + this.Comillas + ">Acerca de</a></li>";
+                this.Menu += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>" + "Usuario: " + Usuario + "</span></p>";
                 this.Menu += "</ul></div></nav>";
                 return this.Menu;
             }
