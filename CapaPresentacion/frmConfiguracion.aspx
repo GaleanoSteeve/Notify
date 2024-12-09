@@ -41,11 +41,6 @@
                     <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)"></asp:TextBox>
                 </div>
 
-                <%--<div class="form-group">
-                    <label class="float-left" for="txtEmail">Email</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>--%>
-
                 <label class="float-left" for="txtEmail">Email</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
                 <div class="input-group">
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>

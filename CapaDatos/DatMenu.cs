@@ -19,7 +19,7 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminPerfiles";
+                sqlCommand.CommandText = "stpPerfiles";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LM";
                 sqlCommand.Parameters.Add("@IdPerfil", SqlDbType.Int).Value = IdPerfil;

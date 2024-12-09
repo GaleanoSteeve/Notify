@@ -1,5 +1,5 @@
-﻿
-using CapaDatos;
+﻿using CapaDatos;
+using CapaObjetos;
 using System.Data;
 
 namespace CapaNegocios
@@ -8,45 +8,47 @@ namespace CapaNegocios
     {
         DatPerfiles objPerfiles = new DatPerfiles();
 
+        public bool Guardar(ObjPerfiles oPerfil)
+        {
+            bool Resultado = objPerfiles.Guardar(oPerfil);
+            return Resultado;
+        }
+        public bool Actualizar(ObjPerfiles oPerfil)
+        {
+            bool Resultado = objPerfiles.Actualizar(oPerfil);
+            return Resultado;
+        }
+        public bool GuardarModulosPerfil(ObjPerfiles oPerfil)
+        {
+            bool Resultado = objPerfiles.GuardarModulosPerfil(oPerfil);
+            return Resultado;
+        }
+
         //Listar
         public DataTable ListarPerfiles()
         {
             DataTable dtDatos = objPerfiles.ListarPerfiles();
             return dtDatos;
         }
-
-        //public DataTable ListarPerfilesActivos()
-        //{
-        //    DataTable dtDatos = objPerfiles.ListarPerfilesActivos();
-        //    return dtDatos;
-        //}
-        //public DataTable BuscarPerfil(int IdPerfil)
-        //{
-        //    DataTable dtDatos = objPerfiles.BuscarPerfil(IdPerfil);
-        //    return dtDatos;
-        //}
-        //public DataTable ListarPermisos(int IdPerfil)
-        //{
-        //    DataTable dtDatos = objPerfiles.ListarPermisos(IdPerfil);
-        //    return dtDatos;
-        //}
-
-        //public int MaximoIdPerfil()
-        //{
-        //    int IdPerfil = 0;
-        //    return IdPerfil = objPerfiles.MaximoIdPerfil();
-        //}
-        //public bool GuardarPerfil(ObjPerfiles oPerfil)
-        //{
-        //    return objPerfiles.GuardarPerfil(oPerfil);
-        //}
-        //public bool GuardarModulosPerfil(ObjPerfiles oPerfil)
-        //{
-        //    return objPerfiles.GuardarModulosPerfil(oPerfil);
-        //}
-        //public bool ModificarPerfil(ObjPerfiles oPerfil)
-        //{
-        //    return objPerfiles.ModificarPerfil(oPerfil);
-        //}
+        public DataTable ListarMaximoPerfil()
+        {
+            DataTable dtDatos = objPerfiles.ListarMaximoPerfil();
+            return dtDatos;
+        }
+        public DataTable ListarPerfil(int IdPerfil)
+        {
+            DataTable dtDatos = objPerfiles.ListarPerfil(IdPerfil);
+            return dtDatos;
+        }
+        public DataTable ListarModulosPerfil(int IdPerfil)
+        {
+            DataTable dtDatos = objPerfiles.ListarModulosPerfil(IdPerfil);
+            return dtDatos;
+        }
+        public DataTable ListarPerfilPorNombre(string Nombre)
+        {
+            DataTable dtDatos = objPerfiles.ListarPerfilPorNombre(Nombre);
+            return dtDatos;
+        }
     }
 }

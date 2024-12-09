@@ -342,21 +342,21 @@ namespace CapaPresentacion
                     {
                         string Titulo = "Información";
                         string Mensaje = "La configuración del sistema fue creada correctamente.";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                     else if (Resultado == "A") //Actualizar
                     {
                         string Titulo = "Información";
                         string Mensaje = "La configuración del sistema fue actualizada correctamente.";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                     else
                     {
                         string Titulo = "Advertencia";
                         string Mensaje = "Los datos de la configuración no pudieron se almacenados. Contacte al administrador del sistema.";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                 }

@@ -18,7 +18,6 @@ namespace CapaPresentacion
         }
         protected void Application_End(object sender, EventArgs e)
         {
-            Session.Contents.RemoveAll();
             Session["CodigoUsuario"] = null;
             Session["IdPerfil"] = null;
             Session.Clear();

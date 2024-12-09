@@ -25,7 +25,6 @@ namespace CapaNegocios
                 this.Menu += "<span class=" + this.Comillas + "navbar-toggler-icon" + this.Comillas + "></span></button>";
                 this.Menu += "<div class=" + this.Comillas + "collapse navbar-collapse" + this.Comillas + " id=" + this.Comillas + "navbarSupportedContent" + this.Comillas + ">";
                 this.Menu += "<ul class=" + this.Comillas + "navbar-nav mr-auto" + this.Comillas + ">";
-                this.Menu += "<li class=" + this.Comillas + "nav-item active" + this.Comillas + "><a class=" + this.Comillas + "nav-link" + this.Comillas + "href=" + this.Comillas + "frmInicio.aspx" + this.Comillas + ">Inicio</a></li>";
 
                 this.dtModulos = objMenu.ListarPermisos(IdPerfil); //Consultar modulos perfil
 
@@ -47,7 +46,10 @@ namespace CapaNegocios
                 this.Menu += "</li>";
                 this.Menu += "<li class=" + this.Comillas + "nav-item" + this.Comillas + "><a class=" + this.Comillas + "nav-link" + this.Comillas + " href=" + this.Comillas + "frmLogin.aspx?CerrarSesion=-1" + this.Comillas + ">Cerrar sesion</a></li>";
                 this.Menu += "&nbsp;&nbsp;&nbsp;&nbsp;<li class=" + this.Comillas + "nav-item active" + this.Comillas + "><a class=" + this.Comillas + "nav-link" + this.Comillas + "href=" + this.Comillas + "frmAbout.aspx" + this.Comillas + ">Acerca de</a></li>";
-                this.Menu += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>" + "Usuario: " + Usuario + "</span></p>";
+                this.Menu += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>" + "Usuario: " + Usuario + "</span></p>";
                 this.Menu += "</ul></div></nav>";
                 return this.Menu;
             }
