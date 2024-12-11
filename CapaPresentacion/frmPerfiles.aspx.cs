@@ -50,7 +50,7 @@ namespace CapaPresentacion
                 {
                     string Titulo = "Advertencia";
                     string Mensaje = "No existen perfiles creados en base de datos.";
-                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmPerfiles.aspx'});";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     HiddenField.Value = string.Empty;
                 }
@@ -152,6 +152,7 @@ namespace CapaPresentacion
             ListarModulosPerfil(0);
             ListarMaximoPerfil();
             modPerfiles.Show();
+            txtNombre.Focus();
         }
         protected void btnEditar_Click(object sender, EventArgs e)
         {

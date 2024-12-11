@@ -35,6 +35,11 @@ namespace CapaNegocios
             DataTable dtDatos = objPerfiles.ListarMaximoPerfil();
             return dtDatos;
         }
+        public DataTable ListarComboPerfiles()
+        {
+            DataTable dtDatos = objPerfiles.ListarComboPerfiles();
+            return dtDatos;
+        }
         public DataTable ListarPerfil(int IdPerfil)
         {
             DataTable dtDatos = objPerfiles.ListarPerfil(IdPerfil);

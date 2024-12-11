@@ -41,8 +41,8 @@
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                     </asp:TemplateField>
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" HeaderStyle-Width="40%" ItemStyle-HorizontalAlign="Left" />
-                    <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha Creación" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="Activo" HeaderText="Activo" HeaderStyle-Width="20%" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha Creación" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" ItemStyle-HorizontalAlign="Center" />
                 </Columns>
                 <HeaderStyle BackColor="#007bff" Font-Bold="False" ForeColor="White" HorizontalAlign="Center" />
             </asp:GridView>
@@ -54,7 +54,7 @@
         <ajaxToolkit:ModalPopupExtender ID="modPerfiles" runat="server" TargetControlID="btnAbrir" PopupControlID="popPerfiles" BackgroundCssClass="modalBackgroundPerfiles" CancelControlID="btnCancelar">
         </ajaxToolkit:ModalPopupExtender>
 
-        <asp:Panel ID="popPerfiles" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" Style="height: 92vh;">
+        <asp:Panel ID="popPerfiles" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" Style="height: 92vh; overflow-y: scroll; padding: 0;">
 
             <div class="mt-4">
                 <h5 style="color: steelblue; font-weight: 600;">Registro de Perfiles</h5>
@@ -75,11 +75,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="float-left" for="cboCiudades">Activo</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                        <label class="float-left" for="cboEstado">Activo</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
                         <asp:DropDownList ID="cboEstado" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:DropDownList>
                     </div>
 
-                    <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" Text="Guardar" OnClick="btnGuardar_Click"/>
+                    <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" Text="Guardar" OnClick="btnGuardar_Click" />
                     <button id="btnCancelar" class="btn btn-danger" onclick="LimpiarControles()">Cancelar</button>
 
                     <div>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
 
-                <div id="divDerecha" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8" style="height: 72vh; overflow-y: scroll; padding: 0;">
+                <div id="divDerecha" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8" style="height: 72vh;">
 
                     <asp:GridView ID="gvModulos" runat="server" CssClass="table table-striped table-hover w-100" AutoGenerateColumns="False">
                         <Columns>

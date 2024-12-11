@@ -30,6 +30,11 @@ namespace CapaNegocios
             int Codigo = objUsuarios.ListarCodigo();
             return Codigo;
         }
+        public DataTable ListarUsuarios()
+        {
+            DataTable dtDatos = objUsuarios.ListarUsuarios();
+            return dtDatos;
+        }
         public DataTable ListarComboUsuarios()
         {
             DataTable dtDatos = objUsuarios.ListarComboUsuarios();
@@ -48,11 +53,6 @@ namespace CapaNegocios
         public DataTable ExisteUsuario(ObjUsuarios oUsuario)
         {
             DataTable dtDatos = objUsuarios.ExisteUsuario(oUsuario);
-            return dtDatos;
-        }
-        public DataTable ListarUsuarios(ObjUsuarios oUsuario)
-        {
-            DataTable dtDatos = objUsuarios.ListarUsuarios(oUsuario);
             return dtDatos;
         }
         public DataTable ListarUsuarioCodigo(ObjUsuarios oUsuario)

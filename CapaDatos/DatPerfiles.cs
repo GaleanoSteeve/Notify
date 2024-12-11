@@ -176,6 +176,39 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
+        public DataTable ListarComboPerfiles()
+        {
+            DataTable dtDatos = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+            try
+            {
+                sqlCommand.Connection = DatConexionDB.ObtenerConexion();
+                if (sqlCommand.Connection.State == ConnectionState.Closed)
+                {
+                    sqlCommand.Connection.Open();
+                }
+                sqlCommand.CommandText = "stpPerfiles";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCP";
+                sqlDataAdapter.SelectCommand = sqlCommand;
+                sqlDataAdapter.Fill(dtDatos);
+                return dtDatos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCommand.Connection.State == ConnectionState.Open)
+                {
+                    sqlCommand.Connection.Close();
+                }
+                sqlCommand = null;
+            }
+        }
         public DataTable ListarPerfil(int IdPerfil)
         {
             DataTable dtDatos = new DataTable();
@@ -277,6 +310,6 @@ namespace CapaDatos
                 }
                 sqlCommand = null;
             }
-        }
+        }        
     }
 }
