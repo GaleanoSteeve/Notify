@@ -48,7 +48,6 @@ namespace CapaDatos
         }
         public bool EliminarUsuario(ObjUsuarios oUsuario)
         {
-            bool Resultado = false;
             SqlCommand sqlCommand = new SqlCommand();
 
             try
@@ -63,8 +62,7 @@ namespace CapaDatos
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "D";
                 sqlCommand.Parameters.Add("@Codigo", SqlDbType.Int).Value = oUsuario.Codigo;
                 sqlCommand.ExecuteReader();
-                Resultado = true;
-                return Resultado;
+                return true;
             }
             catch (Exception ex)
             {
@@ -81,7 +79,6 @@ namespace CapaDatos
         }
         public bool AlmacenarUsuario(ObjUsuarios oUsuario)
         {
-            bool Resultado = false;
             SqlCommand sqlCommand = new SqlCommand();
 
             try
@@ -107,8 +104,7 @@ namespace CapaDatos
                 sqlCommand.Parameters.Add("@UsuarioModificacion", SqlDbType.VarChar, 10).Value = oUsuario.UsuarioModificacion;
                 sqlCommand.Parameters.Add("@EquipoModificacion", SqlDbType.VarChar, 50).Value = oUsuario.EquipoModificacion;
                 sqlCommand.ExecuteReader();
-                Resultado = true;
-                return Resultado;
+                return true;
             }
             catch (Exception ex)
             {

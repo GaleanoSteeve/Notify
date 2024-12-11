@@ -12,7 +12,9 @@ namespace CapaPresentacion
     {
         #region Variables
 
+        ObjModulos oModulo = new ObjModulos();
         ObjPerfiles oPerfil = new ObjPerfiles();
+
         NegPerfiles objPerfiles = new NegPerfiles();
 
         #endregion
@@ -145,6 +147,7 @@ namespace CapaPresentacion
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             labCrear.Text = "1";
+            labPerfil.Text = "";
             cboEstado.SelectedValue = "1";
             ListarModulosPerfil(0);
             ListarMaximoPerfil();
@@ -335,35 +338,47 @@ namespace CapaPresentacion
                     oPerfil.Estado = cboEstado.SelectedValue == "1" ? true : false;
                     oPerfil.UsuarioCreacion = Session["Usuario"].ToString();
                     oPerfil.EquipoCreacion = System.Environment.MachineName;
+                    oPerfil.UsuarioModificacion = Session["Usuario"].ToString();
+                    oPerfil.EquipoModificacion = System.Environment.MachineName;
 
                     using (TransactionScope tsTransaction = new TransactionScope())
                     {
-                        if (objPerfiles.Guardar(oPerfil))
+                        if (objPerfiles.Guardar(oPerfil)) //Guardar perfil
                         {
-                            foreach (GridViewRow gvRow in gvModulos.Rows)
+                            if (objPerfiles.EliminarModulosPerfil(oPerfil)) //Eliminar modulos perfil
                             {
-                                if (gvRow.RowType == DataControlRowType.DataRow)
+                                foreach (GridViewRow gvRow in gvModulos.Rows)
                                 {
-                                    oPerfil.IdModulo = Convert.ToInt32(gvRow.Cells[0].Text);
-                                    CheckBox chkAplica = (gvRow.Cells[3].FindControl("chkAgregar") as CheckBox);
+                                    if (gvRow.RowType == DataControlRowType.DataRow)
+                                    {
+                                        int IdModulo = Convert.ToInt32(gvRow.Cells[0].Text);
+                                        CheckBox chkAplica = (gvRow.Cells[3].FindControl("chkAgregar") as CheckBox);
 
-                                    if (chkAplica.Checked)
-                                    {
-                                        oPerfil.TienePermiso = true;
+                                        oModulo = new ObjModulos();
+                                        oModulo.IdModulo = IdModulo;
+                                        oModulo.TienePermiso = false;
+                                        oModulo.IdPerfil = oPerfil.IdPerfil;
+
+                                        if (chkAplica.Checked)
+                                        {
+                                            oModulo.TienePermiso = true;
+                                        }
                                     }
-                                    else
-                                    {
-                                        oPerfil.TienePermiso = false;
-                                    }
+                                    objPerfiles.GuardarModulosPerfil(oModulo);
                                 }
-
-                                //objPerfiles.GuardarModulosPerfil(oPerfil);
                             }
+                            else
+                            {
+                                tsTransaction.Dispose();
+                            }
+                        }
+                        else
+                        {
+                            tsTransaction.Dispose();
                         }
                         tsTransaction.Complete();
                     }
 
-                    //ListarPerfiles();
                     HiddenField.Value = string.Empty;
                     string strMensaje = labCrear.Text == "1" ? "creado" : "actualizado";
 

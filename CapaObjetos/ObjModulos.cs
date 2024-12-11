@@ -2,12 +2,14 @@
 
 namespace CapaObjetos
 {
-    public class ObjPerfiles
+    public class ObjModulos
     {
         private string _Operacion;
         private int _IdPerfil;
+        private int _IdModulo;
+        private string _Modulo;
         private string _Nombre;
-        private bool _Estado;
+        private bool _TienePermiso;
         private string _UsuarioCreacion;
         private DateTime _FechaCreacion;
         private string _EquipoCreacion;
@@ -25,15 +27,25 @@ namespace CapaObjetos
             get { return _IdPerfil; }
             set { _IdPerfil = value; }
         }
+        public int IdModulo
+        {
+            get { return _IdModulo; }
+            set { _IdModulo = value; }
+        }
+        public string Modulo
+        {
+            get { return _Modulo; }
+            set { _Modulo = value; }
+        }
         public string Nombre
         {
             get { return _Nombre; }
             set { _Nombre = value; }
         }
-        public bool Estado
+        public bool TienePermiso
         {
-            get { return _Estado; }
-            set { _Estado = value; }
+            get { return _TienePermiso; }
+            set { _TienePermiso = value; }
         }
         public string UsuarioCreacion
         {

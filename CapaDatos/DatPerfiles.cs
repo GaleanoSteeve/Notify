@@ -44,7 +44,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public bool Actualizar(ObjPerfiles oPerfil)
+        public bool GuardarModulosPerfil(ObjModulos oModulo)
         {
             SqlCommand sqlCommand = new SqlCommand();
 
@@ -57,12 +57,10 @@ namespace CapaDatos
                 }
                 sqlCommand.CommandText = "stpPerfiles";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = oPerfil.Operacion;
-                sqlCommand.Parameters.Add("@IdPerfil", SqlDbType.Int).Value = oPerfil.IdPerfil;
-                sqlCommand.Parameters.Add("@Nombre", SqlDbType.VarChar, 100).Value = oPerfil.Nombre;
-                sqlCommand.Parameters.Add("@Estado", SqlDbType.Bit).Value = oPerfil.Estado;
-                sqlCommand.Parameters.Add("@UsuarioModificacion", SqlDbType.VarChar, 50).Value = oPerfil.UsuarioModificacion;
-                sqlCommand.Parameters.Add("@EquipoModificacion", SqlDbType.VarChar, 50).Value = oPerfil.EquipoModificacion;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "CMP";
+                sqlCommand.Parameters.Add("@IdPerfil", SqlDbType.Int).Value = oModulo.IdPerfil;
+                sqlCommand.Parameters.Add("@IdModulo", SqlDbType.Int).Value = oModulo.IdModulo;
+                sqlCommand.Parameters.Add("@TienePermiso", SqlDbType.Bit).Value = oModulo.TienePermiso;
                 sqlCommand.ExecuteReader();
                 return true;
             }
@@ -79,7 +77,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public bool GuardarModulosPerfil(ObjPerfiles oPerfil)
+        public bool EliminarModulosPerfil(ObjPerfiles oPerfil)
         {
             SqlCommand sqlCommand = new SqlCommand();
 
@@ -92,10 +90,8 @@ namespace CapaDatos
                 }
                 sqlCommand.CommandText = "stpPerfiles";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "CMP";
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "EMP";
                 sqlCommand.Parameters.Add("@IdPerfil", SqlDbType.Int).Value = oPerfil.IdPerfil;
-                sqlCommand.Parameters.Add("@IdModulo", SqlDbType.Int).Value = oPerfil.IdModulo;
-                sqlCommand.Parameters.Add("@Estado", SqlDbType.Bit).Value = oPerfil.TienePermiso;
                 sqlCommand.ExecuteReader();
                 return true;
             }

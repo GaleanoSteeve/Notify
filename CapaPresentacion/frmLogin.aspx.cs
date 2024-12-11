@@ -110,10 +110,12 @@ namespace CapaPresentacion
                                         else
                                         {
                                             string Titulo = "Advertencia";
-                                            string Mensaje = "Perfil del usuario inactivo. Por favor comuníquese con el administrador del sistema.";
+                                            string Mensaje = "El perfil del usuario está inactivo. Por favor comuníquese con el administrador del sistema.";
                                             string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
-                                            btnIngresar.Focus();
+                                            txtContrasena.Text = "";
+                                            txtUsuario.Text = "";
+                                            txtUsuario.Focus();
                                         }
                                     }
                                     else
@@ -122,7 +124,9 @@ namespace CapaPresentacion
                                         string Mensaje = "Usuario no tiene perfil asignado. Por favor comuníquese con el administrador del sistema.";
                                         string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
-                                        btnIngresar.Focus();
+                                        txtContrasena.Text = "";
+                                        txtUsuario.Text = "";
+                                        txtUsuario.Focus();
                                     }
                                 }
                                 else
@@ -131,13 +135,15 @@ namespace CapaPresentacion
                                     string Mensaje = "Usuario inactivo. Por favor comuníquese con el administrador del sistema.";
                                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
-                                    btnIngresar.Focus();
+                                    txtContrasena.Text = "";
+                                    txtUsuario.Text = "";
+                                    txtUsuario.Focus();
                                 }
                             }
                             else
                             {
                                 string Titulo = "Advertencia";
-                                string Mensaje = "Contraseña inválida.";
+                                string Mensaje = "Contraseña incorrecta.";
                                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                                 txtContrasena.Text = "";
@@ -147,7 +153,7 @@ namespace CapaPresentacion
                         else
                         {
                             string Titulo = "Advertencia";
-                            string Mensaje = "Credenciales inválidas.";
+                            string Mensaje = "Usuario o contraseña incorrectos.";
                             string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                             txtUsuario.Focus();

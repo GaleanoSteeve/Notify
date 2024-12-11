@@ -32,13 +32,14 @@ namespace CapaNegocios
                 {
                     string Modulo = dtModulos.Rows[i]["Modulo"].ToString();
                     int IdPadre = Convert.ToInt16(dtModulos.Rows[i]["IdPadre"]);
+                    int IdModulo = Convert.ToInt32(this.dtModulos.Rows[i]["IdModulo"]);
+                    bool TienePermiso = Convert.ToBoolean(dtModulos.Rows[i]["TienePermiso"]);
 
-                    if (IdPadre == 0) //Modulo es padre
+                    if (TienePermiso && IdPadre == 0) //Modulo es padre
                     {
                         this.Menu += "<li class =" + this.Comillas + "nav-item dropdown" + this.Comillas + ">";
                         this.Menu += "<a class=" + this.Comillas + "nav-link dropdown-toggle" + this.Comillas + " href=" + this.Comillas + "#" + this.Comillas + " id=" + this.Comillas + "navbarDropdown" + this.Comillas + " role=" + this.Comillas + "button" + this.Comillas + " data-toggle=" + this.Comillas + "dropdown" + this.Comillas + " aria-haspopup=" + this.Comillas + "true" + this.Comillas + " aria-expanded=" + this.Comillas + "false" + this.Comillas + ">" + Modulo + "</a>";
 
-                        int IdModulo = Convert.ToInt32(this.dtModulos.Rows[i]["IdModulo"]);
                         this.Menu += this.PintarHijo(IdModulo, this.dtModulos); //Pintar modulos hijos
                     }
                 }
@@ -65,12 +66,17 @@ namespace CapaNegocios
                 int Contador = 0;
                 string Hijos = "<div class =" + this.Comillas + "dropdown-menu" + this.Comillas + " aria-labelledby=" + this.Comillas + "navbarDropdown" + this.Comillas + ">"; //Recorrer modulos a los que tiene acceso el usuario
 
-                foreach (DataRow dr in dtModulos.Rows)
+                for (int i = 0; i < dtModulos.Rows.Count; i++)
                 {
-                    if (IdModulo == Convert.ToInt32(dr["IdPadre"] == DBNull.Value ? "0" : dr["IdPadre"].ToString())) //Modulo padre
+                    string Modulo = dtModulos.Rows[i]["Modulo"].ToString();
+                    int IdPadre = Convert.ToInt32(dtModulos.Rows[i]["IdPadre"]);
+                    string Formulario = dtModulos.Rows[i]["Formulario"].ToString();
+                    bool TienePermiso = Convert.ToBoolean(dtModulos.Rows[i]["TienePermiso"]);
+
+                    if (TienePermiso && (IdModulo == IdPadre)) //Modulo padre
                     {
                         Contador++;
-                        Hijos += "<a class=" + this.Comillas + "dropdown-item" + this.Comillas + " href=" + this.Comillas + dr["Formulario"].ToString() + this.Comillas + ">" + dr["Modulo"].ToString() + "</a>";
+                        Hijos += "<a class=" + this.Comillas + "dropdown-item" + this.Comillas + " href=" + this.Comillas + Formulario + this.Comillas + ">" + Modulo + "</a>";
                     }
                 }
 

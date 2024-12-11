@@ -13,14 +13,14 @@ namespace CapaNegocios
             bool Resultado = objPerfiles.Guardar(oPerfil);
             return Resultado;
         }
-        public bool Actualizar(ObjPerfiles oPerfil)
+        public bool GuardarModulosPerfil(ObjModulos oModulo)
         {
-            bool Resultado = objPerfiles.Actualizar(oPerfil);
+            bool Resultado = objPerfiles.GuardarModulosPerfil(oModulo);
             return Resultado;
         }
-        public bool GuardarModulosPerfil(ObjPerfiles oPerfil)
+        public bool EliminarModulosPerfil(ObjPerfiles oPerfil)
         {
-            bool Resultado = objPerfiles.GuardarModulosPerfil(oPerfil);
+            bool Resultado = objPerfiles.EliminarModulosPerfil(oPerfil);
             return Resultado;
         }
 
