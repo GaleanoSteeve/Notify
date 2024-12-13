@@ -96,12 +96,12 @@ namespace CapaDatos
                 sqlCommand.Parameters.Add("@Usuario", SqlDbType.VarChar, 10).Value = oUsuario.Usuario;
                 sqlCommand.Parameters.Add("@Contrasena", SqlDbType.VarChar, 200).Value = oUsuario.Contrasena;
                 sqlCommand.Parameters.Add("@IdPerfil", SqlDbType.Int).Value = oUsuario.IdPerfil;
-                sqlCommand.Parameters.Add("@Perfil", SqlDbType.VarChar, 50).Value = oUsuario.Perfil;
+                sqlCommand.Parameters.Add("@Perfil", SqlDbType.VarChar, 100).Value = oUsuario.Perfil;
                 sqlCommand.Parameters.Add("@PuedeEliminar", SqlDbType.Bit).Value = oUsuario.PuedeEliminar;
                 sqlCommand.Parameters.Add("@Estado", SqlDbType.Bit).Value = oUsuario.Estado;
-                sqlCommand.Parameters.Add("@UsuarioCreacion", SqlDbType.VarChar, 10).Value = oUsuario.UsuarioCreacion;
+                sqlCommand.Parameters.Add("@UsuarioCreacion", SqlDbType.VarChar, 50).Value = oUsuario.UsuarioCreacion;
                 sqlCommand.Parameters.Add("@EquipoCreacion", SqlDbType.VarChar, 50).Value = oUsuario.EquipoCreacion;
-                sqlCommand.Parameters.Add("@UsuarioModificacion", SqlDbType.VarChar, 10).Value = oUsuario.UsuarioModificacion;
+                sqlCommand.Parameters.Add("@UsuarioModificacion", SqlDbType.VarChar, 50).Value = oUsuario.UsuarioModificacion;
                 sqlCommand.Parameters.Add("@EquipoModificacion", SqlDbType.VarChar, 50).Value = oUsuario.EquipoModificacion;
                 sqlCommand.ExecuteReader();
                 return true;
@@ -191,6 +191,39 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
+        public DataTable ListarMaximoCodigo()
+        {
+            DataTable dtDatos = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+            try
+            {
+                sqlCommand.Connection = DatConexionDB.ObtenerConexion();
+                if (sqlCommand.Connection.State == ConnectionState.Closed)
+                {
+                    sqlCommand.Connection.Open();
+                }
+                sqlCommand.CommandText = "stpAdminUsuarios";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "MAX";
+                sqlDataAdapter.SelectCommand = sqlCommand;
+                sqlDataAdapter.Fill(dtDatos);
+                return dtDatos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCommand.Connection.State == ConnectionState.Open)
+                {
+                    sqlCommand.Connection.Close();
+                }
+                sqlCommand = null;
+            }
+        }
         public DataTable ListarComboUsuarios()
         {
             DataTable dtDatos = new DataTable();
@@ -207,6 +240,40 @@ namespace CapaDatos
                 sqlCommand.CommandText = "stpAdminUsuarios";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCU";
+                sqlDataAdapter.SelectCommand = sqlCommand;
+                sqlDataAdapter.Fill(dtDatos);
+                return dtDatos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCommand.Connection.State == ConnectionState.Open)
+                {
+                    sqlCommand.Connection.Close();
+                }
+                sqlCommand = null;
+            }
+        }
+        public DataTable ListarUsuarioCodigo(int Codigo)
+        {
+            DataTable dtDatos = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+            try
+            {
+                sqlCommand.Connection = DatConexionDB.ObtenerConexion();
+                if (sqlCommand.Connection.State == ConnectionState.Closed)
+                {
+                    sqlCommand.Connection.Open();
+                }
+                sqlCommand.CommandText = "stpAdminUsuarios";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LUC";
+                sqlCommand.Parameters.Add("@Codigo", SqlDbType.Int).Value = Codigo;
                 sqlDataAdapter.SelectCommand = sqlCommand;
                 sqlDataAdapter.Fill(dtDatos);
                 return dtDatos;
@@ -326,7 +393,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataTable ListarUsuarioCodigo(ObjUsuarios oUsuario)
+        public DataTable ListarExisteUsuario(string Usuario)
         {
             DataTable dtDatos = new DataTable();
             SqlCommand sqlCommand = new SqlCommand();
@@ -341,8 +408,8 @@ namespace CapaDatos
                 }
                 sqlCommand.CommandText = "stpAdminUsuarios";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LUC";
-                sqlCommand.Parameters.Add("@Codigo", SqlDbType.Int).Value = oUsuario.Codigo;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LEU";
+                sqlCommand.Parameters.Add("@Usuario", SqlDbType.VarChar, 50).Value = Usuario;
                 sqlDataAdapter.SelectCommand = sqlCommand;
                 sqlDataAdapter.Fill(dtDatos);
                 return dtDatos;

@@ -54,7 +54,7 @@
         <ajaxToolkit:ModalPopupExtender ID="modPerfiles" runat="server" TargetControlID="btnAbrir" PopupControlID="popPerfiles" BackgroundCssClass="modalBackgroundPerfiles" CancelControlID="btnCancelar">
         </ajaxToolkit:ModalPopupExtender>
 
-        <asp:Panel ID="popPerfiles" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" Style="height: 92vh; overflow-y: scroll; padding: 0;">
+        <asp:Panel ID="popPerfiles" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" Style="height: 92vh;">
 
             <div class="mt-4">
                 <h5 style="color: steelblue; font-weight: 600;">Registro de Perfiles</h5>
@@ -90,7 +90,7 @@
 
                 <div id="divDerecha" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8" style="height: 72vh;">
 
-                    <asp:GridView ID="gvModulos" runat="server" CssClass="table table-striped table-hover w-100" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvModulos" runat="server" CssClass="table table-striped table-hover w-100" AutoGenerateColumns="False" Style="overflow-y: scroll;">
                         <Columns>
                             <asp:BoundField DataField="IdModulo" HeaderText="Código" HeaderStyle-Width="15%" />
                             <asp:BoundField DataField="Modulo" HeaderText="Módulo" HeaderStyle-Width="40%" ItemStyle-HorizontalAlign="Left" />

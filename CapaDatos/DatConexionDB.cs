@@ -10,7 +10,7 @@ namespace CapaDatos
         #region Variables
 
         private static string CadenaConexion = "";
-        private static clsDesencriptar objDesencriptar = new clsDesencriptar();
+        private static clsCriptografia objDesencriptar = new clsCriptografia();
 
         #endregion
 

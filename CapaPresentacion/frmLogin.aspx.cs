@@ -12,7 +12,7 @@ namespace CapaPresentacion
 
         private ObjUsuarios oUsuario = new ObjUsuarios();
         private NegUsuarios objUsuario = new NegUsuarios();
-        private NegCriptografia objCrypto = new NegCriptografia();
+        private NegCriptografia objCriptografia = new NegCriptografia();
 
         #endregion
 
@@ -86,7 +86,7 @@ namespace CapaPresentacion
                         if (dtUsuario.Rows.Count > 0) //Usuario existe
                         {
                             string ContrasenaAlmacenada = dtUsuario.Rows[0]["Contrasena"].ToString();
-                            string ContrasenaIngresada = objCrypto.EncriptarContrasena(txtContrasena.Text.Trim());
+                            string ContrasenaIngresada = objCriptografia.EncriptarContrasena(txtContrasena.Text.Trim());
 
                             if (ContrasenaAlmacenada == ContrasenaIngresada) //Contrasena correcta
                             {

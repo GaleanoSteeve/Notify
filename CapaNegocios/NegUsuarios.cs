@@ -35,9 +35,19 @@ namespace CapaNegocios
             DataTable dtDatos = objUsuarios.ListarUsuarios();
             return dtDatos;
         }
+        public DataTable ListarMaximoCodigo()
+        {
+            DataTable dtDatos = objUsuarios.ListarMaximoCodigo();
+            return dtDatos;
+        }
         public DataTable ListarComboUsuarios()
         {
             DataTable dtDatos = objUsuarios.ListarComboUsuarios();
+            return dtDatos;
+        }
+        public DataTable ListarUsuarioCodigo(int Codigo)
+        {
+            DataTable dtDatos = objUsuarios.ListarUsuarioCodigo(Codigo);
             return dtDatos;
         }
         public DataSet ListarUsuario(ObjUsuarios oUsuario)
@@ -55,9 +65,9 @@ namespace CapaNegocios
             DataTable dtDatos = objUsuarios.ExisteUsuario(oUsuario);
             return dtDatos;
         }
-        public DataTable ListarUsuarioCodigo(ObjUsuarios oUsuario)
+        public DataTable ListarExisteUsuario(string Usuario)
         {
-            DataTable dtDatos = objUsuarios.ListarUsuarioCodigo(oUsuario);
+            DataTable dtDatos = objUsuarios.ListarExisteUsuario(Usuario);
             return dtDatos;
         }
     }

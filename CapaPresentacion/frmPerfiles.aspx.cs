@@ -148,7 +148,6 @@ namespace CapaPresentacion
         {
             labCrear.Text = "1";
             labPerfil.Text = "";
-            cboEstado.SelectedValue = "1";
             ListarModulosPerfil(0);
             ListarMaximoPerfil();
             modPerfiles.Show();
@@ -238,7 +237,7 @@ namespace CapaPresentacion
         }
 
         //Guardar
-        private bool ValidarCampos()
+        private bool ValidarDatos()
         {
             try
             {
@@ -271,7 +270,7 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 labError.Visible = true;
-                labMensaje.Text = "Error tratando de validar los campos: " + ex.Message;
+                labMensaje.Text = "Error tratando de validar los datos: " + ex.Message;
                 modPerfiles.Show();
                 return false;
             }
@@ -321,8 +320,8 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-                labError.Visible = true;
                 labMensaje.Text = "Error tratando de validar el nombre del perfil: " + ex.Message;
+                labError.Visible = true;
                 modPerfiles.Show();
                 return false;
             }
@@ -331,7 +330,7 @@ namespace CapaPresentacion
         {
             try
             {
-                if (ValidarCampos())
+                if (ValidarDatos())
                 {
                     oPerfil = new ObjPerfiles();
                     oPerfil.IdPerfil = Convert.ToInt32(txtIdPerfil.Text);

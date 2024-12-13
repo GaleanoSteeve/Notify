@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data;
+using CapaObjetos;
 using CapaNegocios;
 using System.Web.UI;
 using System.Transactions;
+using System.Web.UI.WebControls;
 
 namespace CapaPresentacion
 {
@@ -10,10 +12,13 @@ namespace CapaPresentacion
     {
         #region Variables
 
-        NegUsuarios objUsuarios = new NegUsuarios();
-        NegPerfiles objPerfiles = new NegPerfiles();
+        ObjUsuarios oUsuario = new ObjUsuarios();
 
-        
+        NegPerfiles objPerfiles = new NegPerfiles();
+        NegUsuarios objUsuarios = new NegUsuarios();
+        NegCriptografia objCriptografia = new NegCriptografia();
+
+
         #endregion
 
         #region Cargar formulario
@@ -24,6 +29,9 @@ namespace CapaPresentacion
 
             if (!IsPostBack)
             {
+                ListarComboPerfiles();
+                ListarComboPermisos();
+                ListarComboEstados();
                 ListarUsuarios();
             }
         }
@@ -88,6 +96,33 @@ namespace CapaPresentacion
                 modUsuarios.Show();
             }
         }
+        private void ListarMaximoCodigo()
+        {
+            try
+            {
+                DataTable dtDatos = objUsuarios.ListarMaximoCodigo();
+
+                if (dtDatos.Rows.Count > 0)
+                {
+                    int Codigo = Convert.ToInt16(dtDatos.Rows[0]["Codigo"]);
+                    txtCodigo.Text = Codigo.ToString();
+                }
+                else
+                {
+                    labMensaje.Text = "No se pudo listar el máximo código de usuario. Por favor intente de nuevo.";
+                    labError.Visible = true;
+                    txtCodigo.Text = "";
+                    modUsuarios.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                labMensaje.Text = "Error tratando de listar el código del perfil: " + ex.Message;
+                labError.Visible = true;
+                txtCodigo.Text = "";
+                modUsuarios.Show();
+            }
+        }
         private void ListarComboPerfiles()
         {
             try
@@ -137,7 +172,7 @@ namespace CapaPresentacion
                 cboPuedeEliminar.DataValueField = "IdPermiso";
                 cboPuedeEliminar.DataTextField = "Permiso";
                 cboPuedeEliminar.DataBind();
-                cboPuedeEliminar.SelectedValue = "1";
+                cboPuedeEliminar.SelectedValue = "0";
             }
             catch (Exception ex)
             {
@@ -151,84 +186,114 @@ namespace CapaPresentacion
         //Administrar
         protected void btnCrear_Click(object sender, EventArgs e)
         {
-            ListarComboPerfiles();
-            ListarComboPermisos();
-            ListarComboEstados();
+            labUsuario.Text = "default";
+            labCrear.Text = "1";
+            ListarMaximoCodigo();
             txtNombres.Focus();
             modUsuarios.Show();
         }
         protected void btnEditar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                LinkButton btnEditar = (LinkButton)sender;
+                string strDatos = btnEditar.CommandArgument;
+                string[] Datos = strDatos.Split(',');
+                labCrear.Text = "0";
 
+                int Codigo = Convert.ToInt32(Datos[0]);
+
+                if (Codigo > 0)
+                {
+                    DataTable dtUsuario = objUsuarios.ListarUsuarioCodigo(Codigo);
+
+                    if (dtUsuario.Rows.Count > 0) //Perfil existe
+                    {
+                        txtCodigo.Text = dtUsuario.Rows[0]["Codigo"].ToString();
+                        txtNombres.Text = dtUsuario.Rows[0]["Nombres"].ToString();
+                        txtUsuario.Text = dtUsuario.Rows[0]["Usuario"].ToString();
+                        labUsuario.Text = dtUsuario.Rows[0]["Usuario"].ToString();
+                        cboPerfiles.SelectedValue = dtUsuario.Rows[0]["IdPerfil"].ToString();
+                        cboPuedeEliminar.SelectedValue = Convert.ToBoolean(dtUsuario.Rows[0]["PuedeEliminar"]) ? "1" : "0";
+                        cboEstado.SelectedValue = Convert.ToBoolean(dtUsuario.Rows[0]["Estado"]) ? "1" : "0";
+                        modUsuarios.Show();
+                    }
+                    else
+                    {
+                        string Titulo = "Advertencia";
+                        string Mensaje = "El usuario seleccionado no existe en base de datos.";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmUsuarios.aspx'});";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    }
+                }
+                else
+                {
+                    string Titulo = "Advertencia";
+                    string Mensaje = "El usuario seleccionado no tiene código asignado.";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmUsuarios.aspx'});";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                string Titulo = "Error Modificando Usuario";
+                string Mensaje = "Error tratando de modificar el usuario: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmUsuarios.aspx'});";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+            }
         }
 
         //Guardar
-        private bool ValidarCampos()
+        private bool ValidarDatos()
         {
             try
             {
                 if (txtCodigo.Text.Trim() == "")
                 {
                     txtCodigo.Focus();
-                    labError.Visible = true;
                     labMensaje.Text = "El campo Código es obligatorio.";
+                    labError.Visible = true;
+                    modUsuarios.Show();
+                    return false;
+                }
+                if (Convert.ToInt32(txtCodigo.Text.Trim()) <= 0)
+                {
+                    txtCodigo.Focus();
+                    labMensaje.Text = "El campo Código debe ser mayor que cero.";
+                    labError.Visible = true;
                     modUsuarios.Show();
                     return false;
                 }
                 else if (txtNombres.Text.Trim() == "")
                 {
-                    txtNombres.Focus();
-                    labError.Visible = true;
                     labMensaje.Text = "El campo Nombres es obligatorio.";
+                    labError.Visible = true;
+                    txtNombres.Focus();
                     modUsuarios.Show();
                     return false;
                 }
                 else if (txtUsuario.Text.Trim() == "")
                 {
-                    txtUsuario.Focus();
-                    labError.Visible = true;
                     labMensaje.Text = "El campo Usuario es obligatorio.";
+                    labError.Visible = true;
+                    txtUsuario.Focus();
                     modUsuarios.Show();
                     return false;
                 }
                 else if (ValidarUsuario())
                 {
-                    txtUsuario.Focus();
-                    labError.Visible = true;
-                    labMensaje.Text = "El Usuario ingresado ya existe en base de datos.";
-                    modUsuarios.Show();
                     return false;
                 }
-                else if (txtContrasena.Text.Trim() == "")
+                else if (ValidarContrasena())
                 {
-                    txtContrasena.Focus();
-                    labError.Visible = true;
-                    labMensaje.Text = "El campo Contraseña es obligatorio.";
-                    modUsuarios.Show();
-                    return false;
-                }
-                else if (txtConfirmacionContrasena.Text.Trim() == "")
-                {
-                    labError.Visible = true;
-                    txtConfirmacionContrasena.Focus();
-                    labMensaje.Text = "Debe confirmar la Contraseña.";
-                    modUsuarios.Show();
-                    return false;
-                }
-                else if (Convert.ToInt16(cboPerfiles.SelectedValue) <= 0)
-                {
-                    txtContrasena.Focus();
-                    labError.Visible = true;
-                    labMensaje.Text = "Debe seleccionar un Perfil.";
-                    modUsuarios.Show();
                     return false;
                 }
                 return true;
             }
             catch (Exception ex)
             {
+                labMensaje.Text = "Error tratando de validar los datos: " + ex.Message;
                 labError.Visible = true;
-                labMensaje.Text = "Error tratando de validar los campos: " + ex.Message;
                 modUsuarios.Show();
                 return false;
             }
@@ -241,16 +306,17 @@ namespace CapaPresentacion
 
                 if (Crear) //Crear
                 {
-                    DataTable dtUsuario = objPerfiles.ListarPerfilPorNombre(txtUsuario.Text.Trim());
+                    DataTable dtUsuario = objUsuarios.ListarExisteUsuario(txtUsuario.Text.Trim());
 
                     if (dtUsuario.Rows.Count > 0)
                     {
+                        labMensaje.Text = "El Usuario ingresado ya existe en base de datos.";
+                        labError.Visible = true;
+                        txtUsuario.Focus();
+                        modUsuarios.Show();
                         return true;
                     }
-                    else
-                    {
-                        return false;
-                    }
+                    return false;
                 }
                 else //Actualizar
                 {
@@ -263,98 +329,131 @@ namespace CapaPresentacion
 
                         if (dtUsuario.Rows.Count > 0)
                         {
+                            labMensaje.Text = "El Usuario ingresado ya existe en base de datos.";
+                            labError.Visible = true;
+                            txtUsuario.Focus();
+                            modUsuarios.Show();
                             return true;
                         }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else //No hubo cambio de perfil
-                    {
                         return false;
                     }
+                    return false;
                 }
             }
             catch (Exception ex)
             {
-                labError.Visible = true;
                 labMensaje.Text = "Error tratando de validar el usuario: " + ex.Message;
+                labError.Visible = true;
+                modUsuarios.Show();
+                return false;
+            }
+        }
+        private bool ValidarContrasena()
+        {
+            try
+            {
+                bool Crear = labCrear.Text == "1" ? true : false;
+
+                if (Crear) //Crear
+                {
+                    if (txtContrasena.Text.Trim() == "")
+                    {
+                        labMensaje.Text = "El campo Contraseña es obligatorio.";
+                        labError.Visible = true;
+                        txtContrasena.Focus();
+                        modUsuarios.Show();
+                        return true;
+                    }
+                    else if (txtConfirmacionContrasena.Text.Trim() == "")
+                    {
+                        labMensaje.Text = "Debe confirmar la Contraseña.";
+                        txtConfirmacionContrasena.Focus();
+                        labError.Visible = true;
+                        modUsuarios.Show();
+                        return true;
+                    }
+                    else if (txtContrasena.Text.Trim() != txtConfirmacionContrasena.Text.Trim())
+                    {
+                        labMensaje.Text = "Las contraseñas no coinciden.";
+                        txtConfirmacionContrasena.Focus();
+                        labError.Visible = true;
+                        modUsuarios.Show();
+                        return true;
+                    }
+                    return false;
+                }
+                else //Actualizar
+                {
+                    if (txtContrasena.Text.Trim() != "" || txtConfirmacionContrasena.Text.Trim() != "") //Modificar contraseña
+                    {
+                        if (txtContrasena.Text.Trim() != txtConfirmacionContrasena.Text.Trim())
+                        {
+                            labMensaje.Text = "Las contraseñas no coinciden.";
+                            txtConfirmacionContrasena.Focus();
+                            labError.Visible = true;
+                            modUsuarios.Show();
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                labMensaje.Text = "Error tratando de validar los campos de la contraseña: " + ex.Message;
+                labError.Visible = true;
                 modUsuarios.Show();
                 return false;
             }
         }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            string strMensaje = labCrear.Text == "1" ? "creado" : "actualizado";
+
             try
             {
-                if (ValidarCampos())
+                if (ValidarDatos())
                 {
-                    //oPerfil = new ObjPerfiles();
-                    //oPerfil.IdPerfil = Convert.ToInt32(txtIdPerfil.Text);
-                    //oPerfil.Nombre = txtNombre.Text.Trim();
-                    //oPerfil.Estado = cboEstado.SelectedValue == "1" ? true : false;
-                    //oPerfil.UsuarioCreacion = Session["Usuario"].ToString();
-                    //oPerfil.EquipoCreacion = System.Environment.MachineName;
-                    //oPerfil.UsuarioModificacion = Session["Usuario"].ToString();
-                    //oPerfil.EquipoModificacion = System.Environment.MachineName;
+                    oUsuario = new ObjUsuarios();
+                    oUsuario.Codigo = Convert.ToInt32(txtCodigo.Text.Trim());
+                    oUsuario.Nombres = txtNombres.Text.Trim();
+                    oUsuario.Usuario = txtUsuario.Text.Trim();
+                    oUsuario.IdPerfil = Convert.ToInt32(cboPerfiles.SelectedValue);
+                    oUsuario.Perfil = cboPerfiles.SelectedItem.Text;
+                    oUsuario.PuedeEliminar = cboPuedeEliminar.SelectedValue == "1" ? true : false;
+                    oUsuario.Estado = cboEstado.SelectedValue == "1" ? true : false;
+                    oUsuario.UsuarioCreacion = Session["Usuario"].ToString();
+                    oUsuario.EquipoCreacion = System.Environment.MachineName;
+                    oUsuario.UsuarioModificacion = Session["Usuario"].ToString();
+                    oUsuario.EquipoModificacion = System.Environment.MachineName;
 
-                    //using (TransactionScope tsTransaction = new TransactionScope())
-                    //{
-                    //    if (objPerfiles.Guardar(oPerfil)) //Guardar perfil
-                    //    {
-                    //        if (objPerfiles.EliminarModulosPerfil(oPerfil)) //Eliminar modulos perfil
-                    //        {
-                    //            foreach (GridViewRow gvRow in gvModulos.Rows)
-                    //            {
-                    //                if (gvRow.RowType == DataControlRowType.DataRow)
-                    //                {
-                    //                    int IdModulo = Convert.ToInt32(gvRow.Cells[0].Text);
-                    //                    CheckBox chkAplica = (gvRow.Cells[3].FindControl("chkAgregar") as CheckBox);
+                    if (txtContrasena.Text.Trim() != "" || txtConfirmacionContrasena.Text.Trim() != "") //Contrasena ingresada
+                    {
+                        oUsuario.Contrasena = objCriptografia.EncriptarContrasena(txtContrasena.Text.Trim());
+                    }
 
-                    //                    oModulo = new ObjModulos();
-                    //                    oModulo.IdModulo = IdModulo;
-                    //                    oModulo.TienePermiso = false;
-                    //                    oModulo.IdPerfil = oPerfil.IdPerfil;
-
-                    //                    if (chkAplica.Checked)
-                    //                    {
-                    //                        oModulo.TienePermiso = true;
-                    //                    }
-                    //                }
-                    //                objPerfiles.GuardarModulosPerfil(oModulo);
-                    //            }
-                    //        }
-                    //        else
-                    //        {
-                    //            tsTransaction.Dispose();
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        tsTransaction.Dispose();
-                    //    }
-                    //    tsTransaction.Complete();
-                    //}
-
-                    //HiddenField.Value = string.Empty;
-                    //string strMensaje = labCrear.Text == "1" ? "creado" : "actualizado";
-
-                    //string Titulo = "Información";
-                    //string Mensaje = "Perfil " + strMensaje + " correctamente.";
-                    //string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmUsuarios.aspx'});";
-                    //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    if (objUsuarios.AlmacenarUsuario(oUsuario))
+                    {
+                        string Titulo = "Información";
+                        string Mensaje = "Usuario " + strMensaje + " correctamente.";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmUsuarios.aspx'});";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    }
+                    else
+                    {
+                        string Titulo = "Información";
+                        string Mensaje = "El usuario no pudo ser " + strMensaje + ".";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmUsuarios.aspx'});";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                string Mensaje = labCrear.Text == "1" ? "crear" : "modificar";
-
+                labMensaje.Text = "Error tratando de " + strMensaje + " el usuario: " + ex.Message;
+                labError.Visible = true;
                 labUsuario.Text = "";
                 txtCodigo.Text = "";
-
-                labError.Visible = true;
-                labMensaje.Text = "Error tratando de " + Mensaje + " el usuario: " + ex.Message;
                 modUsuarios.Show();
             }
         }

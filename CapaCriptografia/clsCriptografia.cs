@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Security.Cryptography;
 
 namespace CapaCriptografia
 {
-    public class clsDesencriptar
+    public class clsCriptografia
     {
         #region Variables
 
@@ -18,7 +19,7 @@ namespace CapaCriptografia
 
         #region Constructor
 
-        public clsDesencriptar()
+        public clsCriptografia()
         {
             //This is our encryption method
             RijndaelManaged rm = new RijndaelManaged();
@@ -33,7 +34,7 @@ namespace CapaCriptografia
 
         #endregion
 
-        //1. Generates an encryption key:
+        //Generates an encryption key:
         static public byte[] GenerateEncryptionKey()
         {
             //Generate a Key.
@@ -42,7 +43,7 @@ namespace CapaCriptografia
             return rm.Key;
         }
 
-        //2. Generates a unique encryption vector:
+        //Generates a unique encryption vector:
         static public byte[] GenerateEncryptionVector()
         {
             //Generate a Vector
@@ -93,7 +94,7 @@ namespace CapaCriptografia
             return Decrypt(StrToByteArray(EncryptedString));
         }
 
-        //Decryption when working with byte arrays.    
+        //Decryption when working with byte arrays
         public string Decrypt(byte[] EncryptedValue)
         {
             #region Write the encrypted value to the decryption stream
@@ -117,10 +118,6 @@ namespace CapaCriptografia
             return UTFEncoder.GetString(decryptedBytes);
         }
 
-        /*Convert a string to a byte array.  NOTE: Normally we'd create a Byte Array from a string using an ASCII encoding (like so)
-          System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding(); return encoding.GetBytes(str);
-          However, this results in character values that cannot be passed in a URL.  So, instead, I just
-          lay out all of the byte values in a long string of numbers (three per - must pad numbers less than 100)*/
         public byte[] StrToByteArray(string str)
         {
             if (str.Length == 0)
@@ -140,8 +137,6 @@ namespace CapaCriptografia
             return byteArr;
         }
 
-        /*Same comment as above.  Normally the conversion would use an ASCII encoding in the other direction:
-          System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding(); return enc.GetString(byteArr);*/
         public string ByteArrToString(byte[] byteArr)
         {
             byte val;
@@ -157,6 +152,30 @@ namespace CapaCriptografia
                     tempStr += val.ToString();
             }
             return tempStr;
+        }
+
+        //Contrasena
+        public string EncryptPassword(string Cadena)
+        {
+            try
+            {
+                MD5 md5 = MD5CryptoServiceProvider.Create();
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                byte[] stream = null;
+
+                StringBuilder sb = new StringBuilder();
+                stream = md5.ComputeHash(encoding.GetBytes(Cadena));
+
+                for (int i = 0; i < stream.Length; i++)
+                {
+                    sb.AppendFormat("{0:x2}", stream[i]);
+                }
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }            
         }
     }
 }

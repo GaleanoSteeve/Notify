@@ -6,11 +6,11 @@
 
     <script type="text/javascript">
         function LimpiarControles() {
-            document.getElementById('').value = "";
-            document.getElementById('').value = "";
-            document.getElementById('').value = "0";
-            document.getElementById('').value = "";
-            document.getElementById('').value = "";
+            document.getElementById('txtCodigo').value = "";
+            document.getElementById('txtNombres').value = "";
+            document.getElementById('txtUsuario').value = "";
+            document.getElementById('txtContrasena').value = "";
+            document.getElementById('txtConfirmacionContrasena').value = "";
         }
     </script>
 </asp:Content>
@@ -34,15 +34,15 @@
                 <Columns>
                     <asp:TemplateField AccessibleHeaderText="Código" HeaderText="Código" HeaderStyle-Width="10%">
                         <ItemTemplate>
-                            <asp:LinkButton ID="btnEditar" runat="server" CommandArgument='<%#Eval("Codigo") + "," + Eval("Nombres") + "," + Eval("Activo") %>' Text='<%# Eval("Codigo") %>' OnClick="btnEditar_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="btnEditar" runat="server" CommandArgument='<%#Eval("Codigo") + "," + Eval("Usuario") + "," + Eval("Activo") %>' Text='<%# Eval("Codigo") %>' OnClick="btnEditar_Click"></asp:LinkButton>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Nombres" HeaderText="Nombres" HeaderStyle-Width="35%" ItemStyle-HorizontalAlign="Left" />
+                    <asp:BoundField DataField="Nombres" HeaderText="Nombres" HeaderStyle-Width="30%" ItemStyle-HorizontalAlign="Left" />
+                    <asp:BoundField DataField="Usuario" HeaderText="Usuario" HeaderStyle-Width="20%" ItemStyle-HorizontalAlign="Left" />
                     <asp:BoundField DataField="Perfil" HeaderText="Perfil" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Left" />
                     <asp:BoundField DataField="PuedeEliminar" HeaderText="Puede Eliminar" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="Activo" HeaderText="Activo" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="FechaCreacion" HeaderText="Fecha Creación" DataFormatString="{0:dd-MM-yyyy}" HeaderStyle-Width="15%" HtmlEncode="false" ItemStyle-HorizontalAlign="Center" />
                 </Columns>
                 <HeaderStyle BackColor="#007bff" Font-Bold="False" ForeColor="White" HorizontalAlign="Center" />
             </asp:GridView>
@@ -81,22 +81,22 @@
 
                     <div class="form-group">
                         <label class="float-left" for="txtNombres">Nombres</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtNombres" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="txtNombres" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="100"></asp:TextBox>
                     </div>
 
                     <div class="form-group">
                         <label class="float-left" for="txtUsuario">Usuario</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="20"></asp:TextBox>
                     </div>
 
                     <div class="form-group">
                         <label class="float-left" for="txtContrasena">Contraseña</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtContrasena" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="txtContrasena" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="20" oncopy="return false;" oncut="return false;" onpaste="return false;" autocomplete="off" TextMode="Password"></asp:TextBox>
                     </div>
 
                     <div class="form-group">
                         <label class="float-left" for="txtConfirmacionContrasena">Confirmación Contraseña</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtConfirmacionContrasena" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="txtConfirmacionContrasena" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="20" oncopy="return false;" oncut="return false;" onpaste="return false;" autocomplete="off" TextMode="Password"></asp:TextBox>
                     </div>
                 </div>
 
@@ -118,8 +118,8 @@
                     </div>
 
                     <div>
-                        <asp:Label ID="labCrear" runat="server" Text="0" ClientIDMode="Static" Visible="true"></asp:Label>
-                        <asp:Label ID="labUsuario" runat="server" Text="user" ClientIDMode="Static" Visible="true"></asp:Label>
+                        <asp:Label ID="labCrear" runat="server" Text="0" ClientIDMode="Static" Visible="false"></asp:Label>
+                        <asp:Label ID="labUsuario" runat="server" Text="user" ClientIDMode="Static" Visible="false"></asp:Label>
                     </div>
                 </div>
             </div>
