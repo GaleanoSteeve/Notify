@@ -20,8 +20,8 @@
     <br />
     <h4 class="text-center font-weight-bold">Usuarios</h4>
 
-    <div class="text-center">
-        <asp:Button ID="btnCrear" runat="server" CssClass="btn btn-primary mt-3" Text="Crear Usuario" OnClick="btnCrear_Click" />
+    <div class="text-center mt-3">
+        <asp:Button ID="btnCrear" runat="server" CssClass="btn btn-primary" Text="Crear" Width="10%" OnClick="btnCrear_Click" />
         <div style="visibility: hidden">
             <asp:Button ID="btnAbrir" runat="server" />
         </div>
@@ -34,7 +34,7 @@
                 <Columns>
                     <asp:TemplateField AccessibleHeaderText="Código" HeaderText="Código" HeaderStyle-Width="10%">
                         <ItemTemplate>
-                            <asp:LinkButton ID="btnEditar" runat="server" CommandArgument='<%#Eval("Codigo") + "," + Eval("Usuario") + "," + Eval("Activo") %>' Text='<%# Eval("Codigo") %>' OnClick="btnEditar_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="btnEditar" runat="server" CommandArgument='<%#Eval("Codigo")%>' Text='<%#Eval("Codigo")%>' OnClick="btnEditar_Click"></asp:LinkButton>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                     </asp:TemplateField>
@@ -54,7 +54,7 @@
         <ajaxToolkit:ModalPopupExtender ID="modUsuarios" runat="server" TargetControlID="btnAbrir" PopupControlID="popUsuarios" BackgroundCssClass="modalBackgroundPerfiles" CancelControlID="btnCancelar">
         </ajaxToolkit:ModalPopupExtender>
 
-        <asp:Panel ID="popUsuarios" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" Style="height: 92vh; overflow-y: scroll;">
+        <asp:Panel ID="popUsuarios" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" DefaultButton="" Style="height: 92vh; overflow-y: scroll;">
 
             <div class="mt-4">
                 <h5 style="color: steelblue; font-weight: 600;">Registro de Usuarios</h5>
@@ -95,8 +95,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="float-left" for="txtConfirmacionContrasena">Confirmación Contraseña</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtConfirmacionContrasena" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="20" oncopy="return false;" oncut="return false;" onpaste="return false;" autocomplete="off" TextMode="Password"></asp:TextBox>
+                        <label class="float-left" for="txtConfirmarContrasena">Confirmar Contraseña</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                        <asp:TextBox ID="txtConfirmarContrasena" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="20" oncopy="return false;" oncut="return false;" onpaste="return false;" autocomplete="off" TextMode="Password"></asp:TextBox>
                     </div>
                 </div>
 

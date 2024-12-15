@@ -22,8 +22,8 @@
     <br />
     <h4 class="text-center font-weight-bold">Perfiles</h4>
 
-    <div class="text-center">
-        <asp:Button ID="btnCrear" runat="server" CssClass="btn btn-primary mt-3" Text="Crear Perfil" OnClick="btnCrear_Click" />
+    <div class="text-center mt-3">
+        <asp:Button ID="btnCrear" runat="server" CssClass="btn btn-primary" Text="Crear" Width="10%" OnClick="btnCrear_Click" />
         <div style="visibility: hidden">
             <asp:Button ID="btnAbrir" runat="server" />
         </div>
@@ -54,7 +54,7 @@
         <ajaxToolkit:ModalPopupExtender ID="modPerfiles" runat="server" TargetControlID="btnAbrir" PopupControlID="popPerfiles" BackgroundCssClass="modalBackgroundPerfiles" CancelControlID="btnCancelar">
         </ajaxToolkit:ModalPopupExtender>
 
-        <asp:Panel ID="popPerfiles" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" Style="height: 92vh;">
+        <asp:Panel ID="popPerfiles" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" DefaultButton="" Style="height: 92vh; overflow-y: scroll;">
 
             <div class="mt-4">
                 <h5 style="color: steelblue; font-weight: 600;">Registro de Perfiles</h5>

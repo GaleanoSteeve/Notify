@@ -12,6 +12,8 @@ D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\seman
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\stackpath.css
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\stackpathbootstrapcdn.css
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\style.css
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\img\Editar.png
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\img\Eliminar.png
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\img\logo.png
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\scripts\alertify.js
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\scripts\bootstrapcdn.js

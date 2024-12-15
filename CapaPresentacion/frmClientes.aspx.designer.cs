@@ -10,7 +10,7 @@
 namespace CapaPresentacion {
     
     
-    public partial class frmUsuarios {
+    public partial class frmClientes {
         
         /// <summary>
         /// Control btnCrear.
@@ -31,31 +31,40 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button btnAbrir;
         
         /// <summary>
-        /// Control gvUsuarios.
+        /// Control txtFiltro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUsuarios;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltro;
         
         /// <summary>
-        /// Control modUsuarios.
+        /// Control gvClientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender modUsuarios;
+        protected global::System.Web.UI.WebControls.GridView gvClientes;
         
         /// <summary>
-        /// Control popUsuarios.
+        /// Control modClientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel popUsuarios;
+        protected global::AjaxControlToolkit.ModalPopupExtender modClientes;
+        
+        /// <summary>
+        /// Control popClientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel popClientes;
         
         /// <summary>
         /// Control labError.
@@ -76,13 +85,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label labMensaje;
         
         /// <summary>
-        /// Control txtCodigo.
+        /// Control cboTipoDocumento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigo;
+        protected global::System.Web.UI.WebControls.DropDownList cboTipoDocumento;
+        
+        /// <summary>
+        /// Control txtDocumento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDocumento;
         
         /// <summary>
         /// Control txtNombres.
@@ -94,49 +112,40 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtNombres;
         
         /// <summary>
-        /// Control txtUsuario.
+        /// Control txtApellidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
+        protected global::System.Web.UI.WebControls.TextBox txtApellidos;
         
         /// <summary>
-        /// Control txtContrasena.
+        /// Control txtDireccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContrasena;
+        protected global::System.Web.UI.WebControls.TextBox txtDireccion;
         
         /// <summary>
-        /// Control txtConfirmarContrasena.
+        /// Control txtTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtConfirmarContrasena;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefono;
         
         /// <summary>
-        /// Control cboPerfiles.
+        /// Control txtEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboPerfiles;
-        
-        /// <summary>
-        /// Control cboPuedeEliminar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboPuedeEliminar;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
         /// Control cboEstado.
@@ -157,13 +166,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label labCrear;
         
         /// <summary>
-        /// Control labUsuario.
+        /// Control labDocumento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labUsuario;
+        protected global::System.Web.UI.WebControls.Label labDocumento;
         
         /// <summary>
         /// Control btnGuardar.

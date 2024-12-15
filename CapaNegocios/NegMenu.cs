@@ -20,7 +20,7 @@ namespace CapaNegocios
             try
             {
                 this.Menu = "<nav class=" + this.Comillas + "navbar navbar-expand-lg navbar-light bg-light" + this.Comillas + ">";
-                this.Menu += "<a class=" + this.Comillas + "navbar-brand" + this.Comillas + " href=" + this.Comillas + "frmInicio.aspx" + this.Comillas + ">Notify</a>";
+                this.Menu += "<a class=" + this.Comillas + "navbar-brand" + this.Comillas + " href=" + this.Comillas + "frmInicio.aspx" + this.Comillas + ">Inicio</a>";
                 this.Menu += "<button class=" + this.Comillas + "navbar-toggler" + this.Comillas + " type=" + this.Comillas + "button" + this.Comillas + " data-toggle=" + this.Comillas + "collapse" + this.Comillas + " data-target=" + this.Comillas + "#navbarSupportedContent" + this.Comillas + " aria-controls=" + this.Comillas + "navbarSupportedContent" + this.Comillas + " aria-expanded=" + this.Comillas + "false" + this.Comillas + " aria-label=" + this.Comillas + "Toggle navigation" + this.Comillas + ">";
                 this.Menu += "<span class=" + this.Comillas + "navbar-toggler-icon" + this.Comillas + "></span></button>";
                 this.Menu += "<div class=" + this.Comillas + "collapse navbar-collapse" + this.Comillas + " id=" + this.Comillas + "navbarSupportedContent" + this.Comillas + ">";

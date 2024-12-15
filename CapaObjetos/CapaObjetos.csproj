@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjClientes.cs" />
     <Compile Include="ObjConfiguracion.cs" />
     <Compile Include="ObjModulos.cs" />
     <Compile Include="ObjPerfiles.cs" />

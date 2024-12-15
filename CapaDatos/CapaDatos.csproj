@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatClientes.cs" />
     <Compile Include="DatConexionDB.cs" />
     <Compile Include="DatConfiguracion.cs" />
     <Compile Include="DatInformacionRegional.cs" />

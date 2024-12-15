@@ -1,14 +1,13 @@
 ﻿using System;
 using CapaObjetos;
 using System.Data;
-using CapaCriptografia;
 using System.Data.SqlClient;
 
 namespace CapaDatos
 {
-    public class DatUsuarios
+    public class DatClientes
     {
-        public bool Eliminar(ObjUsuarios oUsuario)
+        public bool Eliminar(ObjClientes oCliente)
         {
             SqlCommand sqlCommand = new SqlCommand();
 
@@ -19,10 +18,10 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminUsuarios";
+                sqlCommand.CommandText = "stpAdminClientes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "D";
-                sqlCommand.Parameters.Add("@Codigo", SqlDbType.Int).Value = oUsuario.Codigo;
+                sqlCommand.Parameters.Add("@Documento", SqlDbType.BigInt).Value = oCliente.Documento;
                 sqlCommand.ExecuteReader();
                 return true;
             }
@@ -39,7 +38,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public bool Almacenar(ObjUsuarios oUsuario)
+        public bool Almacenar(ObjClientes oCliente)
         {
             SqlCommand sqlCommand = new SqlCommand();
 
@@ -50,61 +49,24 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminUsuarios";
+                sqlCommand.CommandText = "stpAdminClientes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "C";
-                sqlCommand.Parameters.Add("@Codigo", SqlDbType.Int).Value = oUsuario.Codigo;
-                sqlCommand.Parameters.Add("@Nombres", SqlDbType.VarChar, 100).Value = oUsuario.Nombres;
-                sqlCommand.Parameters.Add("@Usuario", SqlDbType.VarChar, 10).Value = oUsuario.Usuario;
-                sqlCommand.Parameters.Add("@Contrasena", SqlDbType.VarChar, 200).Value = oUsuario.Contrasena;
-                sqlCommand.Parameters.Add("@IdPerfil", SqlDbType.Int).Value = oUsuario.IdPerfil;
-                sqlCommand.Parameters.Add("@Perfil", SqlDbType.VarChar, 100).Value = oUsuario.Perfil;
-                sqlCommand.Parameters.Add("@PuedeEliminar", SqlDbType.Bit).Value = oUsuario.PuedeEliminar;
-                sqlCommand.Parameters.Add("@Estado", SqlDbType.Bit).Value = oUsuario.Estado;
-                sqlCommand.Parameters.Add("@UsuarioCreacion", SqlDbType.VarChar, 50).Value = oUsuario.UsuarioCreacion;
-                sqlCommand.Parameters.Add("@EquipoCreacion", SqlDbType.VarChar, 50).Value = oUsuario.EquipoCreacion;
-                sqlCommand.Parameters.Add("@UsuarioModificacion", SqlDbType.VarChar, 50).Value = oUsuario.UsuarioModificacion;
-                sqlCommand.Parameters.Add("@EquipoModificacion", SqlDbType.VarChar, 50).Value = oUsuario.EquipoModificacion;
+                sqlCommand.Parameters.Add("@IdCliente", SqlDbType.Int).Value = oCliente.IdCliente;
+                sqlCommand.Parameters.Add("@TipoDocumento", SqlDbType.Int).Value = oCliente.TipoDocumento;
+                sqlCommand.Parameters.Add("@Documento", SqlDbType.BigInt).Value = oCliente.Documento;
+                sqlCommand.Parameters.Add("@Nombres", SqlDbType.VarChar, 100).Value = oCliente.Nombres;
+                sqlCommand.Parameters.Add("@Apellidos", SqlDbType.VarChar, 100).Value = oCliente.Apellidos;
+                sqlCommand.Parameters.Add("@Direccion", SqlDbType.VarChar, 100).Value = oCliente.Direccion;
+                sqlCommand.Parameters.Add("@Telefono", SqlDbType.BigInt).Value = oCliente.Telefono;
+                sqlCommand.Parameters.Add("@Email", SqlDbType.VarChar, 100).Value = oCliente.Email;
+                sqlCommand.Parameters.Add("@Estado", SqlDbType.Bit).Value = oCliente.Estado;
+                sqlCommand.Parameters.Add("@UsuarioCreacion", SqlDbType.VarChar, 50).Value = oCliente.UsuarioCreacion;
+                sqlCommand.Parameters.Add("@EquipoCreacion", SqlDbType.VarChar, 50).Value = oCliente.EquipoCreacion;
+                sqlCommand.Parameters.Add("@UsuarioModificacion", SqlDbType.VarChar, 50).Value = oCliente.UsuarioModificacion;
+                sqlCommand.Parameters.Add("@EquipoModificacion", SqlDbType.VarChar, 50).Value = oCliente.EquipoModificacion;
                 sqlCommand.ExecuteReader();
                 return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (sqlCommand.Connection.State == ConnectionState.Open)
-                {
-                    sqlCommand.Connection.Close();
-                }
-                sqlCommand = null;
-            }
-        }
-        public bool PuedeEliminar(ObjUsuarios oUsuario)
-        {
-            bool Permiso = false;
-            SqlDataReader sqlDataReader;
-            SqlCommand sqlCommand = new SqlCommand();
-
-            try
-            {
-                sqlCommand.Connection = DatConexionDB.ObtenerConexion();
-                if (sqlCommand.Connection.State == ConnectionState.Closed)
-                {
-                    sqlCommand.Connection.Open();
-                }
-                sqlCommand.CommandText = "stpAdminUsuarios";
-                sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "UPE";
-                sqlCommand.Parameters.Add("@Codigo", SqlDbType.Int).Value = oUsuario.Codigo;
-                sqlDataReader = sqlCommand.ExecuteReader();
-
-                while (sqlDataReader.Read())
-                {
-                    Permiso = sqlDataReader.GetBoolean(0);
-                }
-                return Permiso;
             }
             catch (Exception ex)
             {
@@ -121,7 +83,7 @@ namespace CapaDatos
         }
 
         //Listar
-        public DataTable ListarUsuarios()
+        public DataTable ListarClientes()
         {
             DataTable dtDatos = new DataTable();
             SqlCommand sqlCommand = new SqlCommand();
@@ -134,7 +96,7 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminUsuarios";
+                sqlCommand.CommandText = "stpAdminClientes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "L";
                 sqlDataAdapter.SelectCommand = sqlCommand;
@@ -154,7 +116,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataTable ListarMaximoCodigo()
+        public DataTable ListarMaximoIdCliente()
         {
             DataTable dtDatos = new DataTable();
             SqlCommand sqlCommand = new SqlCommand();
@@ -167,7 +129,7 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminUsuarios";
+                sqlCommand.CommandText = "stpAdminClientes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "MAX";
                 sqlDataAdapter.SelectCommand = sqlCommand;
@@ -187,7 +149,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataTable ListarComboUsuarios()
+        public DataTable ListarComboTipoDocumentos()
         {
             DataTable dtDatos = new DataTable();
             SqlCommand sqlCommand = new SqlCommand();
@@ -200,9 +162,9 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminUsuarios";
+                sqlCommand.CommandText = "stpAdminClientes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCU";
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCTP";
                 sqlDataAdapter.SelectCommand = sqlCommand;
                 sqlDataAdapter.Fill(dtDatos);
                 return dtDatos;
@@ -220,7 +182,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataTable ListarUsuarioCodigo(int Codigo)
+        public DataTable ListarCliente(long Documento)
         {
             DataTable dtDatos = new DataTable();
             SqlCommand sqlCommand = new SqlCommand();
@@ -233,10 +195,10 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminUsuarios";
+                sqlCommand.CommandText = "stpAdminClientes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LUC";
-                sqlCommand.Parameters.Add("@Codigo", SqlDbType.Int).Value = Codigo;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LC";
+                sqlCommand.Parameters.Add("@Documento", SqlDbType.BigInt).Value = Documento;
                 sqlDataAdapter.SelectCommand = sqlCommand;
                 sqlDataAdapter.Fill(dtDatos);
                 return dtDatos;
@@ -254,41 +216,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataSet ListarUsuario(ObjUsuarios oUsuario)
-        {
-            DataSet dsDatos = new DataSet();
-            SqlCommand sqlCommand = new SqlCommand();
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
-
-            try
-            {
-                sqlCommand.Connection = DatConexionDB.ObtenerConexion();
-                if (sqlCommand.Connection.State == ConnectionState.Closed)
-                {
-                    sqlCommand.Connection.Open();
-                }
-                sqlCommand.CommandText = "stpAdminUsuarios";
-                sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LU";
-                sqlCommand.Parameters.Add("@Usuario", SqlDbType.VarChar, 20).Value = oUsuario.Usuario;
-                sqlDataAdapter.SelectCommand = sqlCommand;
-                sqlDataAdapter.Fill(dsDatos);
-                return dsDatos;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (sqlCommand.Connection.State == ConnectionState.Open)
-                {
-                    sqlCommand.Connection.Close();
-                }
-                sqlCommand = null;
-            }
-        }
-        public DataTable BuscarUsuario(ObjUsuarios oUsuario)
+        public DataTable ExisteDocumento(ObjClientes oCliente)
         {
             DataTable dtDatos = new DataTable();
             SqlCommand sqlCommand = new SqlCommand();
@@ -301,10 +229,10 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminUsuarios";
+                sqlCommand.CommandText = "stpAdminClientes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "R";
-                sqlCommand.Parameters.Add("@Usuario", SqlDbType.VarChar, 10).Value = oUsuario.Usuario;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "ED";
+                sqlCommand.Parameters.Add("@Documento", SqlDbType.BigInt).Value = oCliente.Documento;
                 sqlDataAdapter.SelectCommand = sqlCommand;
                 sqlDataAdapter.Fill(dtDatos);
                 return dtDatos;
@@ -322,7 +250,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataTable ExisteUsuario(ObjUsuarios oUsuario)
+        public DataTable ListarClienteParametros(string Filtro)
         {
             DataTable dtDatos = new DataTable();
             SqlCommand sqlCommand = new SqlCommand();
@@ -335,10 +263,10 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpAdminUsuarios";
+                sqlCommand.CommandText = "stpAdminClientes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LEU";
-                sqlCommand.Parameters.Add("@Usuario", SqlDbType.VarChar, 10).Value = oUsuario.Usuario;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCP";
+                sqlCommand.Parameters.Add("@Filtro", SqlDbType.VarChar, 100).Value = Filtro;
                 sqlDataAdapter.SelectCommand = sqlCommand;
                 sqlDataAdapter.Fill(dtDatos);
                 return dtDatos;

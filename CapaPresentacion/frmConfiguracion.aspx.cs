@@ -66,7 +66,7 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Cargando Configuración";
                 string Mensaje = "Error tratando de listar la Configuración del sistema: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
@@ -95,7 +95,7 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Cargando Ciudades";
                 string Mensaje = "Error tratando de listar las Ciudades Null: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
@@ -124,7 +124,7 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Cargando Departamentos";
                 string Mensaje = "Error tratando de listar los Departamentos: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
@@ -153,7 +153,7 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Cargando Ciudades";
                 string Mensaje = "Error tratando de listar las Ciudades: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
@@ -181,7 +181,7 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Cargando Ciudades";
                 string Mensaje = "Error tratando de listar las Ciudades: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
@@ -207,7 +207,7 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Validando Email";
                 string Mensaje = "Error tratando de validar el Email: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 return false;
             }            
@@ -312,7 +312,7 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Validando Campos";
                 string Mensaje = "Error tratando de validar los campos: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 return false;
             }
@@ -342,21 +342,21 @@ namespace CapaPresentacion
                     {
                         string Titulo = "Información";
                         string Mensaje = "La configuración del sistema fue creada correctamente.";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                     else if (Resultado == "A") //Actualizar
                     {
                         string Titulo = "Información";
                         string Mensaje = "La configuración del sistema fue actualizada correctamente.";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                     else
                     {
                         string Titulo = "Advertencia";
                         string Mensaje = "Los datos de la configuración no pudieron se almacenados. Contacte al administrador del sistema.";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                 }
@@ -365,7 +365,7 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Almacenando Configuración";
                 string Mensaje = "Error tratando guardar los datos de la Configuración: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }

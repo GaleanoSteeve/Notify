@@ -16,12 +16,5 @@ namespace CapaPresentacion
             Session.Clear();
             Session.Abandon();
         }
-        protected void Application_End(object sender, EventArgs e)
-        {
-            Session["CodigoUsuario"] = null;
-            Session["IdPerfil"] = null;
-            Session.Clear();
-            Session.Abandon();
-        }
     }
 }

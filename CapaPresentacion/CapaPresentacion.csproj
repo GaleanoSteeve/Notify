@@ -62,6 +62,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmClientes.aspx" />
     <Content Include="frmConfiguracion.aspx" />
     <Content Include="frmInicio.aspx" />
     <Content Include="frmPerfiles.aspx" />
@@ -120,6 +121,12 @@
     <Content Include="Styles\css\style.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Styles\img\Editar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Styles\img\Eliminar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Styles\img\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -144,6 +151,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmClientes.aspx.cs">
+      <DependentUpon>frmClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmClientes.aspx.designer.cs">
+      <DependentUpon>frmClientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmConfiguracion.aspx.cs">
       <DependentUpon>frmConfiguracion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

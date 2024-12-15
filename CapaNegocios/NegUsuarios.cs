@@ -8,28 +8,23 @@ namespace CapaNegocios
     {
         DatUsuarios objUsuarios = new DatUsuarios();
 
+        public bool Eliminar(ObjUsuarios oUsuario)
+        {
+            bool Resultado = objUsuarios.Eliminar(oUsuario);
+            return Resultado;
+        }
+        public bool Almacenar(ObjUsuarios oUsuario)
+        {
+            bool Resultado = objUsuarios.Almacenar(oUsuario);
+            return Resultado;
+        }
         public bool PuedeEliminar(ObjUsuarios oUsuario)
         {
             bool Permiso = objUsuarios.PuedeEliminar(oUsuario);
             return Permiso;
         }
-        public bool EliminarUsuario(ObjUsuarios oUsuario)
-        {
-            bool Resultado = objUsuarios.EliminarUsuario(oUsuario);
-            return Resultado;
-        }
-        public bool AlmacenarUsuario(ObjUsuarios oUsuario)
-        {
-            bool Resultado = objUsuarios.AlmacenarUsuario(oUsuario);
-            return Resultado;
-        }
 
         //Listar
-        public int ListarCodigo()
-        {
-            int Codigo = objUsuarios.ListarCodigo();
-            return Codigo;
-        }
         public DataTable ListarUsuarios()
         {
             DataTable dtDatos = objUsuarios.ListarUsuarios();
@@ -63,11 +58,6 @@ namespace CapaNegocios
         public DataTable ExisteUsuario(ObjUsuarios oUsuario)
         {
             DataTable dtDatos = objUsuarios.ExisteUsuario(oUsuario);
-            return dtDatos;
-        }
-        public DataTable ListarExisteUsuario(string Usuario)
-        {
-            DataTable dtDatos = objUsuarios.ListarExisteUsuario(Usuario);
             return dtDatos;
         }
     }

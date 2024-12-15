@@ -17,28 +17,31 @@ namespace CapaPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!IsPostBack)
             {
-                if (Session["CodigoUsuario"] != null && Session["IdPerfil"] != null) //Sesion activa
+                try
                 {
-                    string Usuario = Session["Usuario"].ToString();
-                    int IdPerfil = Convert.ToInt32(Session["IdPerfil"]);
+                    if (Session["CodigoUsuario"] != null && Session["IdPerfil"] != null) //Sesion activa
+                    {
+                        string Usuario = Session["Usuario"].ToString();
+                        int IdPerfil = Convert.ToInt32(Session["IdPerfil"]);
 
-                    string Menu = objMenu.CrearMenu(IdPerfil, Usuario);
-                    labMenu.Text = Menu;
+                        string Menu = objMenu.CrearMenu(IdPerfil, Usuario);
+                        labMenu.Text = Menu;
+                    }
+                    else
+                    {
+                        FormsAuthentication.SignOut();
+                        Response.Redirect("frmLogin.aspx");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    FormsAuthentication.SignOut();
-                    Response.Redirect("frmLogin.aspx");
+                    string Titulo = "Error Creando Menú";
+                    string Mensaje = "Error tratando de crear el Menú: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmLogin.aspx'});";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 }
-            }
-            catch (Exception ex)
-            {
-                string Titulo = "Error Creando Menú";
-                string Mensaje = "Error tratando de crear el Menú: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmLogin.aspx'});";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
 
