@@ -10,8 +10,8 @@ namespace CapaObjetos
         private string _NombreComercial;
         private string _IdDepartamento;
         private string _Departamento;
-        private string _IdCiudad;
-        private string _Ciudad;
+        private string _IdMunicipio;
+        private string _Municipio;
         private string _Direccion;
         private long _Telefono;
         private string _Email;
@@ -63,15 +63,15 @@ namespace CapaObjetos
             get { return _Departamento; }
             set { _Departamento = value; }
         }
-        public string IdCiudad
+        public string IdMunicipio
         {
-            get { return _IdCiudad; }
-            set { _IdCiudad = value; }
+            get { return _IdMunicipio; }
+            set { _IdMunicipio = value; }
         }
-        public string Ciudad
+        public string Municipio
         {
-            get { return _Ciudad; }
-            set { _Ciudad = value; }
+            get { return _Municipio; }
+            set { _Municipio = value; }
         }
         public string Direccion
         {

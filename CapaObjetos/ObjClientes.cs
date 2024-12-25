@@ -10,17 +10,31 @@ namespace CapaObjetos
         private long _Documento;
         private string _Nombres;
         private string _Apellidos;
+        private int _IdPais;
+        private string _Pais;
+        private int _IdDepartamento;
+        private string _Departamento;
+        private int _IdMunicipio;
+        private string _Municipio;
+        private int _IdCorregimiento;
+        private string _Corregimiento;
+        private int _IdVereda;
+        private string _Vereda;
+        private int _IdBarrio;
+        private string _Barrio;
         private string _Direccion;
         private long _Telefono;
+        private long _TelefonoAuxiliar;
+        private long _WhatsApp;
         private string _Email;
         private bool _Estado;
+        private string _Filtro;
         private string _UsuarioCreacion;
         private string _EquipoCreacion;
         private DateTime _FechaCreacion;
         private string _UsuarioModificacion;
         private string _EquipoModificacion;
         private DateTime _FechaModificacion;
-        private string _Filtro;
 
         public string Operacion
         {
@@ -52,6 +66,66 @@ namespace CapaObjetos
             get { return _Apellidos; }
             set { _Apellidos = value; }
         }
+        public int IdPais
+        {
+            get { return _IdPais; }
+            set { _IdPais = value; }
+        }
+        public string Pais
+        {
+            get { return _Pais; }
+            set { _Pais = value; }
+        }
+        public int IdDepartamento
+        {
+            get { return _IdDepartamento; }
+            set { _IdDepartamento = value; }
+        }
+        public string Departamento
+        {
+            get { return _Departamento; }
+            set { _Departamento = value; }
+        }
+        public int IdMunicipio
+        {
+            get { return _IdMunicipio; }
+            set { _IdMunicipio = value; }
+        }
+        public string Municipio
+        {
+            get { return _Municipio; }
+            set { _Municipio = value; }
+        }
+        public int IdCorregimiento
+        {
+            get { return _IdCorregimiento; }
+            set { _IdCorregimiento = value; }
+        }
+        public string Corregimiento
+        {
+            get { return _Corregimiento; }
+            set { _Corregimiento = value; }
+        }
+        public int IdVereda
+        {
+            get { return _IdVereda; }
+            set { _IdVereda = value; }
+        }
+        public string Vereda
+        {
+            get { return _Vereda; }
+            set { _Vereda = value; }
+        }
+        public int IdBarrio
+        {
+            get { return _IdBarrio; }
+            set { _IdBarrio = value; }
+        }
+        public string Barrio
+        {
+            get { return _Barrio; }
+            set { _Barrio = value; }
+        }
         public string Direccion
         {
             get { return _Direccion; }
@@ -62,6 +136,16 @@ namespace CapaObjetos
             get { return _Telefono; }
             set { _Telefono = value; }
         }
+        public long TelefonoAuxiliar
+        {
+            get { return _TelefonoAuxiliar; }
+            set { _TelefonoAuxiliar = value; }
+        }
+        public long WhatsApp
+        {
+            get { return _WhatsApp; }
+            set { _WhatsApp = value; }
+        }
         public string Email
         {
             get { return _Email; }
@@ -71,6 +155,11 @@ namespace CapaObjetos
         {
             get { return _Estado; }
             set { _Estado = value; }
+        }
+        public string Filtro
+        {
+            get { return _Filtro; }
+            set { _Filtro = value; }
         }
         public string UsuarioCreacion
         {
@@ -101,11 +190,6 @@ namespace CapaObjetos
         {
             get { return _FechaModificacion; }
             set { _FechaModificacion = value; }
-        }
-        public string Filtro
-        {
-            get { return _Filtro; }
-            set { _Filtro = value; }
         }
     }
 }

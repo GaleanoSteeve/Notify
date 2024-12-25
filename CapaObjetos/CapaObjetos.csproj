@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ObjClientes.cs" />
     <Compile Include="ObjConfiguracion.cs" />
+    <Compile Include="ObjLotes.cs" />
     <Compile Include="ObjModulos.cs" />
     <Compile Include="ObjPerfiles.cs" />
     <Compile Include="ObjUsuarios.cs" />

@@ -67,10 +67,8 @@
 {
     background-color: white;
     border-color: white;
-    height: 92vh;
+    height : auto;
     margin: 0 auto;
-    overflow: scroll;
     padding: 0px 0px 0px 30px;
     position: relative;
-    width: 50%;
 }

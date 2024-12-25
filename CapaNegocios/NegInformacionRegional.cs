@@ -7,9 +7,15 @@ namespace CapaNegocios
     {
         DatInformacionRegional objInformacionRegional = new DatInformacionRegional();
 
-        public DataTable ListarCiudades()
+
+        public DataTable ListarComboPaises()
         {
-            DataTable dtDatos = objInformacionRegional.ListarCiudades();
+            DataTable dtDatos = objInformacionRegional.ListarComboPaises();
+            return dtDatos;
+        }
+        public DataTable ListarMunicipios()
+        {
+            DataTable dtDatos = objInformacionRegional.ListarMunicipios();
             return dtDatos;
         }
         public DataTable ListarComboDepartamentos()
@@ -17,9 +23,14 @@ namespace CapaNegocios
             DataTable dtDatos = objInformacionRegional.ListarComboDepartamentos();
             return dtDatos;
         }
-        public DataTable ListarCiudadPorDepartamento(string IdDepartamento)
+        public DataTable ListarDepartamentosPorPais(int IdPais)
         {
-            DataTable dtDatos = objInformacionRegional.ListarCiudadPorDepartamento(IdDepartamento);
+            DataTable dtDatos = objInformacionRegional.ListarDepartamentosPorPais(IdPais);
+            return dtDatos;
+        }
+        public DataTable ListarMunicipiosPorDepartamento(string IdDepartamento)
+        {
+            DataTable dtDatos = objInformacionRegional.ListarMunicipiosPorDepartamento(IdDepartamento);
             return dtDatos;
         }
     }

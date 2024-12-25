@@ -49,13 +49,13 @@ namespace CapaPresentacion
                     txtEmail.Text = dtConfiguracion.Rows[0]["Email"].ToString();
                     cboDepartamentos.SelectedValue = IdDepartamento;
                     ListarComboCiudadesPorDepartamento(IdDepartamento); //Listar combo ciudades
-                    cboCiudades.SelectedValue = dtConfiguracion.Rows[0]["IdCiudad"].ToString();
+                    cboMunicipios.SelectedValue = dtConfiguracion.Rows[0]["IdCiudad"].ToString();
                     txtNit.Enabled = false;
                 }
                 else
                 {
                     txtNit.Enabled = true;
-                    ListarComboCiudadesNull();
+                    ListarComboMunicipiosNull();
                     string Titulo = "Advertencia";
                     string Mensaje = "No existen datos de la Configuración del sistema creados en base de datos.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
@@ -66,35 +66,6 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Cargando Configuración";
                 string Mensaje = "Error tratando de listar la Configuración del sistema: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
-                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
-            }
-        }
-        private void ListarComboCiudadesNull()
-        {
-            try
-            {
-                DataTable dtCiudades = new DataTable();
-
-                //Agregar columnas
-                dtCiudades.Columns.Add("IdCiudad", typeof(string));
-                dtCiudades.Columns.Add("Nombre", typeof(string));
-
-                //Agregar filas
-                dtCiudades.Rows.Add("0", "Seleccione...");
-
-                //Aceptar cambios
-                dtCiudades.AcceptChanges();
-
-                cboCiudades.DataSource = dtCiudades;
-                cboCiudades.DataValueField = "IdCiudad";
-                cboCiudades.DataTextField = "Nombre";
-                cboCiudades.DataBind();
-            }
-            catch (Exception ex)
-            {
-                string Titulo = "Error Cargando Ciudades";
-                string Mensaje = "Error tratando de listar las Ciudades Null: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
@@ -128,31 +99,60 @@ namespace CapaPresentacion
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
         }
+        private void ListarComboMunicipiosNull()
+        {
+            try
+            {
+                DataTable dtCiudades = new DataTable();
+
+                //Agregar columnas
+                dtCiudades.Columns.Add("IdMunicipio", typeof(string));
+                dtCiudades.Columns.Add("Nombre", typeof(string));
+
+                //Agregar filas
+                dtCiudades.Rows.Add("0", "Seleccione...");
+
+                //Aceptar cambios
+                dtCiudades.AcceptChanges();
+
+                cboMunicipios.DataSource = dtCiudades;
+                cboMunicipios.DataValueField = "IdMunicipio";
+                cboMunicipios.DataTextField = "Nombre";
+                cboMunicipios.DataBind();
+            }
+            catch (Exception ex)
+            {
+                string Titulo = "Error Cargando Municipios";
+                string Mensaje = "Error tratando de listar los Municipios Null: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+            }
+        }
         private void ListarComboCiudadesPorDepartamento(string IdDepartamento)
         {
             try
             {
-                DataTable dtCiudades = objInformacionRegional.ListarCiudadPorDepartamento(IdDepartamento);
+                DataTable dtMunicipios = objInformacionRegional.ListarMunicipiosPorDepartamento(IdDepartamento);
 
-                if (dtCiudades.Rows.Count > 0)
+                if (dtMunicipios.Rows.Count > 0)
                 {
-                    cboCiudades.DataSource = dtCiudades;
-                    cboCiudades.DataValueField = "IdCiudad";
-                    cboCiudades.DataTextField = "Nombre";
-                    cboCiudades.DataBind();
+                    cboMunicipios.DataSource = dtMunicipios;
+                    cboMunicipios.DataValueField = "IdMunicipio";
+                    cboMunicipios.DataTextField = "Nombre";
+                    cboMunicipios.DataBind();
                 }
                 else
                 {
                     string Titulo = "Advertencia";
-                    string Mensaje = "No existen ciudades creadas en base de datos para el departamento seleccionado.";
+                    string Mensaje = "No existen Municipios creados en base de datos para el departamento seleccionado.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 }
             }
             catch (Exception ex)
             {
-                string Titulo = "Error Cargando Ciudades";
-                string Mensaje = "Error tratando de listar las Ciudades: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Titulo = "Error Cargando Municipios";
+                string Mensaje = "Error tratando de listar los Municipios: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
@@ -179,8 +179,8 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-                string Titulo = "Error Cargando Ciudades";
-                string Mensaje = "Error tratando de listar las Ciudades: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Titulo = "Error Cargando Municipios";
+                string Mensaje = "Error tratando de listar los Municipios: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
@@ -297,11 +297,11 @@ namespace CapaPresentacion
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
-                else if (Convert.ToInt32(cboCiudades.SelectedValue) <= 0)
+                else if (Convert.ToInt32(cboMunicipios.SelectedValue) <= 0)
                 {
-                    cboCiudades.Focus();
+                    cboMunicipios.Focus();
                     string Titulo = "Advertencia";
-                    string Mensaje = "Debe seleccionar una Ciudad.";
+                    string Mensaje = "Debe seleccionar un Municipio.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
@@ -328,8 +328,8 @@ namespace CapaPresentacion
                     oConfiguracion.NombreComercial = txtNombreComercial.Text.Trim();
                     oConfiguracion.IdDepartamento = cboDepartamentos.SelectedValue;
                     oConfiguracion.Departamento = cboDepartamentos.SelectedItem.Text;
-                    oConfiguracion.IdCiudad = cboCiudades.SelectedValue;
-                    oConfiguracion.Ciudad = cboCiudades.SelectedItem.Text;
+                    oConfiguracion.IdMunicipio = cboMunicipios.SelectedValue;
+                    oConfiguracion.Municipio = cboMunicipios.SelectedItem.Text;
                     oConfiguracion.Direccion = txtDireccion.Text.Trim();
                     oConfiguracion.Telefono = Convert.ToInt64(txtTelefono.Text.Trim());
                     oConfiguracion.Email = txtEmail.Text.Trim();

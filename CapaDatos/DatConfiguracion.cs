@@ -63,8 +63,8 @@ namespace CapaDatos
                 sqlCommand.Parameters.Add("@NombreComercial", SqlDbType.VarChar, 100).Value = oConfiguracion.NombreComercial;
                 sqlCommand.Parameters.Add("@IdDepartamento", SqlDbType.VarChar, 10).Value = oConfiguracion.IdDepartamento;
                 sqlCommand.Parameters.Add("@Departamento", SqlDbType.VarChar, 100).Value = oConfiguracion.Departamento;
-                sqlCommand.Parameters.Add("@IdCiudad", SqlDbType.VarChar, 10).Value = oConfiguracion.IdCiudad;
-                sqlCommand.Parameters.Add("@Ciudad", SqlDbType.VarChar, 100).Value = oConfiguracion.Ciudad;
+                sqlCommand.Parameters.Add("@IdCiudad", SqlDbType.VarChar, 10).Value = oConfiguracion.IdMunicipio;
+                sqlCommand.Parameters.Add("@Ciudad", SqlDbType.VarChar, 100).Value = oConfiguracion.Municipio;
                 sqlCommand.Parameters.Add("@Direccion", SqlDbType.VarChar, 200).Value = oConfiguracion.Direccion;
                 sqlCommand.Parameters.Add("@Telefono", SqlDbType.BigInt).Value = oConfiguracion.Telefono;
                 sqlCommand.Parameters.Add("@Email", SqlDbType.VarChar, 100).Value = oConfiguracion.Email;

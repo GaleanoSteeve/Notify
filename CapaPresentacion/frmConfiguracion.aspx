@@ -55,8 +55,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="float-left" for="cboCiudades">Ciudad</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                    <asp:DropDownList ID="cboCiudades" runat="server" CssClass="form-control"></asp:DropDownList>
+                    <label class="float-left" for="cboMunicipios">Municipio</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                    <asp:DropDownList ID="cboMunicipios" runat="server" CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
         </div>

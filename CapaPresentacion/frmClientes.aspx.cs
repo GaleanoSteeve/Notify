@@ -15,6 +15,7 @@ namespace CapaPresentacion
 
         NegClientes objClientes = new NegClientes();
         NegUsuarios objUsuarios = new NegUsuarios();
+        NegInformacionRegional objInformacionRegional = new NegInformacionRegional();
 
         #endregion
 
@@ -28,6 +29,7 @@ namespace CapaPresentacion
             if (!IsPostBack)
             {
                 ListarTipoDocumentos();
+                ListarComboPaises();
                 ListarComboEstados();
                 ListarClientes();
             }
@@ -58,7 +60,36 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 string Titulo = "Error Cargando Clientes";
-                string Mensaje = "Error tratando de listar los clientes: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Mensaje = "Error tratando de listar los Clientes: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+            }
+        }
+        private void ListarComboPaises()
+        {
+            try
+            {
+                DataTable dtPaises = objInformacionRegional.ListarComboPaises();
+
+                if (dtPaises.Rows.Count > 0)
+                {
+                    cboPaises.DataSource = dtPaises;
+                    cboPaises.DataValueField = "IdPais";
+                    cboPaises.DataTextField = "Nombre";
+                    cboPaises.DataBind();
+                }
+                else
+                {
+                    string Titulo = "Advertencia";
+                    string Mensaje = "No existen países creados en base de datos.";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                string Titulo = "Error Cargando Países";
+                string Mensaje = "Error tratando de listar el ComboBox de los Países: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
@@ -87,8 +118,8 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-                string Titulo = "Error Cargando ComboBox";
-                string Mensaje = "Error tratando de listar el ComboBox de los estados: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Titulo = "Error Cargando Estados";
+                string Mensaje = "Error tratando de listar el ComboBox de los Estados: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
@@ -116,10 +147,45 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-                string Titulo = "Error Cargando ComboBox";
-                string Mensaje = "Error tratando de listar el ComboBox de los tipos de documentos: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Titulo = "Error Cargando Tipo Documentos";
+                string Mensaje = "Error tratando de listar el ComboBox de los Tipos de Documentos: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+            }
+        }
+        private void ListarDepartamentosPorPais(int IdPais)
+        {
+            try
+            {
+                DataTable dtDepartamentos = objInformacionRegional.ListarDepartamentosPorPais(IdPais);
+
+                if (dtDepartamentos.Rows.Count > 1)
+                {
+                    cboDepartamentos.DataSource = dtDepartamentos;
+                    cboDepartamentos.DataValueField = "IdDepartamento";
+                    cboDepartamentos.DataTextField = "Nombre";
+                    cboDepartamentos.DataBind();
+                    modClientes.Show();
+                }
+                else
+                {
+                    labMensaje.Text = "No existen Departamentos creados en base de datos para el país seleccionado.";
+                    DataTable dtDatos = new DataTable();
+                    cboDepartamentos.DataSource = dtDatos;
+                    cboDepartamentos.DataBind();
+                    labError.Visible = true;
+                    modClientes.Show();
+                    cboPaises.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                labMensaje.Text = "Error tratando de listar los Departamentos: " + ex.Message;
+                DataTable dtDatos = new DataTable();
+                cboDepartamentos.DataSource = dtDatos;
+                cboDepartamentos.DataBind();
+                labError.Visible = true;
+                modClientes.Show();
             }
         }
 
@@ -222,6 +288,34 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Ejecutando Consulta";
                 string Mensaje = "Error tratando de filtrar los datos: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+            }
+        }
+
+        //Controles
+        protected void cboPaises_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int IdPais = Convert.ToInt16(cboPaises.SelectedValue);
+
+                if (IdPais > 0)
+                {
+                    ListarDepartamentosPorPais(IdPais);
+                }
+                else
+                {
+                    string Titulo = "Advertencia";
+                    string Mensaje = "Debe seleccionar un país.";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                string Titulo = "Error Cargando Países";
+                string Mensaje = "Error tratando de listar los Países: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
