@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace CapaDatos
 {
-    public class DatInformacionRegional
+    public class DatRegionales
     {
         public DataTable ListarComboPaises()
         {
@@ -19,7 +19,7 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpInformacionRegional";
+                sqlCommand.CommandText = "stpRegionales";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LP";
                 sqlDataAdapter.SelectCommand = sqlCommand;
@@ -52,7 +52,7 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpInformacionRegional";
+                sqlCommand.CommandText = "stpRegionales";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LM";
                 sqlDataAdapter.SelectCommand = sqlCommand;
@@ -85,7 +85,7 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpInformacionRegional";
+                sqlCommand.CommandText = "stpRegionales";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LD";
                 sqlDataAdapter.SelectCommand = sqlCommand;
@@ -105,7 +105,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataTable ListarDepartamentosPorPais(int IdPais)
+        public DataTable ListarComboDepartamentosPais(int IdPais)
         {
             DataTable dtDatos = new DataTable();
             SqlCommand sqlCommand = new SqlCommand();
@@ -118,7 +118,7 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpInformacionRegional";
+                sqlCommand.CommandText = "stpRegionales";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LDP";
                 sqlCommand.Parameters.Add("@IdPais", SqlDbType.Int).Value = IdPais;
@@ -139,7 +139,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataTable ListarMunicipiosPorDepartamento(string IdDepartamento)
+        public DataTable ListarComboCorregimientosMunicipio(int IdMunicipio)
         {
             DataTable dtDatos = new DataTable();
             SqlCommand sqlCommand = new SqlCommand();
@@ -152,10 +152,78 @@ namespace CapaDatos
                 {
                     sqlCommand.Connection.Open();
                 }
-                sqlCommand.CommandText = "stpInformacionRegional";
+                sqlCommand.CommandText = "stpRegionales";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCM";
+                sqlCommand.Parameters.Add("@IdMunicipio", SqlDbType.Int).Value = IdMunicipio;
+                sqlDataAdapter.SelectCommand = sqlCommand;
+                sqlDataAdapter.Fill(dtDatos);
+                return dtDatos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCommand.Connection.State == ConnectionState.Open)
+                {
+                    sqlCommand.Connection.Close();
+                }
+                sqlCommand = null;
+            }
+        }
+        public DataTable ListarComboMunicipiosDepartamento(int IdDepartamento)
+        {
+            DataTable dtDatos = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+            try
+            {
+                sqlCommand.Connection = DatConexionDB.ObtenerConexion();
+                if (sqlCommand.Connection.State == ConnectionState.Closed)
+                {
+                    sqlCommand.Connection.Open();
+                }
+                sqlCommand.CommandText = "stpRegionales";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LMD";
-                sqlCommand.Parameters.Add("@IdDepartamento", SqlDbType.VarChar, 10).Value = IdDepartamento;
+                sqlCommand.Parameters.Add("@IdDepartamento", SqlDbType.Int).Value = IdDepartamento;
+                sqlDataAdapter.SelectCommand = sqlCommand;
+                sqlDataAdapter.Fill(dtDatos);
+                return dtDatos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCommand.Connection.State == ConnectionState.Open)
+                {
+                    sqlCommand.Connection.Close();
+                }
+                sqlCommand = null;
+            }
+        }
+        public DataTable ListarComboVeredasCorregimientos(int IdCorregimiento)
+        {
+            DataTable dtDatos = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+            try
+            {
+                sqlCommand.Connection = DatConexionDB.ObtenerConexion();
+                if (sqlCommand.Connection.State == ConnectionState.Closed)
+                {
+                    sqlCommand.Connection.Open();
+                }
+                sqlCommand.CommandText = "stpRegionales";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LVC";
+                sqlCommand.Parameters.Add("@IdCorregimiento", SqlDbType.Int).Value = IdCorregimiento;
                 sqlDataAdapter.SelectCommand = sqlCommand;
                 sqlDataAdapter.Fill(dtDatos);
                 return dtDatos;

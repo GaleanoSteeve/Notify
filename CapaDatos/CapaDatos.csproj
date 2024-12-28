@@ -43,7 +43,7 @@
     <Compile Include="DatClientes.cs" />
     <Compile Include="DatConexionDB.cs" />
     <Compile Include="DatConfiguracion.cs" />
-    <Compile Include="DatInformacionRegional.cs" />
+    <Compile Include="DatRegionales.cs" />
     <Compile Include="DatLotes.cs" />
     <Compile Include="DatMenu.cs" />
     <Compile Include="DatPerfiles.cs" />

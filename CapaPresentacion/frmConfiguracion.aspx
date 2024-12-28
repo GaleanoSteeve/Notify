@@ -48,7 +48,7 @@
                         <span class="input-group-text">@</span>
                     </div>
                 </div>
-                
+
                 <div class="form-group mt-3">
                     <label class="float-left" for="cboDepartamentos">Departamento</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
                     <asp:DropDownList ID="cboDepartamentos" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="cboDepartamentos_SelectedIndexChanged"></asp:DropDownList>
@@ -65,5 +65,4 @@
             <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary w-25" Text="Guardar" OnClick="btnGuardar_Click" />
         </div>
     </div>
-    <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
 </asp:Content>

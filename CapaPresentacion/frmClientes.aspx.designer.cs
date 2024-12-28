@@ -112,22 +112,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.DropDownList cboPaises;
         
         /// <summary>
-        /// Control cboMunicipio.
+        /// Control cboMunicipios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboMunicipio;
+        protected global::System.Web.UI.WebControls.DropDownList cboMunicipios;
         
         /// <summary>
-        /// Control cboVereda.
+        /// Control cboVeredas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboVereda;
+        protected global::System.Web.UI.WebControls.DropDownList cboVeredas;
         
         /// <summary>
         /// Control txtDireccion.
@@ -139,22 +139,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtDireccion;
         
         /// <summary>
-        /// Control txtTelefono.
+        /// Control txtTelefono1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTelefono;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefono1;
         
         /// <summary>
-        /// Control cboEstado.
+        /// Control txtEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboEstado;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
         /// Control txtDocumento.
@@ -184,13 +184,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.DropDownList cboDepartamentos;
         
         /// <summary>
-        /// Control cboCorregimiento.
+        /// Control cboCorregimientos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboCorregimiento;
+        protected global::System.Web.UI.WebControls.DropDownList cboCorregimientos;
         
         /// <summary>
         /// Control txtBarrio.
@@ -211,22 +211,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtWhatsApp;
         
         /// <summary>
-        /// Control txtTelefonoAuxiliar.
+        /// Control txtTelefono2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTelefonoAuxiliar;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefono2;
         
         /// <summary>
-        /// Control txtEmail.
+        /// Control cboEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.DropDownList cboEstado;
         
         /// <summary>
         /// Control labCrear.
@@ -247,6 +247,15 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Label labDocumento;
         
         /// <summary>
+        /// Control labDomicilio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labDomicilio;
+        
+        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>
@@ -254,14 +263,5 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
-        
-        /// <summary>
-        /// Control ScriptManager.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager;
     }
 }

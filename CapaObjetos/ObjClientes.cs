@@ -23,9 +23,9 @@ namespace CapaObjetos
         private int _IdBarrio;
         private string _Barrio;
         private string _Direccion;
-        private long _Telefono;
-        private long _TelefonoAuxiliar;
         private long _WhatsApp;
+        private long _Telefono1;
+        private long _Telefono2;
         private string _Email;
         private bool _Estado;
         private string _Filtro;
@@ -131,20 +131,20 @@ namespace CapaObjetos
             get { return _Direccion; }
             set { _Direccion = value; }
         }
-        public long Telefono
-        {
-            get { return _Telefono; }
-            set { _Telefono = value; }
-        }
-        public long TelefonoAuxiliar
-        {
-            get { return _TelefonoAuxiliar; }
-            set { _TelefonoAuxiliar = value; }
-        }
         public long WhatsApp
         {
             get { return _WhatsApp; }
             set { _WhatsApp = value; }
+        }
+        public long Telefono1
+        {
+            get { return _Telefono1; }
+            set { _Telefono1 = value; }
+        }
+        public long Telefono2
+        {
+            get { return _Telefono2; }
+            set { _Telefono2 = value; }
         }
         public string Email
         {

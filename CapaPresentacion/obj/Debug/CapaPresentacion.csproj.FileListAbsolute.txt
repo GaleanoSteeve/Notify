@@ -1,3 +1,4 @@
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\alertify.css
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\assets\style.css
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Styles\css\bootstrap-icons.css
@@ -32,6 +33,5 @@ D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\CapaNegocios.pdb
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\CapaObjetos.pdb
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\CapaDatos.pdb
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\CapaCriptografia.pdb
-D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\obj\Debug\CapaPresentacion.csprojResolveAssemblyReference.cache
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\obj\Debug\CapaPresentacion.dll
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\obj\Debug\CapaPresentacion.pdb

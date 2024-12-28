@@ -42,7 +42,7 @@
     <Compile Include="NegClientes.cs" />
     <Compile Include="NegConfiguracion.cs" />
     <Compile Include="NegCriptografia.cs" />
-    <Compile Include="NegInformacionRegional.cs" />
+    <Compile Include="NegRegionales.cs" />
     <Compile Include="NegLotes.cs" />
     <Compile Include="NegMenu.cs" />
     <Compile Include="NegPerfiles.cs" />
