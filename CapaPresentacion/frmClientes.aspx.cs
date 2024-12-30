@@ -3,7 +3,9 @@ using System.Data;
 using CapaObjetos;
 using CapaNegocios;
 using System.Web.UI;
+using System.Net.Mail;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace CapaPresentacion
 {
@@ -131,7 +133,6 @@ namespace CapaPresentacion
             txtDocumento.Enabled = true;
             cboTipoDocumento.Focus();
             labDocumento.Text = "";
-            labDomicilio.Text = "";
             labCrear.Text = "1";
             ListarComboPaises();
             modClientes.Show();
@@ -336,11 +337,73 @@ namespace CapaPresentacion
                 modClientes.Show();
             }
         }
+        private bool ValidarCamposDomicilio()
+        {
+            try
+            {
+                if (cboPaises.SelectedValue == "0")
+                {
+                    labMensaje.Text = "Debe seleccionar un País.";
+                    labError.Visible = true;
+                    cboPaises.Focus();
+                    modClientes.Show();
+                    return false;
+                }
+                else if (cboDepartamentos.SelectedValue == "0")
+                {
+                    labMensaje.Text = "Debe seleccionar un Departamento.";
+                    cboDepartamentos.Focus();
+                    labError.Visible = true;
+                    modClientes.Show();
+                    return false;
+                }
+                else if (cboMunicipios.SelectedValue == "0")
+                {
+                    labMensaje.Text = "Debe seleccionar un Municipio.";
+                    labError.Visible = true;
+                    cboMunicipios.Focus();
+                    modClientes.Show();
+                    return false;
+                }
+                else if (cboCorregimientos.SelectedValue == "0")
+                {
+                    labMensaje.Text = "Debe seleccionar un Corregimiento.";
+                    cboCorregimientos.Focus();
+                    labError.Visible = true;
+                    modClientes.Show();
+                    return false;
+                }
+                else if (cboVeredas.SelectedValue == "0")
+                {
+                    labMensaje.Text = "Debe seleccionar una Vereda.";
+                    labError.Visible = true;
+                    cboVeredas.Focus();
+                    modClientes.Show();
+                    return false;
+                }
+                else if (txtBarrio.Text.Trim() == "")
+                {
+                    labMensaje.Text = "El campo Barrio es obligatorio.";
+                    labError.Visible = true;
+                    txtBarrio.Focus();
+                    modClientes.Show();
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                labMensaje.Text = "Error tratando de validar los campos del domicilio: " + ex.Message;
+                labError.Visible = true;
+                modClientes.Show();
+                return false;
+            }
+        }
         private void LimpiarCombo(string Combo)
         {
             DataTable dtDatos = new DataTable();
 
-            switch(Combo)
+            switch (Combo)
             {
                 case "Paises":
                     cboPaises.DataSource = dtDatos;
@@ -389,7 +452,6 @@ namespace CapaPresentacion
                     LimpiarCombo("Departamentos");
                     LimpiarCombo("Municipios");
                     LimpiarCombo("Veredas");
-                    labDomicilio.Text = "";
                     labError.Visible = true;
                     modClientes.Show();
                     cboPaises.Focus();
@@ -402,10 +464,34 @@ namespace CapaPresentacion
                 LimpiarCombo("Departamentos");
                 LimpiarCombo("Municipios");
                 LimpiarCombo("Veredas");
-                labDomicilio.Text = "";
                 labError.Visible = true;
                 modClientes.Show();
                 cboPaises.Focus();
+            }
+        }
+        protected void btnConstruirDireccion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ValidarCamposDomicilio())
+                {
+                    string Pais = cboPaises.SelectedItem.Text;
+                    string Departamento = cboDepartamentos.SelectedItem.Text;
+                    string Municipio = cboMunicipios.SelectedItem.Text;
+                    string Corregimiento = cboCorregimientos.SelectedItem.Text;
+                    string Vereda = cboVeredas.SelectedItem.Text;
+                    string Barrio = txtBarrio.Text.Trim();
+
+                    string Domicilio = Pais + " - " + Departamento + " - " + Municipio + " - " + Corregimiento + " - " + Vereda + " - " + Barrio;
+                    txtDireccion.Text = Domicilio;
+                    modClientes.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                labMensaje.Text = "Error tratando de construir los datos del domicilio: " + ex.Message;
+                labError.Visible = true;
+                modClientes.Show();
             }
         }
         protected void cboPaises_SelectedIndexChanged(object sender, EventArgs e)
@@ -413,13 +499,11 @@ namespace CapaPresentacion
             try
             {
                 int IdPais = Convert.ToInt32(cboPaises.SelectedValue);
+                txtDireccion.Text = "";
 
                 if (IdPais > 0)
                 {
                     ListarComboDepartamentosPais(IdPais);
-
-                    string Pais = cboPaises.SelectedItem.Text;
-                    labDomicilio.Text = Pais + " - ";
                 }
                 else
                 {
@@ -446,8 +530,7 @@ namespace CapaPresentacion
         }
         protected void cboVeredas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string Vereda = cboVeredas.SelectedItem.Text;
-            labDomicilio.Text = cboVeredas + " - ";
+            txtDireccion.Text = "";
             modClientes.Show();
         }
         protected void cboMunicipios_SelectedIndexChanged(object sender, EventArgs e)
@@ -455,6 +538,7 @@ namespace CapaPresentacion
             try
             {
                 int IdMunicipio = Convert.ToInt32(cboMunicipios.SelectedValue);
+                txtDireccion.Text = "";
 
                 if (IdMunicipio > 0)
                 {
@@ -466,9 +550,6 @@ namespace CapaPresentacion
                         cboCorregimientos.DataValueField = "IdCorregimiento";
                         cboCorregimientos.DataTextField = "Nombre";
                         cboCorregimientos.DataBind();
-
-                        string Municipio = cboMunicipios.SelectedItem.Text;
-                        labDomicilio.Text = labDomicilio.Text + " - " + Municipio + " - ";
 
                         LimpiarCombo("Veredas");
                         modClientes.Show();
@@ -508,6 +589,7 @@ namespace CapaPresentacion
             try
             {
                 int IdDepartamento = Convert.ToInt32(cboDepartamentos.SelectedValue);
+                txtDireccion.Text = "";
 
                 if (IdDepartamento > 0)
                 {
@@ -519,9 +601,6 @@ namespace CapaPresentacion
                         cboMunicipios.DataValueField = "IdMunicipio";
                         cboMunicipios.DataTextField = "Nombre";
                         cboMunicipios.DataBind();
-
-                        string Departamento = cboDepartamentos.SelectedItem.Text;
-                        labDomicilio.Text = labDomicilio.Text + " - " + Departamento + " - ";
 
                         LimpiarCombo("Corregimientos");
                         LimpiarCombo("Veredas");
@@ -565,6 +644,7 @@ namespace CapaPresentacion
             try
             {
                 int IdCorregimiento = Convert.ToInt32(cboCorregimientos.SelectedValue);
+                txtDireccion.Text = "";
 
                 if (IdCorregimiento > 0)
                 {
@@ -572,9 +652,6 @@ namespace CapaPresentacion
 
                     if (dtVeredas.Rows.Count > 0)
                     {
-                        string Corregimiento = cboCorregimientos.SelectedItem.Text;
-                        labDomicilio.Text = Corregimiento + " - ";
-
                         cboVeredas.DataSource = dtVeredas;
                         cboVeredas.DataValueField = "IdVereda";
                         cboVeredas.DataTextField = "Nombre";
@@ -614,10 +691,78 @@ namespace CapaPresentacion
         {
             try
             {
-                string Email = txtEmail.Text.Trim();
-                string Patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+                Regex objRegex = new Regex(@"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
+                var objMatch = objRegex.Match(txtEmail.Text.Trim());
+                bool Resultado = objMatch.Success;
 
-                if (System.Text.RegularExpressions.Regex.IsMatch(Email, Patron))
+                if (Resultado)
+                {
+                    try
+                    {
+                        var objMailAddress = new MailAddress(txtEmail.Text.Trim());
+                        string Host = objMailAddress.Host;
+                        string[] Dominio = Host.Split('.');
+                        int Cantidad = Dominio.Length;
+
+                        if (Cantidad > 1)
+                        {
+                            string Smtp = "";
+                            string Tipo = "";
+                            string Proveedor = "";
+
+                            if (Cantidad == 2)
+                            {
+                                Smtp = Dominio[1].ToString();
+                                Proveedor = Dominio[0].ToString();
+
+                                if (Smtp == "com" || Smtp == "edu" || Smtp == "org")
+                                {
+                                    Resultado = true;
+                                }
+                                else
+                                {
+                                    Resultado = false;
+                                }
+                            }
+                            else if (Cantidad == 3)
+                            {
+                                Smtp = Dominio[1].ToString();
+                                Tipo = Dominio[2].ToString();
+                                Proveedor = Dominio[0].ToString();
+
+                                if (Smtp == "com" || Smtp == "edu" || Smtp == "org")
+                                {
+                                    if (Tipo == "co")
+                                    {
+                                        Resultado = true;
+                                    }
+                                    else
+                                    {
+                                        Resultado = false;
+                                    }
+                                }
+                                else
+                                {
+                                    Resultado = false;
+                                }
+                            }
+                            else
+                            {
+                                Resultado = false;
+                            }
+                        }
+                        else
+                        {
+                            Resultado = false;
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Resultado = false;
+                    }
+                }
+                
+                if (Resultado)
                 {
                     return true;
                 }

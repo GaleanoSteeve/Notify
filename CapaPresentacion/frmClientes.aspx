@@ -31,7 +31,7 @@
 
     <div class="text-center mt-3">
         <asp:Button ID="btnCrear" runat="server" CssClass="btn btn-primary" Text="Crear" Width="10%" OnClick="btnCrear_Click" />
-        <div style="height: 10px; visibility: hidden;">
+        <div class="mt-2" style="height: 1px; visibility: hidden;">
             <asp:Button ID="btnAbrir" runat="server" />
         </div>
     </div>
@@ -46,17 +46,16 @@
 
             <asp:GridView ID="gvClientes" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="False">
                 <Columns>
-                    <asp:TemplateField AccessibleHeaderText="Documento" HeaderText="Documento" HeaderStyle-Width="15%">
+                    <asp:TemplateField AccessibleHeaderText="Documento" HeaderText="Documento" HeaderStyle-Width="10%">
                         <ItemTemplate>
                             <asp:LinkButton ID="btnEditar" runat="server" CommandArgument='<%#Eval("Documento")%>' Text='<%#Eval("Documento")%>' OnClick="btnEditar_Click"></asp:LinkButton>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                     </asp:TemplateField>
                     <asp:BoundField DataField="Nombres" HeaderText="Nombres" HeaderStyle-Width="25%" ItemStyle-HorizontalAlign="Left" />
-                    <asp:BoundField DataField="Direccion" HeaderText="Domicilio" HeaderStyle-Width="20%" ItemStyle-HorizontalAlign="Left" />
+                    <asp:BoundField DataField="Direccion" HeaderText="Domicilio" HeaderStyle-Width="45%" ItemStyle-HorizontalAlign="Left" />
                     <asp:BoundField DataField="WhatsApp" HeaderText="WhatsApp" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Left" />
-                    <asp:BoundField DataField="Email" HeaderText="Email" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="Activo" HeaderText="Activo" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="Activo" HeaderText="Activo" HeaderStyle-Width="5%" ItemStyle-HorizontalAlign="Center" />
                     <asp:TemplateField AccessibleHeaderText="Eliminar" HeaderStyle-Width="5%">
                         <ItemTemplate>
                             <asp:ImageButton ID="btnEliminar" runat="server" CommandArgument='<%#Eval("Documento")%>' ToolTip="Eliminar" ImageUrl="~/Styles/img/Eliminar.png" Width="26px" Height="26px" OnClientClick='javascript:return confirm("¿Está seguro que desea eliminar el cliente?")' OnCommand="btnEliminar_Command" />
@@ -119,9 +118,16 @@
                         <asp:DropDownList ID="cboVeredas" runat="server" CssClass="form-control" ClientIDMode="Static" AutoPostBack="true" TabIndex="9" OnSelectedIndexChanged="cboVeredas_SelectedIndexChanged"></asp:DropDownList>
                     </div>
 
-                    <div class="form-group">
-                        <label class="float-left" for="txtDireccion">Domicilio</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="100" TabIndex="11"></asp:TextBox>
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            <label class="float-left" for="txtDireccion">Domicilio</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" Enabled="false" ClientIDMode="Static" Font-Size="10px" Height="38px" TabIndex="11"></asp:TextBox>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="float-left" for="btnConstruirDireccion" style="visibility: hidden;">Construir</label>
+                            <asp:Button ID="btnConstruirDireccion" runat="server" CssClass="btn btn-success ml-3" Text="Construir" OnClick="btnConstruirDireccion_Click" />
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -179,10 +185,9 @@
                 </div>
             </div>
 
-            <div visible="true">
-                <asp:Label ID="labCrear" runat="server" ClientIDMode="Static" Font-Size="2px"></asp:Label>
+            <div style="visibility:hidden;">
+                <asp:Label ID="labCrear" runat="server" ClientIDMode="Static" Font-Size="2px" ></asp:Label>
                 <asp:Label ID="labDocumento" runat="server" ClientIDMode="Static" Font-Size="2px"></asp:Label>
-                <asp:Label ID="labDomicilio" runat="server" ClientIDMode="Static" Font-Size="14px"></asp:Label>
             </div>
 
             <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary mt-0 mb-3" Text="Guardar" TabIndex="17" OnClick="btnGuardar_Click" />
