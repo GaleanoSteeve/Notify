@@ -88,35 +88,28 @@ namespace CapaPresentacion
                 modLotes.Show();
             }
         }
-        private void ListarComboManzanas()
+        private void LimpiarCombo(string Combo)
         {
-            try
-            {
-                DataTable dtManzanas = objLotes.ListarComboManzanas();
+            DataTable dtDatos = new DataTable();
 
-                if (dtManzanas.Rows.Count > 0)
-                {
-                    cboManzanas.DataSource = dtManzanas;
-                    cboManzanas.DataValueField = "IdManzana";
-                    cboManzanas.DataTextField = "Nombre";
-                    cboManzanas.DataBind();
-                }
-                else
-                {
-                    labMensaje.Text = "No existen Manzanas creadas en base de datos.";
-                    LimpiarCombo("Manzanas");
-                    labError.Visible = true;
-                    modLotes.Show();
-                }
-            }
-            catch (Exception ex)
+            switch (Combo)
             {
-                labMensaje.Text = "Error tratando de listar el ComboBox de las Manzanas: " + ex.Message;
-                LimpiarCombo("Manzanas");
-                labError.Visible = true;
-                modLotes.Show();
+                case "Proyectos":
+                    cboProyectos.DataSource = dtDatos;
+                    cboProyectos.DataBind();
+                    break;
+                case "Manzanas":
+                    cboManzanas.DataSource = dtDatos;
+                    cboManzanas.DataBind();
+                    break;
+                case "Estados":
+                    cboEstados.DataSource = dtDatos;
+                    cboEstados.DataBind();
+                    break;
             }
         }
+
+        //Lotes
         private void ListarComboProyectos()
         {
             try
@@ -146,28 +139,61 @@ namespace CapaPresentacion
                 modLotes.Show();
             }
         }
-        private void LimpiarCombo(string Combo)
+        protected void cboProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dtDatos = new DataTable();
-
-            switch (Combo)
+            try
             {
-                case "Proyectos":
-                    cboProyectos.DataSource = dtDatos;
-                    cboProyectos.DataBind();
-                    break;
-                case "Manzanas":
-                    cboManzanas.DataSource = dtDatos;
-                    cboManzanas.DataBind();
-                    break;
-                case "Estados":
-                    cboEstados.DataSource = dtDatos;
-                    cboEstados.DataBind();
-                    break;
+                int IdProyecto = Convert.ToInt32(cboProyectos.SelectedValue);
+
+                if (IdProyecto > 0) //Listar manzanas
+                {
+                    oLote = new ObjLotes();
+                    oLote.IdProyecto = IdProyecto;
+                    DataTable dtManzanas = objLotes.ListarComboManzanas(oLote);
+
+                    if (dtManzanas.Rows.Count > 0)
+                    {
+                        cboManzanas.DataSource = dtManzanas;
+                        cboManzanas.DataValueField = "IdManzana";
+                        cboManzanas.DataTextField = "Nombre";
+                        cboManzanas.DataBind();
+                        modLotes.Show();
+                    }
+                    else
+                    {
+                        labMensaje.Text = "No existen Manzanas creadas en base de datos para el proyecto seleccionado.";
+                        LimpiarCombo("Manzanas");
+                        labError.Visible = true;
+                        modLotes.Show();
+                    }
+                }
+                else
+                {
+                    labMensaje.Text = "Debe seleccionar un Proyecto.";
+                    LimpiarCombo("Manzanas");
+                    labError.Visible = true;
+                    modLotes.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                labMensaje.Text = "Error tratando de listar el ComboBox de las Manzanas: " + ex.Message;
+                LimpiarCombo("Manzanas");
+                labError.Visible = true;
+                modLotes.Show();
             }
         }
 
         //Controles
+        protected void btnCrear_Click(object sender, EventArgs e)
+        {
+            ListarComboProyectos();
+            ListarComboEstados();
+            cboProyectos.Focus();
+            labCodigo.Text = "0";
+            labCrear.Text = "1";
+            modLotes.Show();
+        }
         protected void btnEditar_Click(object sender, EventArgs e)
         {
             try
@@ -182,13 +208,35 @@ namespace CapaPresentacion
 
                     if (dtLote.Rows.Count > 0) //Lote existe
                     {
-                        ListarComboProyectos();
-                        ListarComboManzanas();
-                        ListarComboEstados();
+                        LimpiarCombo("Proyectos");
+                        LimpiarCombo("Manzanas");
+                        LimpiarCombo("Estados");
+                        oLote = new ObjLotes();
 
                         int IdProyecto = Convert.ToInt32(dtLote.Rows[0]["IdProyecto"]);
                         int IdManzana = Convert.ToInt32(dtLote.Rows[0]["IdManzana"]);
                         int IdEstado = Convert.ToInt32(dtLote.Rows[0]["IdEstado"]);
+
+                        ListarComboProyectos();
+                        ListarComboEstados();
+
+                        oLote.IdProyecto = IdProyecto;
+                        DataTable dtManzanas = objLotes.ListarComboManzanas(oLote);
+
+                        if (dtManzanas.Rows.Count > 0)
+                        {
+                            cboManzanas.DataSource = dtManzanas;
+                            cboManzanas.DataValueField = "IdManzana";
+                            cboManzanas.DataTextField = "Nombre";
+                            cboManzanas.DataBind();
+                        }
+                        else
+                        {
+                            labMensaje.Text = "No existen Manzanas creadas en base de datos para el proyecto.";
+                            LimpiarCombo("Manzanas");
+                            labError.Visible = true;
+                            modLotes.Show();
+                        }
 
                         cboProyectos.SelectedValue = IdProyecto.ToString();
                         cboManzanas.SelectedValue = IdManzana.ToString();
@@ -227,16 +275,6 @@ namespace CapaPresentacion
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
-        }
-        protected void btnCrear_Click(object sender, EventArgs e)
-        {
-            ListarComboProyectos();
-            ListarComboManzanas();
-            ListarComboEstados();
-            cboProyectos.Focus();
-            labCodigo.Text = "0";
-            labCrear.Text = "1";
-            modLotes.Show();
         }
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
         {

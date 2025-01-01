@@ -76,7 +76,7 @@
 
                     <div class="form-group">
                         <label class="float-left" for="cboProyectos">Proyecto</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:DropDownList ID="cboProyectos" runat="server" CssClass="form-control" ClientIDMode="Static" TabIndex="1"></asp:DropDownList>
+                        <asp:DropDownList ID="cboProyectos" runat="server" CssClass="form-control" ClientIDMode="Static" AutoPostBack="true" TabIndex="1" OnSelectedIndexChanged="cboProyectos_SelectedIndexChanged"></asp:DropDownList>
                     </div>
 
                     <div class="form-group">
@@ -124,8 +124,8 @@
                 <asp:Label ID="labCodigo" runat="server" ClientIDMode="Static" Font-Size="2px"></asp:Label>
             </div>
 
-            <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary mt-2" Text="Guardar" TabIndex="9" OnClick="btnGuardar_Click" />
-            <button id="btnCancelar" class="btn btn-danger mr-4 mt-2" tabindex="10" onclick="LimpiarControles()">Cancelar</button>
+            <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" Text="Guardar" TabIndex="9" OnClick="btnGuardar_Click" />
+            <button id="btnCancelar" class="btn btn-danger mr-4" tabindex="10" onclick="LimpiarControles()">Cancelar</button>
         </asp:Panel>
     </div>
 </asp:Content>

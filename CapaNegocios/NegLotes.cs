@@ -35,11 +35,6 @@ namespace CapaNegocios
             DataTable dtDatos = objLotes.ListarMaximoIdLote();
             return dtDatos;
         }
-        public DataTable ListarComboManzanas()
-        {
-            DataTable dtDatos = objLotes.ListarComboManzanas();
-            return dtDatos;
-        }
         public DataTable ListarComboProyectos()
         {
             DataTable dtDatos = objLotes.ListarComboProyectos();
@@ -53,6 +48,16 @@ namespace CapaNegocios
         public DataTable ExisteLote(ObjLotes oLote)
         {
             DataTable dtDatos = objLotes.ExisteLote(oLote);
+            return dtDatos;
+        }
+        public DataTable ListarComboLotes(ObjLotes oLote)
+        {
+            DataTable dtDatos = objLotes.ListarComboLotes(oLote);
+            return dtDatos;
+        }
+        public DataTable ListarComboManzanas(ObjLotes oLote)
+        {
+            DataTable dtDatos = objLotes.ListarComboManzanas(oLote);
             return dtDatos;
         }
         public DataTable ListarLotesParametros(string Parametro)

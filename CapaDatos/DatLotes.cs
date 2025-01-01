@@ -187,39 +187,6 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataTable ListarComboManzanas()
-        {
-            DataTable dtDatos = new DataTable();
-            SqlCommand sqlCommand = new SqlCommand();
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
-
-            try
-            {
-                sqlCommand.Connection = DatConexionDB.ObtenerConexion();
-                if (sqlCommand.Connection.State == ConnectionState.Closed)
-                {
-                    sqlCommand.Connection.Open();
-                }
-                sqlCommand.CommandText = "stpAdminLotes";
-                sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCM";
-                sqlDataAdapter.SelectCommand = sqlCommand;
-                sqlDataAdapter.Fill(dtDatos);
-                return dtDatos;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (sqlCommand.Connection.State == ConnectionState.Open)
-                {
-                    sqlCommand.Connection.Close();
-                }
-                sqlCommand = null;
-            }
-        }
         public DataTable ListarComboProyectos()
         {
             DataTable dtDatos = new DataTable();
@@ -306,6 +273,75 @@ namespace CapaDatos
                 sqlCommand.Parameters.Add("@IdProyecto", SqlDbType.Int).Value = oLote.IdProyecto;
                 sqlCommand.Parameters.Add("@IdManzana", SqlDbType.Int).Value = oLote.IdManzana;
                 sqlCommand.Parameters.Add("@Numero", SqlDbType.Int).Value = oLote.Numero;
+                sqlDataAdapter.SelectCommand = sqlCommand;
+                sqlDataAdapter.Fill(dtDatos);
+                return dtDatos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCommand.Connection.State == ConnectionState.Open)
+                {
+                    sqlCommand.Connection.Close();
+                }
+                sqlCommand = null;
+            }
+        }
+        public DataTable ListarComboLotes(ObjLotes oLote)
+        {
+            DataTable dtDatos = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+            try
+            {
+                sqlCommand.Connection = DatConexionDB.ObtenerConexion();
+                if (sqlCommand.Connection.State == ConnectionState.Closed)
+                {
+                    sqlCommand.Connection.Open();
+                }
+                sqlCommand.CommandText = "stpAdminLotes";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCL";
+                sqlCommand.Parameters.Add("@IdProyecto", SqlDbType.Int).Value = oLote.IdProyecto;
+                sqlCommand.Parameters.Add("@IdManzana", SqlDbType.Int).Value = oLote.IdManzana;
+                sqlDataAdapter.SelectCommand = sqlCommand;
+                sqlDataAdapter.Fill(dtDatos);
+                return dtDatos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCommand.Connection.State == ConnectionState.Open)
+                {
+                    sqlCommand.Connection.Close();
+                }
+                sqlCommand = null;
+            }
+        }
+        public DataTable ListarComboManzanas(ObjLotes oLote)
+        {
+            DataTable dtDatos = new DataTable();
+            SqlCommand sqlCommand = new SqlCommand();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+            try
+            {
+                sqlCommand.Connection = DatConexionDB.ObtenerConexion();
+                if (sqlCommand.Connection.State == ConnectionState.Closed)
+                {
+                    sqlCommand.Connection.Open();
+                }
+                sqlCommand.CommandText = "stpAdminLotes";
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCM";
+                sqlCommand.Parameters.Add("@IdProyecto", SqlDbType.Int).Value = oLote.IdProyecto;
                 sqlDataAdapter.SelectCommand = sqlCommand;
                 sqlDataAdapter.Fill(dtDatos);
                 return dtDatos;
