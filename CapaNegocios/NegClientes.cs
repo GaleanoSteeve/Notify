@@ -45,9 +45,9 @@ namespace CapaNegocios
             DataTable dtDatos = objClientes.ExisteDocumento(oCliente);
             return dtDatos;
         }
-        public DataTable ListarClienteParametros(string Filtro)
+        public DataTable ListarClientesParametros(string Parametro)
         {
-            DataTable dtDatos = objClientes.ListarClienteParametros(Filtro);
+            DataTable dtDatos = objClientes.ListarClientesParametros(Parametro);
             return dtDatos;
         }
     }

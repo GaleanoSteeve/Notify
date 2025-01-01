@@ -263,7 +263,7 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataTable ListarClienteParametros(string Filtro)
+        public DataTable ListarClientesParametros(string Parametro)
         {
             DataTable dtDatos = new DataTable();
             SqlCommand sqlCommand = new SqlCommand();
@@ -279,7 +279,7 @@ namespace CapaDatos
                 sqlCommand.CommandText = "stpAdminClientes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCP";
-                sqlCommand.Parameters.Add("@Filtro", SqlDbType.VarChar, 100).Value = Filtro;
+                sqlCommand.Parameters.Add("@Filtro", SqlDbType.VarChar, 100).Value = Parametro;
                 sqlDataAdapter.SelectCommand = sqlCommand;
                 sqlDataAdapter.Fill(dtDatos);
                 return dtDatos;

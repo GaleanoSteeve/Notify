@@ -40,10 +40,9 @@
         <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control" AutoPostBack="true" PlaceHolder="Digite un valor y presione la tecla Enter" ToolTip="Para quitar los filtros, borre todo y presione Enter" OnTextChanged="txtFiltro_TextChanged"></asp:TextBox>
     </div>
 
-    <div class="container-fluid mt-3" style="height: 60vh; overflow-y: scroll; padding: 0; width: 80%;">
+    <div class="container-fluid mt-3" style="height: 60vh; overflow-y: scroll; padding: 0; width: 90%;">
 
         <div class="table-responsive">
-
             <asp:GridView ID="gvClientes" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="False">
                 <Columns>
                     <asp:TemplateField AccessibleHeaderText="Documento" HeaderText="Documento" HeaderStyle-Width="10%">
@@ -75,8 +74,8 @@
 
         <asp:Panel ID="popClientes" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" Style="height: 92vh; overflow-y: scroll;">
 
-            <div class="mt-4">
-                <h5 style="color: steelblue; font-weight: 600;">Registro de Clientes</h5>
+            <div class="mt-4 mr-3">
+                <h5 style="color: steelblue; font-weight: 600;">Administrar Clientes</h5>
             </div>
 
             <div class="container">
@@ -185,13 +184,13 @@
                 </div>
             </div>
 
-            <div style="visibility:hidden;">
-                <asp:Label ID="labCrear" runat="server" ClientIDMode="Static" Font-Size="2px" ></asp:Label>
+            <div style="visibility: hidden;">
+                <asp:Label ID="labCrear" runat="server" ClientIDMode="Static" Font-Size="2px"></asp:Label>
                 <asp:Label ID="labDocumento" runat="server" ClientIDMode="Static" Font-Size="2px"></asp:Label>
             </div>
 
-            <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary mt-0 mb-3" Text="Guardar" TabIndex="17" OnClick="btnGuardar_Click" />
-            <button id="btnCancelar" class="btn btn-danger mt-0 mb-3" tabindex="18" onclick="LimpiarControles()">Cancelar</button>
+            <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary mb-3 mt-0" Text="Guardar" TabIndex="17" OnClick="btnGuardar_Click" />
+            <button id="btnCancelar" class="btn btn-danger mb-3 mr-3 mt-0" tabindex="18" onclick="LimpiarControles()">Cancelar</button>
         </asp:Panel>
     </div>
 </asp:Content>

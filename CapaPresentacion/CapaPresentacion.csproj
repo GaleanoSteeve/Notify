@@ -65,6 +65,7 @@
     <Content Include="frmClientes.aspx" />
     <Content Include="frmConfiguracion.aspx" />
     <Content Include="frmInicio.aspx" />
+    <Content Include="frmLotes.aspx" />
     <Content Include="frmPerfiles.aspx" />
     <Content Include="frmUsuarios.aspx" />
     <Content Include="Maestra.Master" />
@@ -178,6 +179,13 @@
     </Compile>
     <Compile Include="frmLogin.aspx.designer.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLotes.aspx.cs">
+      <DependentUpon>frmLotes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLotes.aspx.designer.cs">
+      <DependentUpon>frmLotes.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmPerfiles.aspx.cs">
       <DependentUpon>frmPerfiles.aspx</DependentUpon>

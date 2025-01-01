@@ -14,10 +14,9 @@ namespace CapaPresentacion
         #region Variables
 
         ObjClientes oCliente = new ObjClientes();
-
         NegClientes objClientes = new NegClientes();
         NegUsuarios objUsuarios = new NegUsuarios();
-        NegRegionales objInformacionRegional = new NegRegionales();
+        NegRegionales objRegionales = new NegRegionales();
 
         #endregion
 
@@ -53,7 +52,7 @@ namespace CapaPresentacion
                 else
                 {
                     string Titulo = "Advertencia";
-                    string Mensaje = "No existen clientes creados en base de datos.";
+                    string Mensaje = "No existen Clientes creados en base de datos.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 }
@@ -112,7 +111,7 @@ namespace CapaPresentacion
                 else
                 {
                     string Titulo = "Advertencia";
-                    string Mensaje = "No existen tipos de documentos creados en base de datos.";
+                    string Mensaje = "No existen Tipos de Documentos creados en base de datos.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 }
@@ -126,7 +125,7 @@ namespace CapaPresentacion
             }
         }
 
-        //Administrar
+        //Controles
         protected void btnCrear_Click(object sender, EventArgs e)
         {
             cboTipoDocumento.Enabled = true;
@@ -164,13 +163,13 @@ namespace CapaPresentacion
                         txtApellidos.Text = dtCliente.Rows[0]["Apellidos"].ToString();
 
                         //Domicilio
-                        int IdPais = Convert.ToInt32(dtCliente.Rows[0]["IdPais"].ToString());
-                        int IdDepartamento = Convert.ToInt32(dtCliente.Rows[0]["IdDepartamento"].ToString());
-                        int IdMunicipio = Convert.ToInt32(dtCliente.Rows[0]["IdMunicipio"].ToString());
-                        int IdCorregimiento = Convert.ToInt32(dtCliente.Rows[0]["IdCorregimiento"].ToString());
-                        int IdVereda = Convert.ToInt32(dtCliente.Rows[0]["IdVereda"].ToString());
+                        int IdPais = Convert.ToInt32(dtCliente.Rows[0]["IdPais"]);
+                        int IdDepartamento = Convert.ToInt32(dtCliente.Rows[0]["IdDepartamento"]);
+                        int IdMunicipio = Convert.ToInt32(dtCliente.Rows[0]["IdMunicipio"]);
+                        int IdCorregimiento = Convert.ToInt32(dtCliente.Rows[0]["IdCorregimiento"]);
+                        int IdVereda = Convert.ToInt32(dtCliente.Rows[0]["IdVereda"]);
 
-                        DataTable dtPaises = objInformacionRegional.ListarComboPaises(); //Paises
+                        DataTable dtPaises = objRegionales.ListarComboPaises(); //Paises
 
                         if (dtPaises.Rows.Count > 0)
                         {
@@ -181,7 +180,7 @@ namespace CapaPresentacion
                             cboPaises.SelectedValue = IdPais.ToString();
                         }
 
-                        DataTable dtDepartamentos = objInformacionRegional.ListarComboDepartamentosPais(IdPais); //Departamentos
+                        DataTable dtDepartamentos = objRegionales.ListarComboDepartamentosPais(IdPais); //Departamentos
 
                         if (dtDepartamentos.Rows.Count > 0)
                         {
@@ -192,7 +191,7 @@ namespace CapaPresentacion
                             cboDepartamentos.SelectedValue = IdDepartamento.ToString();
                         }
 
-                        DataTable dtMunicipios = objInformacionRegional.ListarComboMunicipiosDepartamento(IdDepartamento); //Municipios
+                        DataTable dtMunicipios = objRegionales.ListarComboMunicipiosDepartamento(IdDepartamento); //Municipios
 
                         if (dtMunicipios.Rows.Count > 0)
                         {
@@ -203,7 +202,7 @@ namespace CapaPresentacion
                             cboMunicipios.SelectedValue = IdMunicipio.ToString();
                         }
 
-                        DataTable dtCorregimientos = objInformacionRegional.ListarComboCorregimientosMunicipio(IdMunicipio); //Corregimientos
+                        DataTable dtCorregimientos = objRegionales.ListarComboCorregimientosMunicipio(IdMunicipio); //Corregimientos
 
                         if (dtCorregimientos.Rows.Count > 0)
                         {
@@ -214,7 +213,7 @@ namespace CapaPresentacion
                             cboCorregimientos.SelectedValue = IdCorregimiento.ToString();
                         }
 
-                        DataTable dtVeredas = objInformacionRegional.ListarComboVeredasCorregimientos(IdCorregimiento); //Veredas
+                        DataTable dtVeredas = objRegionales.ListarComboVeredasCorregimientos(IdCorregimiento); //Veredas
 
                         if (dtVeredas.Rows.Count > 0)
                         {
@@ -240,7 +239,7 @@ namespace CapaPresentacion
                     else
                     {
                         string Titulo = "Advertencia";
-                        string Mensaje = "El cliente seleccionado no existe en base de datos.";
+                        string Mensaje = "El Cliente seleccionado no existe en base de datos.";
                         string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
@@ -248,7 +247,7 @@ namespace CapaPresentacion
                 else
                 {
                     string Titulo = "Advertencia";
-                    string Mensaje = "El cliente seleccionado no tiene documento asignado.";
+                    string Mensaje = "El Cliente seleccionado no tiene documento asignado.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 }
@@ -256,7 +255,7 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 string Titulo = "Error Modificando Cliente";
-                string Mensaje = "Error tratando de modificar el cliente: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Mensaje = "Error tratando de modificar el Cliente: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
@@ -269,7 +268,7 @@ namespace CapaPresentacion
 
                 if (Filtro != "")
                 {
-                    DataTable dtClientes = objClientes.ListarClienteParametros(Filtro);
+                    DataTable dtClientes = objClientes.ListarClientesParametros(Filtro);
 
                     if (dtClientes.Rows.Count > 0)
                     {
@@ -308,7 +307,7 @@ namespace CapaPresentacion
         {
             try
             {
-                DataTable dtPaises = objInformacionRegional.ListarComboPaises();
+                DataTable dtPaises = objRegionales.ListarComboPaises();
 
                 if (dtPaises.Rows.Count > 0)
                 {
@@ -431,7 +430,7 @@ namespace CapaPresentacion
         {
             try
             {
-                DataTable dtDepartamentos = objInformacionRegional.ListarComboDepartamentosPais(IdPais);
+                DataTable dtDepartamentos = objRegionales.ListarComboDepartamentosPais(IdPais);
 
                 if (dtDepartamentos.Rows.Count > 1)
                 {
@@ -542,7 +541,7 @@ namespace CapaPresentacion
 
                 if (IdMunicipio > 0)
                 {
-                    DataTable dtCorregimientos = objInformacionRegional.ListarComboCorregimientosMunicipio(IdMunicipio);
+                    DataTable dtCorregimientos = objRegionales.ListarComboCorregimientosMunicipio(IdMunicipio);
 
                     if (dtCorregimientos.Rows.Count > 0)
                     {
@@ -593,7 +592,7 @@ namespace CapaPresentacion
 
                 if (IdDepartamento > 0)
                 {
-                    DataTable dtMunicipios = objInformacionRegional.ListarComboMunicipiosDepartamento(IdDepartamento);
+                    DataTable dtMunicipios = objRegionales.ListarComboMunicipiosDepartamento(IdDepartamento);
 
                     if (dtMunicipios.Rows.Count > 0)
                     {
@@ -648,7 +647,7 @@ namespace CapaPresentacion
 
                 if (IdCorregimiento > 0)
                 {
-                    DataTable dtVeredas = objInformacionRegional.ListarComboVeredasCorregimientos(IdCorregimiento);
+                    DataTable dtVeredas = objRegionales.ListarComboVeredasCorregimientos(IdCorregimiento);
 
                     if (dtVeredas.Rows.Count > 0)
                     {
@@ -1069,9 +1068,8 @@ namespace CapaPresentacion
                     }
                     else
                     {
-                        labMensaje.Text = "El cliente no pudo ser " + strMensaje + ". Debe contactar al administrador del sistema.";
+                        labMensaje.Text = "El Cliente no pudo ser " + strMensaje + ". Debe contactar al administrador del sistema.";
                         labError.Visible = true;
-                        txtEmail.Focus();
                         modClientes.Show();
                     }
                 }
@@ -1080,7 +1078,7 @@ namespace CapaPresentacion
             {
                 string Mensaje = labCrear.Text == "1" ? "crear" : "actualizar";
 
-                labMensaje.Text = "Error tratando de " + Mensaje + " el cliente: " + ex.Message;
+                labMensaje.Text = "Error tratando de " + Mensaje + " el Cliente: " + ex.Message;
                 labError.Visible = true;
                 modClientes.Show();
             }
@@ -1113,7 +1111,7 @@ namespace CapaPresentacion
                         else
                         {
                             string Titulo = "Información";
-                            string Mensaje = "El cliente no pudo ser eliminado. Debe contactar al administrador del sistema.";
+                            string Mensaje = "El Cliente no pudo ser eliminado. Debe contactar al administrador del sistema.";
                             string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                         }
@@ -1121,7 +1119,7 @@ namespace CapaPresentacion
                     else
                     {
                         string Titulo = "Advertencia";
-                        string Mensaje = "El cliente no pudo ser eliminado. Debe contactar al administrador del sistema.";
+                        string Mensaje = "El Cliente no pudo ser eliminado. Debe contactar al administrador del sistema.";
                         string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
@@ -1129,7 +1127,7 @@ namespace CapaPresentacion
                 else
                 {
                     string Titulo = "Advertencia";
-                    string Mensaje = "El cliente no pudo ser eliminado. Debe contactar al administrador del sistema.";
+                    string Mensaje = "El Cliente no pudo ser eliminado. Debe contactar al administrador del sistema.";
                     string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 }
@@ -1137,7 +1135,7 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 string Titulo = "Error Eliminando Cliente";
-                string Mensaje = "Error tratando de eliminar el cliente: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Mensaje = "Error tratando de eliminar el Cliente: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
