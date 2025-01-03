@@ -337,9 +337,7 @@ namespace CapaPresentacion
                     oPerfil.Nombre = txtNombre.Text.Trim();
                     oPerfil.Estado = cboEstado.SelectedValue == "1" ? true : false;
                     oPerfil.UsuarioCreacion = Session["Usuario"].ToString();
-                    oPerfil.EquipoCreacion = System.Environment.MachineName;
                     oPerfil.UsuarioModificacion = Session["Usuario"].ToString();
-                    oPerfil.EquipoModificacion = System.Environment.MachineName;
 
                     using (TransactionScope tsTransaction = new TransactionScope())
                     {

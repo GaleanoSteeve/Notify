@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ObjClientes.cs" />
+    <Compile Include="ObjClientesLotes.cs" />
     <Compile Include="ObjConfiguracion.cs" />
     <Compile Include="ObjLotes.cs" />
     <Compile Include="ObjModulos.cs" />

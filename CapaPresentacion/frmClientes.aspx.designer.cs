@@ -265,42 +265,6 @@ namespace CapaPresentacion {
         protected global::AjaxControlToolkit.TabPanel tabLotes;
         
         /// <summary>
-        /// Control cboProyectos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboProyectos;
-        
-        /// <summary>
-        /// Control cboManzanas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboManzanas;
-        
-        /// <summary>
-        /// Control cboLotes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboLotes;
-        
-        /// <summary>
-        /// Control btnAgregarLote.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarLote;
-        
-        /// <summary>
         /// Control labMensajeLotes.
         /// </summary>
         /// <remarks>

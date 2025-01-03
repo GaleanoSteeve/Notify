@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NegClientes.cs" />
+    <Compile Include="NegClientesLotes.cs" />
     <Compile Include="NegConfiguracion.cs" />
     <Compile Include="NegCriptografia.cs" />
     <Compile Include="NegRegionales.cs" />

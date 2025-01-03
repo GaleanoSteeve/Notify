@@ -10,10 +10,8 @@ namespace CapaObjetos
         private bool _Estado;
         private string _UsuarioCreacion;
         private DateTime _FechaCreacion;
-        private string _EquipoCreacion;
         private string _UsuarioModificacion;
         private DateTime _FechaModificacion;
-        private string _EquipoModificacion;
 
         public string Operacion
         {
@@ -45,11 +43,6 @@ namespace CapaObjetos
             get { return _FechaCreacion; }
             set { _FechaCreacion = value; }
         }
-        public string EquipoCreacion
-        {
-            get { return _EquipoCreacion; }
-            set { _EquipoCreacion = value; }
-        }
         public string UsuarioModificacion
         {
             get { return _UsuarioModificacion; }
@@ -59,11 +52,6 @@ namespace CapaObjetos
         {
             get { return _FechaModificacion; }
             set { _FechaModificacion = value; }
-        }
-        public string EquipoModificacion
-        {
-            get { return _EquipoModificacion; }
-            set { _EquipoModificacion = value; }
         }
     }
 }

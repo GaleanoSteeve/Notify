@@ -14,10 +14,8 @@ namespace CapaObjetos
         private bool blnPuedeEliminar;
         private bool blnEstado;
         private string strUsuarioCreacion;
-        private string strEquipoCreacion;
         private DateTime dtmFechaCreacion;
         private string strUsuarioModificacion;
-        private string strEquipoModificacion;
         private DateTime dtmFechaModificacion;
 
         public string Operacion
@@ -70,11 +68,6 @@ namespace CapaObjetos
             get { return strUsuarioCreacion; }
             set { strUsuarioCreacion = value; }
         }
-        public string EquipoCreacion
-        {
-            get { return strEquipoCreacion; }
-            set { strEquipoCreacion = value; }
-        }
         public DateTime FechaCreacion
         {
             get { return dtmFechaCreacion; }
@@ -84,11 +77,6 @@ namespace CapaObjetos
         {
             get { return strUsuarioModificacion; }
             set { strUsuarioModificacion = value; }
-        }
-        public string EquipoModificacion
-        {
-            get { return strEquipoModificacion; }
-            set { strEquipoModificacion = value; }
         }
         public DateTime FechaModificacion
         {

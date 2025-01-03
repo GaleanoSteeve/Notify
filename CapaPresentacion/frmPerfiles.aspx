@@ -5,7 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
-
         function LimpiarControles() {
             document.getElementById('txtIdPerfil').value = "";
             document.getElementById('txtNombre').value = "";
@@ -13,7 +12,6 @@
             document.getElementById('labCrear').value = "";
             document.getElementById('labPerfil').value = "";
         }
-
     </script>
 </asp:Content>
 
@@ -119,5 +117,4 @@
             <asp:HiddenField ID="HiddenField" runat="server" />
         </asp:Panel>
     </div>
-    <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
 </asp:Content>

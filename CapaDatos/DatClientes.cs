@@ -75,9 +75,7 @@ namespace CapaDatos
                 sqlCommand.Parameters.Add("@Email", SqlDbType.VarChar, 100).Value = oCliente.Email;
                 sqlCommand.Parameters.Add("@Estado", SqlDbType.Bit).Value = oCliente.Estado;
                 sqlCommand.Parameters.Add("@UsuarioCreacion", SqlDbType.VarChar, 50).Value = oCliente.UsuarioCreacion;
-                sqlCommand.Parameters.Add("@EquipoCreacion", SqlDbType.VarChar, 50).Value = oCliente.EquipoCreacion;
                 sqlCommand.Parameters.Add("@UsuarioModificacion", SqlDbType.VarChar, 50).Value = oCliente.UsuarioModificacion;
-                sqlCommand.Parameters.Add("@EquipoModificacion", SqlDbType.VarChar, 50).Value = oCliente.EquipoModificacion;
                 sqlCommand.ExecuteReader();
                 return true;
             }

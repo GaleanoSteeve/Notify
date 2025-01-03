@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatClientes.cs" />
+    <Compile Include="DatClientesLotes.cs" />
     <Compile Include="DatConexionDB.cs" />
     <Compile Include="DatConfiguracion.cs" />
     <Compile Include="DatRegionales.cs" />

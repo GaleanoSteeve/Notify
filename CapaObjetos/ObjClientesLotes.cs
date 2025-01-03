@@ -2,14 +2,15 @@
 
 namespace CapaObjetos
 {
-    public class ObjModulos
+    public class ObjClientesLotes
     {
         private string _Operacion;
-        private int _IdPerfil;
-        private int _IdModulo;
-        private string _Modulo;
-        private string _Nombre;
-        private bool _TienePermiso;
+        private int _IdRelacion;
+        private long _Documento;
+        private int _IdProyecto;
+        private int _IdManzana;
+        private int _IdLote;
+        private int _Numero;
         private string _UsuarioCreacion;
         private DateTime _FechaCreacion;
         private string _UsuarioModificacion;
@@ -20,30 +21,35 @@ namespace CapaObjetos
             get { return _Operacion; }
             set { _Operacion = value; }
         }
-        public int IdPerfil
+        public int IdRelacion
         {
-            get { return _IdPerfil; }
-            set { _IdPerfil = value; }
+            get { return _IdRelacion; }
+            set { _IdRelacion = value; }
         }
-        public int IdModulo
+        public long Documento
         {
-            get { return _IdModulo; }
-            set { _IdModulo = value; }
+            get { return _Documento; }
+            set { _Documento = value; }
         }
-        public string Modulo
+        public int IdProyecto
         {
-            get { return _Modulo; }
-            set { _Modulo = value; }
+            get { return _IdProyecto; }
+            set { _IdProyecto = value; }
         }
-        public string Nombre
+        public int IdManzana
         {
-            get { return _Nombre; }
-            set { _Nombre = value; }
+            get { return _IdManzana; }
+            set { _IdManzana = value; }
         }
-        public bool TienePermiso
+        public int IdLote
         {
-            get { return _TienePermiso; }
-            set { _TienePermiso = value; }
+            get { return _IdLote; }
+            set { _IdLote = value; }
+        }
+        public int Numero
+        {
+            get { return _Numero; }
+            set { _Numero = value; }
         }
         public string UsuarioCreacion
         {

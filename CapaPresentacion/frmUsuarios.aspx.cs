@@ -428,9 +428,7 @@ namespace CapaPresentacion
                     oUsuario.PuedeEliminar = cboPuedeEliminar.SelectedValue == "1" ? true : false;
                     oUsuario.Estado = cboEstado.SelectedValue == "1" ? true : false;
                     oUsuario.UsuarioCreacion = Session["Usuario"].ToString();
-                    oUsuario.EquipoCreacion = System.Environment.MachineName;
                     oUsuario.UsuarioModificacion = Session["Usuario"].ToString();
-                    oUsuario.EquipoModificacion = System.Environment.MachineName;
 
                     if (txtContrasena.Text.Trim() != "" || txtConfirmarContrasena.Text.Trim() != "") //Contrasena ingresada
                     {

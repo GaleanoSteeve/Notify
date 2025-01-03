@@ -328,7 +328,6 @@ namespace CapaPresentacion
                     oConfiguracion.Telefono = Convert.ToInt64(txtTelefono.Text.Trim());
                     oConfiguracion.Email = txtEmail.Text.Trim();
                     oConfiguracion.UsuarioCreacion = Session["Usuario"].ToString();
-                    oConfiguracion.EquipoCreacion = System.Environment.MachineName;
 
                     string Resultado = objConfiguracion.Guardar(oConfiguracion);
 

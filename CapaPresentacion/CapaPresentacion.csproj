@@ -62,6 +62,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmAsignarLotes.aspx" />
     <Content Include="frmClientes.aspx" />
     <Content Include="frmConfiguracion.aspx" />
     <Content Include="frmInicio.aspx" />
@@ -152,6 +153,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAsignarLotes.aspx.cs">
+      <DependentUpon>frmAsignarLotes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAsignarLotes.aspx.designer.cs">
+      <DependentUpon>frmAsignarLotes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmClientes.aspx.cs">
       <DependentUpon>frmClientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

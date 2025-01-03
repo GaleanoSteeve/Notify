@@ -3,6 +3,15 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        function LimpiarControles() {
+            document.getElementById('txtNumero').value = "";
+            document.getElementById('txtValor').value = "";
+            document.getElementById('txtCuotaInicial').value = "";
+            document.getElementById('txtCuotaMensual').value = "";
+            document.getElementById('txtArea').value = "";
+        }
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -119,13 +128,13 @@
                 </div>
             </div>
 
+            <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary mt-2" Text="Guardar" TabIndex="9" OnClick="btnGuardar_Click" />
+            <button id="btnCancelar" class="btn btn-danger mr-4 mt-2" tabindex="10" onclick="LimpiarControles()">Cancelar</button>
+
             <div style="visibility: hidden;">
                 <asp:Label ID="labCrear" runat="server" ClientIDMode="Static" Font-Size="2px"></asp:Label>
                 <asp:Label ID="labCodigo" runat="server" ClientIDMode="Static" Font-Size="2px"></asp:Label>
             </div>
-
-            <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" Text="Guardar" TabIndex="9" OnClick="btnGuardar_Click" />
-            <button id="btnCancelar" class="btn btn-danger mr-4" tabindex="10" onclick="LimpiarControles()">Cancelar</button>
         </asp:Panel>
     </div>
 </asp:Content>

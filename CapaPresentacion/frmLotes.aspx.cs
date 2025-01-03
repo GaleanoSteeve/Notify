@@ -187,6 +187,7 @@ namespace CapaPresentacion
         //Controles
         protected void btnCrear_Click(object sender, EventArgs e)
         {
+            LimpiarCombo("Manzanas");
             ListarComboProyectos();
             ListarComboEstados();
             cboProyectos.Focus();

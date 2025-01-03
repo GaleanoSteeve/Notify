@@ -128,5 +128,4 @@
             <button id="btnCancelar" class="btn btn-danger" onclick="LimpiarControles()">Cancelar</button>
         </asp:Panel>
     </div>
-    <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
 </asp:Content>

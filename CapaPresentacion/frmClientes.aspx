@@ -40,7 +40,7 @@
         <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control" AutoPostBack="true" PlaceHolder="Digite un valor y presione la tecla Enter" ToolTip="Para quitar los filtros, borre todo y presione Enter" OnTextChanged="txtFiltro_TextChanged"></asp:TextBox>
     </div>
 
-    <div class="container-fluid mt-3" style="height: 60vh; overflow-y: scroll; padding: 0; width: 90%;">
+    <div class="container-fluid mt-3" style="height: 60vh; width: 90%; overflow-y: scroll; padding: 0;">
 
         <div class="table-responsive">
             <asp:GridView ID="gvClientes" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="False">
@@ -195,23 +195,13 @@
 
                     <ajaxToolkit:TabPanel ID="tabLotes" runat="server" HeaderText="Lotes">
                         <ContentTemplate>
-
                             <div class="mt-4 mr-3">
-                                <h5 style="color: black; font-size:18px; font-weight: 600;">Asignar Lotes a Clientes</h5>
+                                <h5 style="color: black; font-size:18px; font-weight: 600;">Lotes</h5>
                             </div>
 
-                            <div class="row ml-3 mt-4">
-                                <asp:DropDownList ID="cboProyectos" runat="server" CssClass="form-control w-25" AutoPostBack="true" ClientIDMode="Static" OnSelectedIndexChanged="cboProyectos_SelectedIndexChanged"></asp:DropDownList>
-                                <asp:DropDownList ID="cboManzanas" runat="server" CssClass="form-control ml-2 w-25" AutoPostBack="true" ClientIDMode="Static" OnSelectedIndexChanged="cboManzanas_SelectedIndexChanged"></asp:DropDownList>
-                                <asp:DropDownList ID="cboLotes" runat="server" CssClass="form-control ml-2 w-25" ClientIDMode="Static"></asp:DropDownList>
-                                <asp:Button ID="btnAgregarLote" runat="server" CssClass="btn btn-success ml-2" ClientIDMode="Static" Text="Agregar" Width="10%" OnClick="btnAgregarLote_Click"/>
-                            </div>
-
-                            <br />
                             <asp:Label ID="labMensajeLotes" runat="server" ForeColor="Red" Visible="true" Text="Mensaje"></asp:Label>
 
                             <div class="table-responsive">
-
                                 <asp:GridView ID="gvLotes" runat="server" CssClass="table-striped table-bordered float-left ml-3 mt-3 w-100" AutoGenerateColumns="false" ClientIDMode="Static">
                                     <Columns>
                                         <asp:BoundField DataField="IdProyecto" HeaderText="Proyecto" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Right" />

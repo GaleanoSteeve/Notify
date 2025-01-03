@@ -62,9 +62,7 @@ namespace CapaDatos
                 sqlCommand.Parameters.Add("@PuedeEliminar", SqlDbType.Bit).Value = oUsuario.PuedeEliminar;
                 sqlCommand.Parameters.Add("@Estado", SqlDbType.Bit).Value = oUsuario.Estado;
                 sqlCommand.Parameters.Add("@UsuarioCreacion", SqlDbType.VarChar, 50).Value = oUsuario.UsuarioCreacion;
-                sqlCommand.Parameters.Add("@EquipoCreacion", SqlDbType.VarChar, 50).Value = oUsuario.EquipoCreacion;
                 sqlCommand.Parameters.Add("@UsuarioModificacion", SqlDbType.VarChar, 50).Value = oUsuario.UsuarioModificacion;
-                sqlCommand.Parameters.Add("@EquipoModificacion", SqlDbType.VarChar, 50).Value = oUsuario.EquipoModificacion;
                 sqlCommand.ExecuteReader();
                 return true;
             }
