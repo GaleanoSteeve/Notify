@@ -13,12 +13,7 @@ namespace CapaPresentacion
     {
         #region Variables
 
-        private DataTable dtLotes = new DataTable();
-
-        private ObjLotes oLote = new ObjLotes();
         private ObjClientes oCliente = new ObjClientes();
-
-        private NegLotes objLotes = new NegLotes();
         private NegClientes objClientes = new NegClientes();
         private NegUsuarios objUsuarios = new NegUsuarios();
         private NegRegionales objRegionales = new NegRegionales();
@@ -691,8 +686,6 @@ namespace CapaPresentacion
             }
         }
 
-        //Lotes
-
         //Guardar
         private bool ValidarEmail()
         {
@@ -1091,12 +1084,12 @@ namespace CapaPresentacion
         }
 
         //Eliminar
-        protected void btnEliminar_Command(object sender, CommandEventArgs e)
+        protected void btnEliminar_Click(object sender, ImageClickEventArgs e)
         {
             try
             {
                 ImageButton btnEliminar = (ImageButton)sender;
-                long Documento = Convert.ToInt32(btnEliminar.CommandArgument.ToString().Trim());
+                long Documento = Convert.ToInt64(btnEliminar.CommandArgument.ToString().Trim());
 
                 if (Documento > 0)
                 {
@@ -1145,10 +1138,6 @@ namespace CapaPresentacion
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
-        }
-        protected void btnEliminarLote_Click(object sender, ImageClickEventArgs e)
-        {
-
         }
     }
 }

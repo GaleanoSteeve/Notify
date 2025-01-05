@@ -21,7 +21,7 @@ namespace CapaDatos
                 sqlCommand.CommandText = "stpAsignarLotes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "D";
-                sqlCommand.Parameters.Add("@IdRelacion", SqlDbType.Int).Value = oClienteLote.IdRelacion;
+                sqlCommand.Parameters.Add("@IdRelacion", SqlDbType.Int).Value = oClienteLote.IdClienteLote;
                 sqlCommand.ExecuteReader();
                 return true;
             }
@@ -52,7 +52,7 @@ namespace CapaDatos
                 sqlCommand.CommandText = "stpAsignarLotes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "C";
-                sqlCommand.Parameters.Add("@IdRelacion", SqlDbType.Int).Value = oClienteLote.IdRelacion;
+                sqlCommand.Parameters.Add("@IdRelacion", SqlDbType.Int).Value = oClienteLote.IdClienteLote;
                 sqlCommand.Parameters.Add("@Documento", SqlDbType.BigInt).Value = oClienteLote.Documento;
                 sqlCommand.Parameters.Add("@IdProyecto", SqlDbType.Int).Value = oClienteLote.IdProyecto;
                 sqlCommand.Parameters.Add("@IdManzana", SqlDbType.Int).Value = oClienteLote.IdManzana;
@@ -78,9 +78,9 @@ namespace CapaDatos
         }
 
         //Listar
-        public DataTable ListarRelacion()
+        public DataSet ListarClienteLote(ObjClientesLotes oClienteLote)
         {
-            DataTable dtDatos = new DataTable();
+            DataSet dsDatos = new DataSet();
             SqlCommand sqlCommand = new SqlCommand();
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
 
@@ -93,10 +93,11 @@ namespace CapaDatos
                 }
                 sqlCommand.CommandText = "stpAsignarLotes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "L";
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCL";
+                sqlCommand.Parameters.Add("@Documento", SqlDbType.BigInt).Value = oClienteLote.Documento;
                 sqlDataAdapter.SelectCommand = sqlCommand;
-                sqlDataAdapter.Fill(dtDatos);
-                return dtDatos;
+                sqlDataAdapter.Fill(dsDatos);
+                return dsDatos;
             }
             catch (Exception ex)
             {

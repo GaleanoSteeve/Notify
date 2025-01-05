@@ -1,4 +1,5 @@
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaCriptografia\bin\Debug\CapaCriptografia.dll
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaCriptografia\bin\Debug\CapaCriptografia.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaCriptografia\obj\Debug\CapaCriptografia.csprojResolveAssemblyReference.cache
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaCriptografia\obj\Debug\CapaCriptografia.dll
 D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaCriptografia\obj\Debug\CapaCriptografia.pdb

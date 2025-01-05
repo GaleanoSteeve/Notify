@@ -148,6 +148,7 @@ namespace CapaPresentacion
                 if (IdProyecto > 0) //Listar manzanas
                 {
                     oLote = new ObjLotes();
+                    oLote.Operacion = "LCM";
                     oLote.IdProyecto = IdProyecto;
                     DataTable dtManzanas = objLotes.ListarComboManzanas(oLote);
 
@@ -212,7 +213,6 @@ namespace CapaPresentacion
                         LimpiarCombo("Proyectos");
                         LimpiarCombo("Manzanas");
                         LimpiarCombo("Estados");
-                        oLote = new ObjLotes();
 
                         int IdProyecto = Convert.ToInt32(dtLote.Rows[0]["IdProyecto"]);
                         int IdManzana = Convert.ToInt32(dtLote.Rows[0]["IdManzana"]);
@@ -221,6 +221,8 @@ namespace CapaPresentacion
                         ListarComboProyectos();
                         ListarComboEstados();
 
+                        oLote = new ObjLotes();
+                        oLote.Operacion = "LCM";
                         oLote.IdProyecto = IdProyecto;
                         DataTable dtManzanas = objLotes.ListarComboManzanas(oLote);
 

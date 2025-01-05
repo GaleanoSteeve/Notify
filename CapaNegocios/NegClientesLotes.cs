@@ -20,10 +20,10 @@ namespace CapaNegocios
         }
 
         //Listar
-        public DataTable ListarRelacion()
+        public DataSet ListarClienteLote(ObjClientesLotes oClienteLote)
         {
-            DataTable dtDatos = objClientesLotes.ListarRelacion();
-            return dtDatos;
+            DataSet dsDatos = objClientesLotes.ListarClienteLote(oClienteLote);
+            return dsDatos;
         }
     }
 }

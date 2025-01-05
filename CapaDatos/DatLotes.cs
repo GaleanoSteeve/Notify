@@ -340,7 +340,7 @@ namespace CapaDatos
                 }
                 sqlCommand.CommandText = "stpAdminLotes";
                 sqlCommand.CommandType = CommandType.StoredProcedure;
-                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LCM";
+                sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = oLote.Operacion;
                 sqlCommand.Parameters.Add("@IdProyecto", SqlDbType.Int).Value = oLote.IdProyecto;
                 sqlDataAdapter.SelectCommand = sqlCommand;
                 sqlDataAdapter.Fill(dtDatos);

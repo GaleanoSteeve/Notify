@@ -5,7 +5,7 @@ namespace CapaObjetos
     public class ObjClientesLotes
     {
         private string _Operacion;
-        private int _IdRelacion;
+        private int _IdClienteLote;
         private long _Documento;
         private int _IdProyecto;
         private int _IdManzana;
@@ -21,10 +21,10 @@ namespace CapaObjetos
             get { return _Operacion; }
             set { _Operacion = value; }
         }
-        public int IdRelacion
+        public int IdClienteLote
         {
-            get { return _IdRelacion; }
-            set { _IdRelacion = value; }
+            get { return _IdClienteLote; }
+            set { _IdClienteLote = value; }
         }
         public long Documento
         {

@@ -57,7 +57,7 @@
                     <asp:BoundField DataField="Activo" HeaderText="Activo" HeaderStyle-Width="5%" ItemStyle-HorizontalAlign="Center" />
                     <asp:TemplateField AccessibleHeaderText="Eliminar" HeaderStyle-Width="5%">
                         <ItemTemplate>
-                            <asp:ImageButton ID="btnEliminar" runat="server" CommandArgument='<%#Eval("Documento")%>' ToolTip="Eliminar" ImageUrl="~/Styles/img/Eliminar.png" Width="26px" Height="26px" OnClientClick='javascript:return confirm("¿Está seguro que desea eliminar el cliente?")' OnCommand="btnEliminar_Command" />
+                            <asp:ImageButton ID="btnEliminar" runat="server" CommandArgument='<%#Eval("Documento")%>' ToolTip="Eliminar" ImageUrl="~/Styles/img/Eliminar.png" Width="26px" Height="26px" OnClientClick='javascript:return confirm("¿Está seguro que desea eliminar el cliente?")' OnClick="btnEliminar_Click" />
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                     </asp:TemplateField>
@@ -196,7 +196,7 @@
                     <ajaxToolkit:TabPanel ID="tabLotes" runat="server" HeaderText="Lotes">
                         <ContentTemplate>
                             <div class="mt-4 mr-3">
-                                <h5 style="color: black; font-size:18px; font-weight: 600;">Lotes</h5>
+                                <h5 style="color: black; font-size: 18px; font-weight: 600;">Lotes</h5>
                             </div>
 
                             <asp:Label ID="labMensajeLotes" runat="server" ForeColor="Red" Visible="true" Text="Mensaje"></asp:Label>
@@ -208,13 +208,6 @@
                                         <asp:BoundField DataField="IdManzana" HeaderText="Manzana" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
                                         <asp:BoundField DataField="IdLote" HeaderText="Código" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
                                         <asp:BoundField DataField="Lote" HeaderText="Lote" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:TemplateField HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
-                                            <ItemTemplate>
-                                                <asp:ImageButton ID="btnEliminarLote" runat="server" CommandArgument='<%# Eval("IdProyecto") + "," + Eval("IdManzana") + "," + Eval("IdLote")%>' ToolTip="Eliminar" ImageUrl="~/Styles/Imagenes/Eliminar.png" Height="22px" Width="22px" OnClick="btnEliminarLote_Click"/>
-                                            </ItemTemplate>
-                                            <HeaderStyle Width="6%"></HeaderStyle>
-                                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                        </asp:TemplateField>
                                     </Columns>
                                     <HeaderStyle BackColor="#007bff" Font-Bold="False" ForeColor="White" HorizontalAlign="Center" />
                                 </asp:GridView>
