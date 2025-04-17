@@ -8,21 +8,26 @@ namespace CapaNegocios
     {
         DatClientesLotes objClientesLotes = new DatClientesLotes();
 
-        public bool Eliminar(ObjClientesLotes oClienteLote)
+        public bool EliminarLotes(long Documento)
         {
-            bool Resultado = objClientesLotes.Eliminar(oClienteLote);
+            bool Resultado = objClientesLotes.EliminarLotes(Documento);
             return Resultado;
         }
-        public bool Almacenar(ObjClientesLotes oClienteLote)
+        public bool Guardar(ObjClientesLotes oClienteLote)
         {
-            bool Resultado = objClientesLotes.Almacenar(oClienteLote);
+            bool Resultado = objClientesLotes.Guardar(oClienteLote);
+            return Resultado;
+        }
+        public bool EliminarLote(ObjClientesLotes oClienteLote)
+        {
+            bool Resultado = objClientesLotes.EliminarLote(oClienteLote);
             return Resultado;
         }
 
         //Listar
-        public DataSet ListarClienteLote(ObjClientesLotes oClienteLote)
+        public DataSet Listar(ObjClientesLotes oClienteLote)
         {
-            DataSet dsDatos = objClientesLotes.ListarClienteLote(oClienteLote);
+            DataSet dsDatos = objClientesLotes.Listar(oClienteLote);
             return dsDatos;
         }
     }

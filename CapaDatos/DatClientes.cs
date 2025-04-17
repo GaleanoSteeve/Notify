@@ -193,9 +193,9 @@ namespace CapaDatos
                 sqlCommand = null;
             }
         }
-        public DataTable ListarCliente(long Documento)
+        public DataSet ListarCliente(long Documento)
         {
-            DataTable dtDatos = new DataTable();
+            DataSet dsDatos = new DataSet();
             SqlCommand sqlCommand = new SqlCommand();
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
 
@@ -211,8 +211,8 @@ namespace CapaDatos
                 sqlCommand.Parameters.Add("@Operacion", SqlDbType.VarChar, 4).Value = "LC";
                 sqlCommand.Parameters.Add("@Documento", SqlDbType.BigInt).Value = Documento;
                 sqlDataAdapter.SelectCommand = sqlCommand;
-                sqlDataAdapter.Fill(dtDatos);
-                return dtDatos;
+                sqlDataAdapter.Fill(dsDatos);
+                return dsDatos;
             }
             catch (Exception ex)
             {

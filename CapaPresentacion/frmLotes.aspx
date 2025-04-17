@@ -43,9 +43,9 @@
                     <asp:BoundField DataField="Proyecto" HeaderText="Proyecto" HeaderStyle-Width="20%" ItemStyle-HorizontalAlign="Left" />
                     <asp:BoundField DataField="Manzana" HeaderText="Manzana" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Left" />
                     <asp:BoundField DataField="Numero" HeaderText="Número" HeaderStyle-Width="5%" ItemStyle-HorizontalAlign="Left" />
-                    <asp:BoundField DataField="Valor" HeaderText="Valor" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="CuotaInicial" HeaderText="Cuota Inicial" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="CuotaMensual" HeaderText="Cuota Mensual" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="Valor" HeaderText="Valor" HeaderStyle-Width="10%" DataFormatString="{0:N0}" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="CuotaInicial" HeaderText="Cuota Inicial" HeaderStyle-Width="10%" DataFormatString="{0:N0}" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="CuotaMensual" HeaderText="Cuota Mensual" HeaderStyle-Width="15%" DataFormatString="{0:N0}" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="Estado" HeaderText="Estado" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" />
                     <asp:TemplateField AccessibleHeaderText="Eliminar" HeaderStyle-Width="5%">
                         <ItemTemplate>

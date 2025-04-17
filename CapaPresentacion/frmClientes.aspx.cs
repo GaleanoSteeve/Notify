@@ -128,10 +128,18 @@ namespace CapaPresentacion
         //Controles
         protected void btnCrear_Click(object sender, EventArgs e)
         {
+            labMensajeLotes.Visible = true;
+            labMensajeLotes.Text = "";
+
+            DataTable dtDatos = new DataTable();
+            gvLotes.DataSource = dtDatos;
+            gvLotes.DataBind();
+
             cboTipoDocumento.Enabled = true;
             txtDocumento.Enabled = true;
-            cboTipoDocumento.Focus();
             Session["dtLotes"] = null;
+            cboTipoDocumento.Focus();
+            tabLotes.Visible = false;
             labDocumento.Text = "";
             labCrear.Text = "1";
             ListarComboPaises();
@@ -147,10 +155,12 @@ namespace CapaPresentacion
 
                 if (Documento > 0)
                 {
-                    DataTable dtCliente = objClientes.ListarCliente(Documento);
+                    DataSet dsCliente = objClientes.ListarCliente(Documento);
 
-                    if (dtCliente.Rows.Count > 0) //Cliente existe
+                    if (dsCliente.Tables[0].Rows.Count > 0) //Cliente existe
                     {
+                        DataTable dtCliente = dsCliente.Tables[0];
+
                         LimpiarCombo("Corregimientos");
                         LimpiarCombo("Departamentos");
                         LimpiarCombo("Municipios");
@@ -234,6 +244,28 @@ namespace CapaPresentacion
                         cboEstado.SelectedValue = Convert.ToBoolean(dtCliente.Rows[0]["Estado"]) ? "1" : "0";
                         cboTipoDocumento.Enabled = false;
                         txtDocumento.Enabled = false;
+
+                        DataTable dtLotes = dsCliente.Tables[1]; //Lotes
+                        tabLotes.Visible = true;
+
+                        if (dtLotes.Rows.Count > 0)
+                        {
+                            gvLotes.DataSource = dtLotes;
+                            gvLotes.DataBind();
+
+                            labMensajeLotes.Visible = false;
+                            labMensajeLotes.Text = "";
+                        }
+                        else
+                        {
+                            labMensajeLotes.Text = "El Cliente no tiene lotes asociados.";
+                            labMensajeLotes.Visible = true;
+
+                            DataTable dtDatos = new DataTable();
+                            gvLotes.DataSource = dtDatos;
+                            gvLotes.DataBind();
+                        }
+
                         txtNombres.Focus();
                         modClientes.Show();
                     }
@@ -1098,9 +1130,9 @@ namespace CapaPresentacion
 
                     if (objClientes.Eliminar(oCliente)) //Eliminar
                     {
-                        DataTable dtCliente = objClientes.ListarCliente(Documento);
+                        DataSet dsCliente = objClientes.ListarCliente(Documento);
 
-                        if (dtCliente.Rows.Count == 0) //Validar si el cliente fue eliminado
+                        if (dsCliente.Tables[0].Rows.Count == 0) //Validar si el cliente fue eliminado
                         {
                             string Titulo = "Información";
                             string Mensaje = "Cliente eliminado correctamente.";

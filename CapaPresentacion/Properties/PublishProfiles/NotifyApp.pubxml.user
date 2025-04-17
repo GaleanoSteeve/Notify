@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo es utilizado por el proceso de paquete/publicación de nuestro proyecto Web. Puede personalizar el comportamiento de este proceso
+editando este archivo MSBuild. Para conocer más acerca de esto, visite http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaPresentacion\bin\Release\publish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/AjaxControlToolkit.dll">
+      <publishTime>08/28/2019 11:17:16</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>04/17/2025 08:27:53</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>04/17/2025 08:27:53</publishTime>
+    </File>
+    <File Include="bin/CapaCriptografia.dll">
+      <publishTime>04/16/2025 15:20:19</publishTime>
+    </File>
+    <File Include="bin/CapaDatos.dll">
+      <publishTime>04/16/2025 15:20:21</publishTime>
+    </File>
+    <File Include="bin/CapaNegocios.dll">
+      <publishTime>04/16/2025 15:20:21</publishTime>
+    </File>
+    <File Include="bin/CapaObjetos.dll">
+      <publishTime>04/16/2025 15:20:19</publishTime>
+    </File>
+    <File Include="bin/CapaPresentacion.dll">
+      <publishTime>04/17/2025 08:26:43</publishTime>
+    </File>
+    <File Include="bin/Styles/css/alertify.css">
+      <publishTime>01/23/2020 11:02:58</publishTime>
+    </File>
+    <File Include="bin/Styles/css/assets/style.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="bin/Styles/css/bootstrap-icons.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="bin/Styles/css/boxicons.min.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="bin/Styles/css/dataTables.bootstrap.css">
+      <publishTime>08/14/2018 14:26:00</publishTime>
+    </File>
+    <File Include="bin/Styles/css/EstilosGenerales.css">
+      <publishTime>12/24/2024 18:36:51</publishTime>
+    </File>
+    <File Include="bin/Styles/css/jquery.dataTables.min.css">
+      <publishTime>01/29/2020 14:13:36</publishTime>
+    </File>
+    <File Include="bin/Styles/css/quill.bubble.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="bin/Styles/css/quill.snow.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="bin/Styles/css/remixicon.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="bin/Styles/css/semantic.css">
+      <publishTime>08/14/2018 14:26:00</publishTime>
+    </File>
+    <File Include="bin/Styles/css/stackpath.css">
+      <publishTime>04/02/2020 16:16:48</publishTime>
+    </File>
+    <File Include="bin/Styles/css/stackpathbootstrapcdn.css">
+      <publishTime>05/26/2020 15:44:59</publishTime>
+    </File>
+    <File Include="bin/Styles/css/style.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="bin/Styles/img/Editar.png">
+      <publishTime>06/01/2020 14:35:00</publishTime>
+    </File>
+    <File Include="bin/Styles/img/Eliminar.png">
+      <publishTime>06/01/2020 14:35:00</publishTime>
+    </File>
+    <File Include="bin/Styles/img/logo.png">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="bin/Styles/scripts/alertify.js">
+      <publishTime>08/14/2018 14:26:00</publishTime>
+    </File>
+    <File Include="bin/Styles/scripts/bootstrapcdn.js">
+      <publishTime>04/02/2020 16:17:07</publishTime>
+    </File>
+    <File Include="bin/Styles/scripts/dataTables.bootstrap.js">
+      <publishTime>08/14/2018 14:26:00</publishTime>
+    </File>
+    <File Include="bin/Styles/scripts/datatables.js">
+      <publishTime>10/01/2019 16:24:10</publishTime>
+    </File>
+    <File Include="bin/Styles/scripts/jquery-3.1.1.js">
+      <publishTime>08/14/2018 14:26:00</publishTime>
+    </File>
+    <File Include="bin/Styles/scripts/jsdelivr.js">
+      <publishTime>04/02/2020 16:17:07</publishTime>
+    </File>
+    <File Include="frmAsignarLotes.aspx">
+      <publishTime>01/06/2025 12:18:06</publishTime>
+    </File>
+    <File Include="frmClientes.aspx">
+      <publishTime>01/04/2025 18:20:54</publishTime>
+    </File>
+    <File Include="frmConfiguracion.aspx">
+      <publishTime>12/28/2024 12:39:15</publishTime>
+    </File>
+    <File Include="frmInicio.aspx">
+      <publishTime>12/04/2024 19:04:41</publishTime>
+    </File>
+    <File Include="frmLogin.aspx">
+      <publishTime>04/16/2025 14:25:04</publishTime>
+    </File>
+    <File Include="frmLotes.aspx">
+      <publishTime>04/15/2025 20:24:17</publishTime>
+    </File>
+    <File Include="frmPerfiles.aspx">
+      <publishTime>01/02/2025 16:57:33</publishTime>
+    </File>
+    <File Include="frmUsuarios.aspx">
+      <publishTime>04/16/2025 16:47:55</publishTime>
+    </File>
+    <File Include="Maestra.Master">
+      <publishTime>12/26/2024 16:41:53</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>04/17/2025 08:27:48</publishTime>
+    </File>
+    <File Include="Styles/css/alertify.css">
+      <publishTime>01/23/2020 11:02:58</publishTime>
+    </File>
+    <File Include="Styles/css/assets/style.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="Styles/css/bootstrap-icons.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="Styles/css/bootstrap.min.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="Styles/css/boxicons.min.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="Styles/css/dataTables.bootstrap.css">
+      <publishTime>08/14/2018 14:26:00</publishTime>
+    </File>
+    <File Include="Styles/css/EstilosGenerales.css">
+      <publishTime>12/24/2024 18:36:51</publishTime>
+    </File>
+    <File Include="Styles/css/jquery.dataTables.min.css">
+      <publishTime>01/29/2020 14:13:36</publishTime>
+    </File>
+    <File Include="Styles/css/quill.bubble.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="Styles/css/quill.snow.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="Styles/css/remixicon.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="Styles/css/semantic.css">
+      <publishTime>08/14/2018 14:26:00</publishTime>
+    </File>
+    <File Include="Styles/css/stackpath.css">
+      <publishTime>04/02/2020 16:16:48</publishTime>
+    </File>
+    <File Include="Styles/css/stackpathbootstrapcdn.css">
+      <publishTime>05/26/2020 15:44:59</publishTime>
+    </File>
+    <File Include="Styles/css/style.css">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="Styles/img/Editar.png">
+      <publishTime>06/01/2020 14:35:00</publishTime>
+    </File>
+    <File Include="Styles/img/Eliminar.png">
+      <publishTime>06/01/2020 14:35:00</publishTime>
+    </File>
+    <File Include="Styles/img/logo.png">
+      <publishTime>09/12/2024 13:05:54</publishTime>
+    </File>
+    <File Include="Styles/scripts/alertify.js">
+      <publishTime>08/14/2018 14:26:00</publishTime>
+    </File>
+    <File Include="Styles/scripts/bootstrapcdn.js">
+      <publishTime>04/02/2020 16:17:07</publishTime>
+    </File>
+    <File Include="Styles/scripts/dataTables.bootstrap.js">
+      <publishTime>08/14/2018 14:26:00</publishTime>
+    </File>
+    <File Include="Styles/scripts/datatables.js">
+      <publishTime>10/01/2019 16:24:10</publishTime>
+    </File>
+    <File Include="Styles/scripts/jquery-3.1.1.js">
+      <publishTime>08/14/2018 14:26:00</publishTime>
+    </File>
+    <File Include="Styles/scripts/jsdelivr.js">
+      <publishTime>04/02/2020 16:17:07</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/16/2025 15:20:22</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

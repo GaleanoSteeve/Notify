@@ -35,10 +35,10 @@ namespace CapaNegocios
             DataTable dtDatos = objClientes.ListarComboTipoDocumentos();
             return dtDatos;
         }
-        public DataTable ListarCliente(long Documento)
+        public DataSet ListarCliente(long Documento)
         {
-            DataTable dtDatos = objClientes.ListarCliente(Documento);
-            return dtDatos;
+            DataSet dsDatos = objClientes.ListarCliente(Documento);
+            return dsDatos;
         }
         public DataTable ExisteDocumento(ObjClientes oCliente)
         {

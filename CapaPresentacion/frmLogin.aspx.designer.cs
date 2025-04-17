@@ -13,6 +13,15 @@ namespace CapaPresentacion {
     public partial class FormLogin {
         
         /// <summary>
+        /// Control form1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
         /// Control txtUsuario.
         /// </summary>
         /// <remarks>
@@ -31,12 +40,12 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtContrasena;
         
         /// <summary>
-        /// Control btnIngresar.
+        /// Control btnLogin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngresar;
+        protected global::System.Web.UI.WebControls.Button btnLogin;
     }
 }

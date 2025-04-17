@@ -184,6 +184,7 @@ namespace CapaPresentacion
         //Administrar
         protected void btnCrear_Click(object sender, EventArgs e)
         {
+            cboPerfiles.SelectedValue = "0";
             labUsuario.Text = "";
             labCrear.Text = "1";
             ListarMaximoCodigo();
@@ -439,14 +440,14 @@ namespace CapaPresentacion
                     {
                         string Titulo = "Información";
                         string Mensaje = "Usuario " + strMensaje + " correctamente.";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmUsuarios.aspx'});";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                     else
                     {
                         string Titulo = "Advertencia";
                         string Mensaje = "El usuario no pudo ser " + strMensaje + ".";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmUsuarios.aspx'});";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                 }

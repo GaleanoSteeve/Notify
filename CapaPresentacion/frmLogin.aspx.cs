@@ -69,7 +69,7 @@ namespace CapaPresentacion
         }
 
         //Ingresar
-        protected void btnIngresar_Click(object sender, EventArgs e)
+        protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {

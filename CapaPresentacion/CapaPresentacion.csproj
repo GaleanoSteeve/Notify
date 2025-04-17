@@ -67,9 +67,12 @@
     <Content Include="frmConfiguracion.aspx" />
     <Content Include="frmInicio.aspx" />
     <Content Include="frmLotes.aspx" />
+    <Content Include="frmManzanas.aspx" />
     <Content Include="frmPerfiles.aspx" />
+    <Content Include="frmProyectos.aspx" />
     <Content Include="frmUsuarios.aspx" />
     <Content Include="Maestra.Master" />
+    <None Include="Properties\PublishProfiles\NotifyApp.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -195,12 +198,26 @@
     <Compile Include="frmLotes.aspx.designer.cs">
       <DependentUpon>frmLotes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmManzanas.aspx.cs">
+      <DependentUpon>frmManzanas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmManzanas.aspx.designer.cs">
+      <DependentUpon>frmManzanas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmPerfiles.aspx.cs">
       <DependentUpon>frmPerfiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmPerfiles.aspx.designer.cs">
       <DependentUpon>frmPerfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmProyectos.aspx.cs">
+      <DependentUpon>frmProyectos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmProyectos.aspx.designer.cs">
+      <DependentUpon>frmProyectos.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmUsuarios.aspx.cs">
       <DependentUpon>frmUsuarios.aspx</DependentUpon>

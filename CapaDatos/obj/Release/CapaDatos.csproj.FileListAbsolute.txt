@@ -1,0 +1,9 @@
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\bin\Release\CapaDatos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\bin\Release\CapaDatos.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\bin\Release\CapaCriptografia.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\bin\Release\CapaObjetos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\bin\Release\CapaCriptografia.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\bin\Release\CapaObjetos.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\obj\Release\CapaDatos.csprojResolveAssemblyReference.cache
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\obj\Release\CapaDatos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaDatos\obj\Release\CapaDatos.pdb

@@ -1,0 +1,5 @@
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaObjetos\bin\Release\CapaObjetos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaObjetos\bin\Release\CapaObjetos.pdb
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaObjetos\obj\Release\CapaObjetos.csprojResolveAssemblyReference.cache
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaObjetos\obj\Release\CapaObjetos.dll
+D:\Aplicativos\Notify\01Fuentes\AWE\Notify\CapaObjetos\obj\Release\CapaObjetos.pdb
