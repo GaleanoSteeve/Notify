@@ -43,6 +43,8 @@
     <Compile Include="NegClientesLotes.cs" />
     <Compile Include="NegConfiguracion.cs" />
     <Compile Include="NegCriptografia.cs" />
+    <Compile Include="NegManzanas.cs" />
+    <Compile Include="NegProyectos.cs" />
     <Compile Include="NegRegionales.cs" />
     <Compile Include="NegLotes.cs" />
     <Compile Include="NegMenu.cs" />

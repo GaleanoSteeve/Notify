@@ -14,7 +14,7 @@
     <div class="container">
         <div class="container">
             <div class="row">
-                <asp:TextBox ID="txtDocumento" runat="server" CssClass="form-control w-25" ClientIDMode="Static" MaxLength="10" PlaceHolder="Documento Cliente" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="2"></asp:TextBox>
+                <asp:TextBox ID="txtDocumento" runat="server" CssClass="form-control w-25" ClientIDMode="Static" MaxLength="10" PlaceHolder="Documento Cliente" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" onfocus="this.selectionStart = this.selectionEnd = this.value.length" TabIndex="2"></asp:TextBox>
                 <asp:Button ID="btnConsultar" runat="server" CssClass="btn btn-secondary ml-2" ClientIDMode="Static" Text="Consultar" Width="10%" OnClick="btnConsultar_Click" />
                 <asp:TextBox ID="txtCliente" runat="server" CssClass="form-control ml-2" ClientIDMode="Static" Enabled="false" Width="63.5%"></asp:TextBox>
             </div>

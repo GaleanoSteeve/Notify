@@ -114,11 +114,11 @@ namespace CapaPresentacion
         {
             try
             {
-                DataTable dtEstados = objLotes.ListarComboProyectos();
+                DataTable dtProyectos = objLotes.ListarComboProyectos();
 
-                if (dtEstados.Rows.Count > 0)
+                if (dtProyectos.Rows.Count > 0)
                 {
-                    cboProyectos.DataSource = dtEstados;
+                    cboProyectos.DataSource = dtProyectos;
                     cboProyectos.DataValueField = "IdProyecto";
                     cboProyectos.DataTextField = "Nombre";
                     cboProyectos.DataBind();
