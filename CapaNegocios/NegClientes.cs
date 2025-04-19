@@ -25,6 +25,11 @@ namespace CapaNegocios
             DataTable dtDatos = objClientes.ListarClientes();
             return dtDatos;
         }
+        public DataTable ListarDatosReporte()
+        {
+            DataTable dtDatos = objClientes.ListarDatosReporte();
+            return dtDatos;
+        }
         public DataTable ListarMaximoIdCliente()
         {
             DataTable dtDatos = objClientes.ListarMaximoIdCliente();

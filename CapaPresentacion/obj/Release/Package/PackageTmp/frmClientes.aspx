@@ -37,7 +37,7 @@
     </div>
 
     <div class="container justify-content-center align-items-center col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 w-25">
-        <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control" AutoPostBack="true" PlaceHolder="Digite un valor y presione la tecla Enter" ToolTip="Para quitar los filtros, borre todo y presione Enter" OnTextChanged="txtFiltro_TextChanged"></asp:TextBox>
+        <asp:TextBox ID="txtFiltro" runat="server" CssClass="form-control" AutoPostBack="true" onfocus="this.selectionStart = this.selectionEnd = this.value.length" PlaceHolder="Digite un valor y presione la tecla Enter" ToolTip="Para quitar los filtros, borre todo y presione Enter" OnTextChanged="txtFiltro_TextChanged"></asp:TextBox>
     </div>
 
     <div class="container-fluid mt-3" style="height: 60vh; width: 90%; overflow-y: scroll; padding: 0;">
@@ -202,12 +202,16 @@
                             <asp:Label ID="labMensajeLotes" runat="server" ForeColor="Red" Visible="true" Text="Mensaje"></asp:Label>
 
                             <div class="table-responsive">
-                                <asp:GridView ID="gvLotes" runat="server" CssClass="table-striped table-bordered float-left ml-3 mt-3 w-100" AutoGenerateColumns="false" ClientIDMode="Static">
+                                <asp:GridView ID="gvLotes" runat="server" CssClass="table-striped table-bordered float-left mt-3 w-100" AutoGenerateColumns="false" ClientIDMode="Static">
                                     <Columns>
-                                        <asp:BoundField DataField="IdProyecto" HeaderText="Proyecto" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Right" />
-                                        <asp:BoundField DataField="IdManzana" HeaderText="Manzana" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="IdLote" HeaderText="Código" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Lote" HeaderText="Lote" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="IdProyecto" Visible="false" />
+                                        <asp:BoundField DataField="NombreProyecto" HeaderText="Nombre Proyecto" HeaderStyle-Width="30%" ItemStyle-HorizontalAlign="Left" />
+                                        <asp:BoundField DataField="IdManzana" Visible="false" />
+                                        <asp:BoundField DataField="NombreManzana" HeaderText="Nombre Manzana" HeaderStyle-Width="30%" ItemStyle-HorizontalAlign="Left" />
+                                        <asp:BoundField DataField="IdLote" Visible="false" />
+                                        <asp:BoundField DataField="NumeroLote" HeaderText="Número Lote" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="Area" HeaderText="Área (m²)" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="Valor" HeaderText="Valor" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:N0}" />
                                     </Columns>
                                     <HeaderStyle BackColor="#007bff" Font-Bold="False" ForeColor="White" HorizontalAlign="Center" />
                                 </asp:GridView>

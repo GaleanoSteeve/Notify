@@ -104,7 +104,7 @@ namespace CapaPresentacion
                                         {
                                             Session["CodigoUsuario"] = dtUsuario.Rows[0]["Codigo"].ToString();
                                             Session["IdPerfil"] = dtUsuario.Rows[0]["IdPerfil"].ToString();
-                                            Session["Usuario"] = dtUsuario.Rows[0]["Usuario"].ToString();
+                                            Session["Usuario"] = dtUsuario.Rows[0]["Nombres"].ToString();
                                             Response.Redirect("frmInicio.aspx");
                                         }
                                         else

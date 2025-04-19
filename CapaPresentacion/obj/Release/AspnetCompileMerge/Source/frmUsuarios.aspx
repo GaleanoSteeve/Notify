@@ -11,7 +11,6 @@
             document.getElementById('txtUsuario').value = "";
             document.getElementById('txtContrasena').value = "";
             document.getElementById('txtConfirmacionContrasena').value = "";
-            document.getElementById('cboPerfiles').value = "0";
         }
     </script>
 </asp:Content>
