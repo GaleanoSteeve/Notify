@@ -13,25 +13,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>08/28/2019 11:17:16</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>04/18/2025 17:20:15</publishTime>
+      <publishTime>04/19/2025 15:28:33</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>04/18/2025 17:20:14</publishTime>
+      <publishTime>04/19/2025 15:28:33</publishTime>
     </File>
     <File Include="bin/CapaCriptografia.dll">
       <publishTime>04/16/2025 15:20:19</publishTime>
     </File>
     <File Include="bin/CapaDatos.dll">
-      <publishTime>04/18/2025 17:19:56</publishTime>
+      <publishTime>04/19/2025 13:48:30</publishTime>
     </File>
     <File Include="bin/CapaNegocios.dll">
-      <publishTime>04/18/2025 17:19:58</publishTime>
+      <publishTime>04/19/2025 13:48:31</publishTime>
     </File>
     <File Include="bin/CapaObjetos.dll">
       <publishTime>04/18/2025 17:19:56</publishTime>
     </File>
     <File Include="bin/CapaPresentacion.dll">
-      <publishTime>04/18/2025 17:19:59</publishTime>
+      <publishTime>04/19/2025 15:28:29</publishTime>
     </File>
     <File Include="bin/Styles/css/alertify.css">
       <publishTime>01/23/2020 11:02:58</publishTime>
@@ -102,6 +102,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="bin/Styles/scripts/jsdelivr.js">
       <publishTime>04/02/2020 16:17:07</publishTime>
     </File>
+    <File Include="frmAbout.aspx">
+      <publishTime>04/19/2025 15:26:56</publishTime>
+    </File>
     <File Include="frmAsignarLotes.aspx">
       <publishTime>04/18/2025 16:18:55</publishTime>
     </File>
@@ -123,6 +126,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="frmManzanas.aspx">
       <publishTime>04/18/2025 17:00:07</publishTime>
     </File>
+    <File Include="frmNotificaciones.aspx">
+      <publishTime>04/19/2025 15:11:39</publishTime>
+    </File>
     <File Include="frmPerfiles.aspx">
       <publishTime>01/02/2025 16:57:33</publishTime>
     </File>
@@ -136,7 +142,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/26/2024 16:41:53</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>04/18/2025 17:20:01</publishTime>
+      <publishTime>04/19/2025 15:28:29</publishTime>
     </File>
     <File Include="Styles/css/alertify.css">
       <publishTime>01/23/2020 11:02:58</publishTime>
@@ -211,7 +217,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/02/2020 16:17:07</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/16/2025 15:20:22</publishTime>
+      <publishTime>04/19/2025 13:48:32</publishTime>
     </File>
   </ItemGroup>
 </Project>

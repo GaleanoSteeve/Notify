@@ -19,26 +19,41 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="float-left" for="txtRazonSocial">Razón Social</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                    <asp:TextBox ID="txtRazonSocial" runat="server" CssClass="form-control"></asp:TextBox>
-                </div>
-
-                <div class="form-group">
                     <label class="float-left" for="txtNombreComercial">Nombre Comercial</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
                     <asp:TextBox ID="txtNombreComercial" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
-                    <label class="float-left" for="txtDireccion">Dirección</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                    <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                    <label class="float-left" for="txtTelefono">Teléfono</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                    <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)"></asp:TextBox>
+                </div>
+
+                <div class="form-group">
+                    <label class="float-left" for="cboTipoCuenta">Tipo Cuenta</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                    <asp:DropDownList ID="cboTipoCuenta" runat="server" CssClass="form-control"></asp:DropDownList>
+                </div>
+
+                <div class="form-group">
+                    <label class="float-left" for="cboDepartamentos">Departamento</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                    <asp:DropDownList ID="cboDepartamentos" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="cboDepartamentos_SelectedIndexChanged"></asp:DropDownList>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label class="float-left" for="txtDiasNotificacion">Días Previos Notificación</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                    <asp:TextBox ID="txtDiasNotificacion" runat="server" CssClass="form-control" MaxLength="2" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)"></asp:TextBox>
                 </div>
             </div>
 
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
                 <div class="form-group">
-                    <label class="float-left" for="txtTelefono">Teléfono</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                    <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)"></asp:TextBox>
+                    <label class="float-left" for="txtRazonSocial">Razón Social</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                    <asp:TextBox ID="txtRazonSocial" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="form-group">
+                    <label class="float-left" for="txtDireccion">Dirección</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                    <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
 
                 <label class="float-left" for="txtEmail">Email</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
@@ -50,8 +65,8 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <label class="float-left" for="cboDepartamentos">Departamento</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                    <asp:DropDownList ID="cboDepartamentos" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="cboDepartamentos_SelectedIndexChanged"></asp:DropDownList>
+                    <label class="float-left" for="txtNumeroCuenta">Número Cuenta</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                    <asp:TextBox ID="txtNumeroCuenta" runat="server" CssClass="form-control" MaxLength="12" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)"></asp:TextBox>
                 </div>
 
                 <div class="form-group">
@@ -64,5 +79,6 @@
         <div class="container mt-3 text-center">
             <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary w-25" Text="Guardar" OnClick="btnGuardar_Click" />
         </div>
+        <br />
     </div>
 </asp:Content>

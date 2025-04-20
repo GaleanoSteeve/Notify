@@ -25,8 +25,9 @@ namespace CapaPresentacion
             if (!IsPostBack)
             {
                 ListarComboDepartamentos();
+                ListarComboTipoCuentas();
                 ListarConfiguracion();
-            }         
+            }
         }
 
         #endregion
@@ -49,6 +50,9 @@ namespace CapaPresentacion
                     txtDireccion.Text = dtConfiguracion.Rows[0]["Direccion"].ToString();
                     txtTelefono.Text = dtConfiguracion.Rows[0]["Telefono"].ToString();
                     txtEmail.Text = dtConfiguracion.Rows[0]["Email"].ToString();
+                    cboTipoCuenta.SelectedValue = dtConfiguracion.Rows[0]["IdTipoCuenta"].ToString();
+                    txtNumeroCuenta.Text = dtConfiguracion.Rows[0]["NumeroCuenta"].ToString();
+                    txtDiasNotificacion.Text = dtConfiguracion.Rows[0]["DiasNotificacion"].ToString();
                     cboDepartamentos.SelectedValue = IdDepartamento.ToString();
                     ListarComboCiudadesPorDepartamento(IdDepartamento); //Listar combo ciudades
                     cboMunicipios.SelectedValue = Convert.ToInt64(this.IdMunicipio).ToString();
@@ -67,6 +71,37 @@ namespace CapaPresentacion
             {
                 string Titulo = "Error Cargando Configuración";
                 string Mensaje = "Error tratando de listar la Configuración del sistema: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
+                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+            }
+        }
+        private void ListarComboTipoCuentas()
+        {
+            try
+            {
+                DataTable dtTipoCuentas = new DataTable();
+
+                //Agregar columnas
+                dtTipoCuentas.Columns.Add("IdTipoCuenta", typeof(int));
+                dtTipoCuentas.Columns.Add("Nombre", typeof(string));
+
+                //Agregar filas
+                dtTipoCuentas.Rows.Add(1, "Ahorros");
+                dtTipoCuentas.Rows.Add(2, "Corriente");
+                dtTipoCuentas.Rows.Add(3, "Crédito");
+
+                dtTipoCuentas.AcceptChanges(); //Aceptar cambios
+
+                cboTipoCuenta.DataSource = dtTipoCuentas;
+                cboTipoCuenta.DataValueField = "IdTipoCuenta";
+                cboTipoCuenta.DataTextField = "Nombre";
+                cboTipoCuenta.DataBind();
+                cboTipoCuenta.SelectedValue = "1";
+            }
+            catch (Exception ex)
+            {
+                string Titulo = "Error Cargando Tipo Cuentas";
+                string Mensaje = "Error tratando de listar el ComboBox de los Tipos de Cuentas: " + ex.Message.ToString().Replace("'", "").Replace("\r\n", "");
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
             }
@@ -204,7 +239,7 @@ namespace CapaPresentacion
                 string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                 return false;
-            }            
+            }
         }
         private bool ValidarCampos()
         {
@@ -282,6 +317,51 @@ namespace CapaPresentacion
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     return false;
                 }
+                else if (Convert.ToInt32(cboTipoCuenta.SelectedValue) == 0)
+                {
+                    cboTipoCuenta.Focus();
+                    string Titulo = "Advertencia";
+                    string Mensaje = "Debe seleccionar un Tipo de Cuenta.";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    return false;
+                }
+                else if (txtNumeroCuenta.Text.Trim() == "")
+                {
+                    txtNumeroCuenta.Focus();
+                    string Titulo = "Advertencia";
+                    string Mensaje = "El campo Número de Cuenta es obligatorio.";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    return false;
+                }
+                else if (txtNumeroCuenta.Text.Trim().Length < 11)
+                {
+                    txtNumeroCuenta.Focus();
+                    string Titulo = "Advertencia";
+                    string Mensaje = "El campo Número de Cuenta no tiene el formato correcto.";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    return false;
+                }
+                else if (txtDiasNotificacion.Text.Trim() == "")
+                {
+                    txtDiasNotificacion.Focus();
+                    string Titulo = "Advertencia";
+                    string Mensaje = "El campo Días Previos Notificación es obligatorio.";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    return false;
+                }
+                else if (Convert.ToInt32(txtDiasNotificacion.Text.Trim()) > 10)
+                {
+                    txtDiasNotificacion.Focus();
+                    string Titulo = "Advertencia";
+                    string Mensaje = "El campo Días Previos Notificación debe ser menor o igual que diez.";
+                    string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                    return false;
+                }
                 else if (Convert.ToInt32(cboDepartamentos.SelectedValue) <= 0)
                 {
                     cboDepartamentos.Focus();
@@ -320,13 +400,16 @@ namespace CapaPresentacion
                     oConfiguracion.Documento = Convert.ToInt64(txtNit.Text.Trim());
                     oConfiguracion.RazonSocial = txtRazonSocial.Text.Trim();
                     oConfiguracion.NombreComercial = txtNombreComercial.Text.Trim();
+                    oConfiguracion.Direccion = txtDireccion.Text.Trim();
+                    oConfiguracion.Telefono = Convert.ToInt64(txtTelefono.Text.Trim());
+                    oConfiguracion.Email = txtEmail.Text.Trim();
+                    oConfiguracion.IdTipoCuenta = Convert.ToInt32(cboTipoCuenta.SelectedValue);
+                    oConfiguracion.NumeroCuenta = Convert.ToInt64(txtNumeroCuenta.Text.Trim());
+                    oConfiguracion.DiasNotificacion = Convert.ToInt32(txtDiasNotificacion.Text.Trim());
                     oConfiguracion.IdDepartamento = cboDepartamentos.SelectedValue;
                     oConfiguracion.Departamento = cboDepartamentos.SelectedItem.Text;
                     oConfiguracion.IdMunicipio = cboMunicipios.SelectedValue;
                     oConfiguracion.Municipio = cboMunicipios.SelectedItem.Text;
-                    oConfiguracion.Direccion = txtDireccion.Text.Trim();
-                    oConfiguracion.Telefono = Convert.ToInt64(txtTelefono.Text.Trim());
-                    oConfiguracion.Email = txtEmail.Text.Trim();
                     oConfiguracion.UsuarioCreacion = Session["Usuario"].ToString();
 
                     string Resultado = objConfiguracion.Guardar(oConfiguracion);
@@ -335,14 +418,14 @@ namespace CapaPresentacion
                     {
                         string Titulo = "Información";
                         string Mensaje = "La configuración del sistema fue creada correctamente.";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                     else if (Resultado == "A") //Actualizar
                     {
                         string Titulo = "Información";
                         string Mensaje = "La configuración del sistema fue actualizada correctamente.";
-                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmConfiguracion.aspx'});";
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                     else

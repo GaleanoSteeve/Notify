@@ -8,13 +8,16 @@ namespace CapaObjetos
         private long _Documento;
         private string _RazonSocial;
         private string _NombreComercial;
+        private string _Direccion;
+        private long _Telefono;
+        private string _Email;
+        private int _IdTipoCuenta;
+        private long _NumeroCuenta;
+        private int _DiasNotificacion;
         private string _IdDepartamento;
         private string _Departamento;
         private string _IdMunicipio;
         private string _Municipio;
-        private string _Direccion;
-        private long _Telefono;
-        private string _Email;
         private int _IdTipoRegimenFacturacionPos;
         private string _TipoRegimenFacturacionPos;
         private long _NumeroResolucionFacturacionPos;
@@ -85,6 +88,21 @@ namespace CapaObjetos
         {
             get { return _Email; }
             set { _Email = value; }
+        }
+        public int IdTipoCuenta
+        {
+            get { return _IdTipoCuenta; }
+            set { _IdTipoCuenta = value; }
+        }
+        public long NumeroCuenta
+        {
+            get { return _NumeroCuenta; }
+            set { _NumeroCuenta = value; }
+        }
+        public int DiasNotificacion
+        {
+            get { return _DiasNotificacion; }
+            set { _DiasNotificacion = value; }
         }
         public int IdTipoRegimenFacturacionPos
         {

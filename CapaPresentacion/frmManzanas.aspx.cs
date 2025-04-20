@@ -25,7 +25,6 @@ namespace CapaPresentacion
             if (!IsPostBack)
             {
                 ListarManzanas();
-                ListarComboProyectos();
             }
         }
 
@@ -131,6 +130,7 @@ namespace CapaPresentacion
             if (ListarMaximoCodigo())
             {
                 labManzanaSeleccionada.Text = "";
+                ListarComboProyectos();
                 txtNombre.Text = "";
                 labCrear.Text = "1";
                 modManzanas.Show();
@@ -153,6 +153,7 @@ namespace CapaPresentacion
 
                     if (dtManzana.Rows.Count > 0) //Manzana existe
                     {
+                        ListarComboProyectos();
                         txtCodigo.Text = dtManzana.Rows[0]["IdManzana"].ToString();
                         txtNombre.Text = dtManzana.Rows[0]["Nombre"].ToString();
                         cboProyectos.SelectedValue = dtManzana.Rows[0]["IdProyecto"].ToString();

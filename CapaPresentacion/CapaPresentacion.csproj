@@ -62,12 +62,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmAbout.aspx" />
     <Content Include="frmAsignarLotes.aspx" />
     <Content Include="frmClientes.aspx" />
     <Content Include="frmConfiguracion.aspx" />
     <Content Include="frmInicio.aspx" />
     <Content Include="frmLotes.aspx" />
     <Content Include="frmManzanas.aspx" />
+    <Content Include="frmNotificaciones.aspx" />
     <Content Include="frmPerfiles.aspx" />
     <Content Include="frmProyectos.aspx" />
     <Content Include="frmUsuarios.aspx" />
@@ -156,6 +158,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAbout.aspx.cs">
+      <DependentUpon>frmAbout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAbout.aspx.designer.cs">
+      <DependentUpon>frmAbout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmAsignarLotes.aspx.cs">
       <DependentUpon>frmAsignarLotes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -204,6 +213,13 @@
     </Compile>
     <Compile Include="frmManzanas.aspx.designer.cs">
       <DependentUpon>frmManzanas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmNotificaciones.aspx.cs">
+      <DependentUpon>frmNotificaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmNotificaciones.aspx.designer.cs">
+      <DependentUpon>frmNotificaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmPerfiles.aspx.cs">
       <DependentUpon>frmPerfiles.aspx</DependentUpon>

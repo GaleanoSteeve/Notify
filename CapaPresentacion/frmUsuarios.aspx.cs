@@ -205,14 +205,42 @@ namespace CapaPresentacion
 
                     if (dtUsuario.Rows.Count > 0) //Perfil existe
                     {
-                        txtCodigo.Text = dtUsuario.Rows[0]["Codigo"].ToString();
-                        txtNombres.Text = dtUsuario.Rows[0]["Nombres"].ToString();
-                        txtUsuario.Text = dtUsuario.Rows[0]["Usuario"].ToString();
-                        labUsuario.Text = dtUsuario.Rows[0]["Usuario"].ToString();
-                        cboPerfiles.SelectedValue = dtUsuario.Rows[0]["IdPerfil"].ToString();
-                        cboPuedeEliminar.SelectedValue = Convert.ToBoolean(dtUsuario.Rows[0]["PuedeEliminar"]) ? "1" : "0";
-                        cboEstado.SelectedValue = Convert.ToBoolean(dtUsuario.Rows[0]["Estado"]) ? "1" : "0";
-                        modUsuarios.Show();
+                        string Usuario = dtUsuario.Rows[0]["Usuario"].ToString();
+
+                        if (Usuario == "admin") //Editar usuario administrador
+                        {
+                            int CodigoUsuarioLogueado = Convert.ToInt32(Session["CodigoUsuario"]);
+
+                            if (CodigoUsuarioLogueado == 1) //Es usuario administrador
+                            {
+                                txtCodigo.Text = dtUsuario.Rows[0]["Codigo"].ToString();
+                                txtNombres.Text = dtUsuario.Rows[0]["Nombres"].ToString();
+                                txtUsuario.Text = dtUsuario.Rows[0]["Usuario"].ToString();
+                                labUsuario.Text = dtUsuario.Rows[0]["Usuario"].ToString();
+                                cboPerfiles.SelectedValue = dtUsuario.Rows[0]["IdPerfil"].ToString();
+                                cboPuedeEliminar.SelectedValue = Convert.ToBoolean(dtUsuario.Rows[0]["PuedeEliminar"]) ? "1" : "0";
+                                cboEstado.SelectedValue = Convert.ToBoolean(dtUsuario.Rows[0]["Estado"]) ? "1" : "0";
+                                modUsuarios.Show();
+                            }
+                            else
+                            {
+                                string Titulo = "Advertencia";
+                                string Mensaje = "Su usuario no tiene permisos para modificar el usuario seleccionado.";
+                                string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "');";
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
+                            }
+                        }
+                        else
+                        {
+                            txtCodigo.Text = dtUsuario.Rows[0]["Codigo"].ToString();
+                            txtNombres.Text = dtUsuario.Rows[0]["Nombres"].ToString();
+                            txtUsuario.Text = dtUsuario.Rows[0]["Usuario"].ToString();
+                            labUsuario.Text = dtUsuario.Rows[0]["Usuario"].ToString();
+                            cboPerfiles.SelectedValue = dtUsuario.Rows[0]["IdPerfil"].ToString();
+                            cboPuedeEliminar.SelectedValue = Convert.ToBoolean(dtUsuario.Rows[0]["PuedeEliminar"]) ? "1" : "0";
+                            cboEstado.SelectedValue = Convert.ToBoolean(dtUsuario.Rows[0]["Estado"]) ? "1" : "0";
+                            modUsuarios.Show();
+                        }
                     }
                     else
                     {
