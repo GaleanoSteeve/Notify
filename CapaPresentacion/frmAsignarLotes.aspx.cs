@@ -36,14 +36,14 @@ namespace CapaPresentacion
                 Session["dtLotes"] = null;
                 ListarComboProyectos();
                 txtDocumento.Focus();
-                CrearLista();
+                CrearListaVacia();
             }
         }
 
         #endregion
 
         //Metodos
-        private void CrearLista()
+        private void CrearListaVacia()
         {
             try
             {
@@ -56,21 +56,23 @@ namespace CapaPresentacion
                         dtDatos = new DataTable();
                         dtDatos.Columns.Add("Documento", typeof(string));
                         dtDatos.Columns.Add("IdLote", typeof(string));
-                        dtDatos.Columns.Add("Numero", typeof(string));
+                        dtDatos.Columns.Add("NumeroLote", typeof(string));
                         dtDatos.Columns.Add("IdProyecto", typeof(string));
                         dtDatos.Columns.Add("Proyecto", typeof(string));
                         dtDatos.Columns.Add("IdManzana", typeof(string));
                         dtDatos.Columns.Add("Manzana", typeof(string));
+                        dtDatos.Columns.Add("FechaInicioPagoCuotas", typeof(string));
                         dtDatos.Columns.Add("Almacenado", typeof(string));
 
                         DataRow drFila = dtDatos.NewRow();
                         drFila["Documento"] = "";
                         drFila["IdLote"] = "";
-                        drFila["Numero"] = "";
+                        drFila["NumeroLote"] = "";
                         drFila["IdProyecto"] = "";
                         drFila["Proyecto"] = "";
                         drFila["IdManzana"] = "";
                         drFila["Manzana"] = "";
+                        drFila["FechaInicioPagoCuotas"] = "";
                         drFila["Almacenado"] = "";
                         dtDatos.Rows.Add(drFila);
                     }
@@ -101,7 +103,7 @@ namespace CapaPresentacion
             LimpiarCombo("Lotes");
             txtCliente.Text = "";
             txtDocumento.Focus();
-            CrearLista();
+            CrearListaVacia();
         }
         private bool ValidarCampos()
         {
@@ -166,8 +168,7 @@ namespace CapaPresentacion
 
                                 string Nombres = dtCliente.Rows[0]["Nombres"].ToString();
                                 string Apellidos = dtCliente.Rows[0]["Apellidos"].ToString();
-                                long WhatsApp = Convert.ToInt64(dtCliente.Rows[0]["WhatsApp"]);
-                                string NombreCompleto = Nombres + " " + Apellidos + "  -  WhatsApp: " + " " + WhatsApp;
+                                string NombreCompleto = Nombres + " " + Apellidos;
 
                                 txtCliente.Text = NombreCompleto;
 
@@ -183,7 +184,7 @@ namespace CapaPresentacion
                                     divMensaje.Visible = true;
                                     Session["dtLotes"] = null;
                                     cboProyectos.Focus();
-                                    CrearLista();
+                                    CrearListaVacia();
                                 }
                             }
                             else
@@ -292,7 +293,7 @@ namespace CapaPresentacion
 
                         cboLotes.DataSource = dtLotes;
                         cboLotes.DataValueField = "IdLote";
-                        cboLotes.DataTextField = "Numero";
+                        cboLotes.DataTextField = "NumeroLote";
                         cboLotes.DataBind();
 
                         divMensaje.Visible = false;
@@ -480,6 +481,8 @@ namespace CapaPresentacion
                     int IdManzana = Convert.ToInt32(cboManzanas.SelectedValue);
                     string Manzana = cboManzanas.SelectedItem.Text;
 
+                    string FechaInicioPagoCuotas = System.DateTime.Now.ToString("dd-MM-yyyy");
+
                     if (Documento > 0)
                     {
                         if (IdProyecto > 0 && IdManzana > 0 && IdLote > 0)
@@ -491,21 +494,23 @@ namespace CapaPresentacion
                                     this.dtLotes = new DataTable();
                                     this.dtLotes.Columns.Add("Documento", typeof(long));
                                     this.dtLotes.Columns.Add("IdLote", typeof(int));
-                                    this.dtLotes.Columns.Add("Numero", typeof(string));
+                                    this.dtLotes.Columns.Add("NumeroLote", typeof(string));
                                     this.dtLotes.Columns.Add("IdProyecto", typeof(int));
                                     this.dtLotes.Columns.Add("Proyecto", typeof(string));
                                     this.dtLotes.Columns.Add("IdManzana", typeof(int));
                                     this.dtLotes.Columns.Add("Manzana", typeof(string));
+                                    this.dtLotes.Columns.Add("FechaInicioPagoCuotas", typeof(string));
                                     this.dtLotes.Columns.Add("Almacenado", typeof(int));
 
                                     DataRow drFila = this.dtLotes.NewRow();
                                     drFila["Documento"] = Documento;
                                     drFila["IdLote"] = IdLote;
-                                    drFila["Numero"] = Numero;
+                                    drFila["NumeroLote"] = Numero;
                                     drFila["IdProyecto"] = IdProyecto;
                                     drFila["Proyecto"] = Proyecto;
                                     drFila["IdManzana"] = IdManzana;
                                     drFila["Manzana"] = Manzana;
+                                    drFila["FechaInicioPagoCuotas"] = FechaInicioPagoCuotas;
                                     drFila["Almacenado"] = 0;
                                     this.dtLotes.Rows.Add(drFila);
                                 }
@@ -514,20 +519,21 @@ namespace CapaPresentacion
                                     DataRow drFila = this.dtLotes.NewRow();
                                     drFila["Documento"] = Documento;
                                     drFila["IdLote"] = IdLote;
-                                    drFila["Numero"] = Numero;
+                                    drFila["NumeroLote"] = Numero;
                                     drFila["IdProyecto"] = IdProyecto;
                                     drFila["Proyecto"] = Proyecto;
                                     drFila["IdManzana"] = IdManzana;
                                     drFila["Manzana"] = Manzana;
+                                    drFila["FechaInicioPagoCuotas"] = FechaInicioPagoCuotas;
                                     drFila["Almacenado"] = 0;
                                     this.dtLotes.Rows.Add(drFila);
                                 }
                                 this.dtLotes.AcceptChanges();
 
-                                Session["dtLotes"] = this.dtLotes;
                                 gvLotes.DataSource = this.dtLotes;
                                 gvLotes.DataBind();
 
+                                Session["dtLotes"] = this.dtLotes;
                                 LimpiarCamposLotes();
                             }
                         }
@@ -548,6 +554,7 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 labMensaje.Text = "Error tratando de agregar el Lote: " + ex.Message;
+                divMensaje.Visible = true;
             }
         }
 
@@ -577,16 +584,16 @@ namespace CapaPresentacion
                             {
                                 for (int i = 0; i < this.dtLotes.Rows.Count; i++)
                                 {
-                                    oClienteLote = new ObjClientesLotes();
+                                    this.oClienteLote = new ObjClientesLotes();
+                                    
+                                    this.oClienteLote.Documento = Documento;
+                                    this.oClienteLote.IdLote = Convert.ToInt32(this.dtLotes.Rows[i]["IdLote"]);
+                                    this.oClienteLote.Numero = Convert.ToInt32(this.dtLotes.Rows[i]["NumeroLote"]);
+                                    this.oClienteLote.IdProyecto = Convert.ToInt32(this.dtLotes.Rows[i]["IdProyecto"]);
+                                    this.oClienteLote.IdManzana = Convert.ToInt32(this.dtLotes.Rows[i]["IdManzana"]);
+                                    this.oClienteLote.UsuarioCreacion = Session["Usuario"].ToString();
 
-                                    oClienteLote.Documento = Documento;
-                                    oClienteLote.IdLote = Convert.ToInt32(this.dtLotes.Rows[i]["IdLote"]);
-                                    oClienteLote.Numero = Convert.ToInt32(this.dtLotes.Rows[i]["Numero"]);
-                                    oClienteLote.IdProyecto = Convert.ToInt32(this.dtLotes.Rows[i]["IdProyecto"]);
-                                    oClienteLote.IdManzana = Convert.ToInt32(this.dtLotes.Rows[i]["IdManzana"]);
-                                    oClienteLote.UsuarioCreacion = Session["Usuario"].ToString();
-
-                                    objClientesLotes.Guardar(oClienteLote); //Guardar cliente lote: actualiza el estado del lote en 1
+                                    objClientesLotes.Guardar(this.oClienteLote); //Guardar cliente lote: actualiza el estado del lote en 1
                                 }
                             }
                             else
@@ -640,10 +647,10 @@ namespace CapaPresentacion
 
                 if (this.dtLotes.Rows.Count > 0) //Existen lotes
                 {
-                    ImageButton btnEliminar = (ImageButton)sender;
-                    GridViewRow gvFila = (GridViewRow)btnEliminar.NamingContainer;
+                    ImageButton btnLote = (ImageButton)sender;
+                    GridViewRow gvFila = (GridViewRow)btnLote.NamingContainer;
 
-                    string strDatos = btnEliminar.CommandArgument;
+                    string strDatos = btnLote.CommandArgument;
                     string[] Datos = strDatos.Split(',');
 
                     int Almacenado = Convert.ToInt32(Datos[1]);
@@ -656,7 +663,7 @@ namespace CapaPresentacion
                             oClienteLote = new ObjClientesLotes();
                             oClienteLote.IdLote = IdLote;
 
-                            if (!objClientesLotes.EliminarLote(oClienteLote)) //Eliminar lote del cliente
+                            if (!objClientesLotes.EliminarLote(oClienteLote)) //Eliminar lote cliente de base de datos
                             {
                                 labMensaje.Text = "No se pudo eliminar el Lote. Debe comunicarse con el administrador del sistema.";
                                 divMensaje.Visible = true;
@@ -677,7 +684,7 @@ namespace CapaPresentacion
                         else
                         {
                             Session["dtLotes"] = null;
-                            CrearLista();
+                            CrearListaVacia();
                         }
                     }
                     else

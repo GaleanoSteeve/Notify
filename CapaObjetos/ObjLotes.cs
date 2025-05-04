@@ -10,18 +10,15 @@ namespace CapaObjetos
         private string _Proyecto;
         private int _IdManzana;
         private string _Manzana;
-        private int _Numero;
-        private decimal _Area;
+        private int _NumeroLote;
+        private int _Area;
         private decimal _Valor;
         private decimal _CuotaInicial;
         private decimal _CuotaMensual;
-        private DateTime _FechaPago;
+        private DateTime _FechaInicioPagoCuotas;
+        private int _DiaPagoCuota;
         private int _IdEstado;
         private string _Estado;
-        private int _IdTipoPago;
-        private string _TipoPago;
-        private int _IdBanco;
-        private string _Banco;
         private string _UsuarioCreacion;
         private DateTime _FechaCreacion;
         private string _UsuarioModificacion;
@@ -58,12 +55,12 @@ namespace CapaObjetos
             get { return _Manzana; }
             set { _Manzana = value; }
         }
-        public int Numero
+        public int NumeroLote
         {
-            get { return _Numero; }
-            set { _Numero = value; }
+            get { return _NumeroLote; }
+            set { _NumeroLote = value; }
         }
-        public decimal Area
+        public int Area
         {
             get { return _Area; }
             set { _Area = value; }
@@ -83,10 +80,15 @@ namespace CapaObjetos
             get { return _CuotaMensual; }
             set { _CuotaMensual = value; }
         }
-        public DateTime FechaPago
+        public DateTime FechaInicioPagoCuotas
         {
-            get { return _FechaPago; }
-            set { _FechaPago = value; }
+            get { return _FechaInicioPagoCuotas; }
+            set { _FechaInicioPagoCuotas = value; }
+        }
+        public int DiaPagoCuota
+        {
+            get { return _DiaPagoCuota; }
+            set { _DiaPagoCuota = value; }
         }
         public int IdEstado
         {
@@ -97,26 +99,6 @@ namespace CapaObjetos
         {
             get { return _Estado; }
             set { _Estado = value; }
-        }
-        public int IdTipoPago
-        {
-            get { return _IdTipoPago; }
-            set { _IdTipoPago = value; }
-        }
-        public string TipoPago
-        {
-            get { return _TipoPago; }
-            set { _TipoPago = value; }
-        }
-        public int IdBanco
-        {
-            get { return _IdBanco; }
-            set { _IdBanco = value; }
-        }
-        public string Banco
-        {
-            get { return _Banco; }
-            set { _Banco = value; }
         }
         public string UsuarioCreacion
         {

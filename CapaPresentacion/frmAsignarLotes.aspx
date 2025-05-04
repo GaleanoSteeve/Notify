@@ -37,11 +37,12 @@
         <asp:GridView ID="gvLotes" runat="server" CssClass="table-striped table-bordered float-left w-100" AutoGenerateColumns="false" ClientIDMode="Static">
             <Columns>
                 <asp:BoundField DataField="IdLote" HeaderText="IdLote" Visible="false" />
-                <asp:BoundField DataField="Numero" HeaderText="Número Lote" HeaderStyle-Width="20%" ItemStyle-HorizontalAlign="Center" />
-                <asp:BoundField DataField="Proyecto" HeaderText="Proyecto" HeaderStyle-Width="40%" ItemStyle-HorizontalAlign="Left" />
+                <asp:BoundField DataField="NumeroLote" HeaderText="Número Lote" HeaderStyle-Width="12%" ItemStyle-HorizontalAlign="Center" />
+                <asp:BoundField DataField="Proyecto" HeaderText="Proyecto" HeaderStyle-Width="30%" ItemStyle-HorizontalAlign="Left" />
                 <asp:BoundField DataField="Manzana" HeaderText="Manzana" HeaderStyle-Width="30%" ItemStyle-HorizontalAlign="Left" />
+                <asp:BoundField DataField="FechaInicioPagoCuotas" HeaderText="Fecha Inicio Pago Cuotas" DataFormatString="{0:dd-MM-yyyy}" HeaderStyle-Width="20%" ItemStyle-HorizontalAlign="Center" />
                 <asp:BoundField DataField="Almacenado" HeaderText="Almacenado" Visible="false" />
-                <asp:TemplateField HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center">
+                <asp:TemplateField HeaderStyle-Width="8%" ItemStyle-HorizontalAlign="Center">
                     <ItemTemplate>
                         <asp:ImageButton ID="btnEliminar" runat="server" CommandArgument='<%# Eval("IdLote") + "," + Eval("Almacenado") %>' ToolTip="Eliminar" ImageUrl="~/Styles/img/Eliminar.png" Height="26px" Width="26px" OnClick="btnEliminar_Click"/>
                     </ItemTemplate>

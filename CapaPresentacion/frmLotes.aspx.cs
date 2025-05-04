@@ -20,6 +20,7 @@ namespace CapaPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtFechaInicioPagoCuotas.Attributes.Add("readonly", "readonly");
             labError.Visible = false;
             txtFiltro.Focus();
 
@@ -191,6 +192,13 @@ namespace CapaPresentacion
             LimpiarCombo("Manzanas");
             ListarComboProyectos();
             ListarComboEstados();
+            txtNumeroLote.Text = "";
+            txtArea.Text = "";
+            txtValor.Text = "";
+            txtCuotaInicial.Text = "";
+            txtCuotaMensual.Text = "";
+            txtFechaInicioPagoCuotas.Text = "";
+            txtDiaPagoCuota.Text = "";
             cboProyectos.Focus();
             labCodigo.Text = "0";
             labCrear.Text = "1";
@@ -221,10 +229,10 @@ namespace CapaPresentacion
                         ListarComboProyectos();
                         ListarComboEstados();
 
-                        oLote = new ObjLotes();
-                        oLote.Operacion = "LCM";
-                        oLote.IdProyecto = IdProyecto;
-                        DataTable dtManzanas = objLotes.ListarComboManzanas(oLote);
+                        this.oLote = new ObjLotes();
+                        this.oLote.Operacion = "LCM";
+                        this.oLote.IdProyecto = IdProyecto;
+                        DataTable dtManzanas = objLotes.ListarComboManzanas(this.oLote);
 
                         if (dtManzanas.Rows.Count > 0)
                         {
@@ -246,11 +254,13 @@ namespace CapaPresentacion
                         cboEstados.SelectedValue = IdEstado.ToString();
 
                         labCodigo.Text = dtLote.Rows[0]["IdLote"].ToString();
-                        txtNumero.Text = dtLote.Rows[0]["Numero"].ToString();
+                        txtNumeroLote.Text = dtLote.Rows[0]["NumeroLote"].ToString();
+                        txtArea.Text = dtLote.Rows[0]["Area"].ToString();
                         txtValor.Text = dtLote.Rows[0]["Valor"].ToString();
                         txtCuotaInicial.Text = dtLote.Rows[0]["CuotaInicial"].ToString();
                         txtCuotaMensual.Text = dtLote.Rows[0]["CuotaMensual"].ToString();
-                        txtArea.Text = dtLote.Rows[0]["Area"].ToString();
+                        txtFechaInicioPagoCuotas.Text = Convert.ToDateTime(dtLote.Rows[0]["FechaInicioPagoCuotas"]).ToString("dd-MM-yyyy");
+                        txtDiaPagoCuota.Text = dtLote.Rows[0]["DiaPagoCuota"].ToString();
                         cboProyectos.Focus();
                         modLotes.Show();
                     }
@@ -333,13 +343,13 @@ namespace CapaPresentacion
                     oLote = new ObjLotes();
                     oLote.IdProyecto = Convert.ToInt32(cboProyectos.SelectedValue);
                     oLote.IdManzana = Convert.ToInt32(cboManzanas.SelectedValue);
-                    oLote.Numero = Convert.ToInt32(txtNumero.Text.Trim());
+                    oLote.NumeroLote = Convert.ToInt32(txtNumeroLote.Text.Trim());
 
                     DataTable dtLote = objLotes.ExisteLote(oLote);
 
                     if (dtLote.Rows.Count > 0)
                     {
-                        labMensaje.Text = "El Lote ingresado ya existe en base de datos.";
+                        labMensaje.Text = "El Lote ingresado ya existe en base de datos para el Proyecto y Manzana seleccionados.";
                         labError.Visible = true;
                         modLotes.Show();
                         return true;
@@ -352,7 +362,7 @@ namespace CapaPresentacion
                 labMensaje.Text = "Error tratando de validar el Lote: " + ex.Message;
                 labError.Visible = true;
                 modLotes.Show();
-                return false;
+                return true;
             }
         }
         private bool ValidarCampos()
@@ -375,25 +385,42 @@ namespace CapaPresentacion
                     modLotes.Show();
                     return false;
                 }
-                else if (txtNumero.Text.Trim() == "")
+                else if (txtNumeroLote.Text.Trim() == "")
                 {
-                    labMensaje.Text = "El campo Número es obligatorio.";
+                    labMensaje.Text = "El campo Número Lote es obligatorio.";
                     labError.Visible = true;
-                    txtNumero.Focus();
+                    txtNumeroLote.Focus();
                     modLotes.Show();
                     return false;
                 }
-                else if (Convert.ToInt32(txtNumero.Text.Trim()) <= 0)
+                else if (Convert.ToInt32(txtNumeroLote.Text.Trim()) <= 0)
                 {
-                    labMensaje.Text = "El campo Número debe ser mayor que cero.";
+                    labMensaje.Text = "El campo Número Lote debe ser mayor que cero.";
                     labError.Visible = true;
-                    txtNumero.Text = "";
-                    txtNumero.Focus();
+                    txtNumeroLote.Text = "";
+                    txtNumeroLote.Focus();
                     modLotes.Show();
                     return false;
                 }
                 else if (ExisteLote())
                 {
+                    return false;
+                }
+                else if (txtArea.Text.Trim() == "")
+                {
+                    labMensaje.Text = "El campo Área es obligatorio.";
+                    labError.Visible = true;
+                    txtArea.Focus();
+                    modLotes.Show();
+                    return false;
+                }
+                else if (Convert.ToInt32(txtArea.Text.Trim()) <= 0)
+                {
+                    labMensaje.Text = "El campo Área debe ser mayor que cero.";
+                    labError.Visible = true;
+                    txtArea.Text = "";
+                    txtArea.Focus();
+                    modLotes.Show();
                     return false;
                 }
                 else if (txtValor.Text.Trim() == "")
@@ -447,20 +474,28 @@ namespace CapaPresentacion
                     modLotes.Show();
                     return false;
                 }
-                else if (txtArea.Text.Trim() == "")
+                else if (txtFechaInicioPagoCuotas.Text.Trim() == "")
                 {
-                    labMensaje.Text = "El campo Área es obligatorio.";
+                    labMensaje.Text = "El campo Fecha Inicio Pago Cuotas es obligatorio.";
                     labError.Visible = true;
-                    txtArea.Focus();
+                    txtDiaPagoCuota.Focus();
                     modLotes.Show();
                     return false;
                 }
-                else if (Convert.ToInt32(txtArea.Text.Trim()) <= 0)
+                else if (txtDiaPagoCuota.Text.Trim() == "")
                 {
-                    labMensaje.Text = "El campo Área debe ser mayor que cero.";
+                    labMensaje.Text = "El campo Día Pago Cuota es obligatorio.";
                     labError.Visible = true;
-                    txtArea.Text = "";
-                    txtArea.Focus();
+                    txtDiaPagoCuota.Focus();
+                    modLotes.Show();
+                    return false;
+                }
+                else if (Convert.ToInt32(txtDiaPagoCuota.Text.Trim()) <= 0 || Convert.ToInt32(txtDiaPagoCuota.Text.Trim()) >= 31)
+                {
+                    labMensaje.Text = "El campo Día Pago Cuota debe ser mayor que cero y menor que 31.";
+                    txtDiaPagoCuota.Text = "";
+                    labError.Visible = true;
+                    txtDiaPagoCuota.Focus();
                     modLotes.Show();
                     return false;
                 }
@@ -494,11 +529,13 @@ namespace CapaPresentacion
                     oLote.Proyecto = cboProyectos.SelectedItem.Text;
                     oLote.IdManzana = Convert.ToInt32(cboManzanas.SelectedValue);
                     oLote.Manzana = cboManzanas.SelectedItem.Text;
-                    oLote.Numero = Convert.ToInt32(txtNumero.Text.Trim());
+                    oLote.NumeroLote = Convert.ToInt32(txtNumeroLote.Text.Trim());
+                    oLote.Area = Convert.ToInt32(txtArea.Text.Trim());
                     oLote.Valor = Convert.ToDecimal(txtValor.Text.Trim());
                     oLote.CuotaInicial = Convert.ToDecimal(txtCuotaInicial.Text.Trim());
                     oLote.CuotaMensual = Convert.ToDecimal(txtCuotaMensual.Text.Trim());
-                    oLote.Area = Convert.ToDecimal(txtArea.Text.Trim());
+                    oLote.FechaInicioPagoCuotas = Convert.ToDateTime(txtFechaInicioPagoCuotas.Text.Trim());
+                    oLote.DiaPagoCuota = Convert.ToInt32(txtDiaPagoCuota.Text.Trim());
                     oLote.IdEstado = Convert.ToInt32(cboEstados.SelectedValue);
                     oLote.Estado = cboEstados.SelectedItem.Text;
                     oLote.UsuarioCreacion = Session["Usuario"].ToString();

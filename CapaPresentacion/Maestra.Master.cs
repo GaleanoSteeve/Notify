@@ -21,9 +21,9 @@ namespace CapaPresentacion
             {
                 try
                 {
-                    if (Session["CodigoUsuario"] != null && Session["IdPerfil"] != null) //Sesion activa
+                    if (Session["CodigoUsuario"] != null && Session["IdPerfil"] != null && Session["NombreUsuario"] != null) //Sesion activa
                     {
-                        string Usuario = Session["Usuario"].ToString();
+                        string Usuario = Session["NombreUsuario"].ToString();
                         int IdPerfil = Convert.ToInt32(Session["IdPerfil"]);
 
                         string Menu = objMenu.CrearMenu(IdPerfil, Usuario);
@@ -32,7 +32,10 @@ namespace CapaPresentacion
                     else
                     {
                         FormsAuthentication.SignOut();
-                        Response.Redirect("frmLogin.aspx");
+                        string Titulo = "Error en Autenticación";
+                        string Mensaje = "Algunos datos del usuario no se cargaron correctamente. Por favor intenta de nuevo.";
+                        string Tipo = "alertify.alert('" + Titulo + "', '" + Mensaje + "',function(){location.href='frmLogin.aspx'});";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "ScriptId", Tipo, true);
                     }
                 }
                 catch (Exception ex)

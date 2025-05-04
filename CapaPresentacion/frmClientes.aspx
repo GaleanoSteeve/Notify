@@ -211,7 +211,7 @@
                                         <asp:BoundField DataField="IdLote" Visible="false" />
                                         <asp:BoundField DataField="NumeroLote" HeaderText="Número Lote" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" />
                                         <asp:BoundField DataField="Area" HeaderText="Área (m²)" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Valor" HeaderText="Valor" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:N0}" />
+                                        <asp:BoundField DataField="Valor" HeaderText="Valor" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" />
                                     </Columns>
                                     <HeaderStyle BackColor="#007bff" Font-Bold="False" ForeColor="White" HorizontalAlign="Center" />
                                 </asp:GridView>

@@ -34,17 +34,17 @@
         <div class="table-responsive">
             <asp:GridView ID="gvLotes" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="False">
                 <Columns>
-                    <asp:TemplateField AccessibleHeaderText="IdLote" HeaderText="Código" HeaderStyle-Width="10%">
+                    <asp:TemplateField AccessibleHeaderText="IdLote" HeaderText="Código" HeaderStyle-Width="5%">
                         <ItemTemplate>
                             <asp:LinkButton ID="btnEditar" runat="server" CommandArgument='<%#Eval("IdLote")%>' Text='<%#Eval("IdLote")%>' OnClick="btnEditar_Click"></asp:LinkButton>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Proyecto" HeaderText="Proyecto" HeaderStyle-Width="20%" ItemStyle-HorizontalAlign="Left" />
-                    <asp:BoundField DataField="Manzana" HeaderText="Manzana" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Left" />
-                    <asp:BoundField DataField="Numero" HeaderText="Número" HeaderStyle-Width="5%" ItemStyle-HorizontalAlign="Left" />
+                    <asp:BoundField DataField="Proyecto" HeaderText="Proyecto" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Left" />
+                    <asp:BoundField DataField="Manzana" HeaderText="Manzana" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Left" />
+                    <asp:BoundField DataField="NumeroLote" HeaderText="Número Lote" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="Valor" HeaderText="Valor" HeaderStyle-Width="10%" DataFormatString="{0:N0}" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="CuotaInicial" HeaderText="Cuota Inicial" HeaderStyle-Width="10%" DataFormatString="{0:N0}" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="CuotaInicial" HeaderText="Cuota Inicial" HeaderStyle-Width="15%" DataFormatString="{0:N0}" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="CuotaMensual" HeaderText="Cuota Mensual" HeaderStyle-Width="15%" DataFormatString="{0:N0}" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="Estado" HeaderText="Estado" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" />
                     <asp:TemplateField AccessibleHeaderText="Eliminar" HeaderStyle-Width="5%">
@@ -63,7 +63,7 @@
         <ajaxToolkit:ModalPopupExtender ID="modLotes" runat="server" TargetControlID="btnAbrir" PopupControlID="popLotes" BackgroundCssClass="modalBackgroundPerfiles" CancelControlID="btnCancelar">
         </ajaxToolkit:ModalPopupExtender>
 
-        <asp:Panel ID="popLotes" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" Style="height: 84vh; overflow-y: scroll;">
+        <asp:Panel ID="popLotes" runat="server" CssClass="modalpopupPerfiles w-75" BorderColor="White" HorizontalAlign="Center" Style="height: 86vh; overflow-y: scroll;">
 
             <div class="mt-4 mr-3">
                 <h5 style="color: steelblue; font-weight: 600;">Administrar Lotes</h5>
@@ -89,18 +89,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="float-left" for="txtNumero">Número</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="4" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="3"></asp:TextBox>
+                        <label class="float-left" for="txtNumero">Número de Lote</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                        <asp:TextBox ID="txtNumeroLote" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="4" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="3"></asp:TextBox>
                     </div>
 
                     <div class="form-group">
-                        <label class="float-left" for="txtCuotaInicial">Cuota Inicial</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtCuotaInicial" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="5"></asp:TextBox>
+                        <label class="float-left" for="txtValor">Valor</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                        <asp:TextBox ID="txtValor" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="5"></asp:TextBox>
                     </div>
 
                     <div class="form-group">
-                        <label class="float-left" for="txtArea">Aréa</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtArea" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="4" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="7"></asp:TextBox>
+                        <label class="float-left" for="txtCuotaMensual">Cuota Mensual</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                        <asp:TextBox ID="txtCuotaMensual" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="7"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="float-left" for="txtCuotaInicial">Día Pago Cuota</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                        <asp:TextBox ID="txtDiaPagoCuota" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="2" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="9"></asp:TextBox>
                     </div>
                 </div>
 
@@ -112,24 +117,30 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="float-left" for="txtValor">Valor</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtValor" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="4"></asp:TextBox>
+                        <label class="float-left" for="txtArea">Aréa</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                        <asp:TextBox ID="txtArea" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="4" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="4"></asp:TextBox>
                     </div>
 
                     <div class="form-group">
-                        <label class="float-left" for="txtCuotaMensual">Cuota Mensual</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:TextBox ID="txtCuotaMensual" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="6"></asp:TextBox>
+                        <label class="float-left" for="txtCuotaInicial">Cuota Inicial</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                        <asp:TextBox ID="txtCuotaInicial" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" onkeypress="return Numeros(event)" TabIndex="6"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="float-left" for="txtFechaInicioPagoCuotas">Fecha Inicio Pago Cuotas</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                        <asp:TextBox ID="txtFechaInicioPagoCuotas" runat="server" CssClass="form-control" MaxLength="10" TabIndex="8"></asp:TextBox>
+                        <ajaxToolkit:CalendarExtender ID="CalendarExtender" runat="server" TargetControlID="txtFechaInicioPagoCuotas" Format="dd-MM-yyyy" />
                     </div>
 
                     <div class="form-group">
                         <label class="float-left" for="cboEstados">Estado</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                        <asp:DropDownList ID="cboEstados" runat="server" CssClass="form-control" ClientIDMode="Static" TabIndex="8"></asp:DropDownList>
+                        <asp:DropDownList ID="cboEstados" runat="server" CssClass="form-control" ClientIDMode="Static" TabIndex="10"></asp:DropDownList>
                     </div>
                 </div>
             </div>
 
-            <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary mt-2" Text="Guardar" TabIndex="9" OnClick="btnGuardar_Click" />
-            <button id="btnCancelar" class="btn btn-danger mr-4 mt-2" tabindex="10" onclick="LimpiarControles()">Cancelar</button>
+            <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary mt-2" Text="Guardar" TabIndex="11" OnClick="btnGuardar_Click" />
+            <button id="btnCancelar" class="btn btn-danger mr-4 mt-2" tabindex="12" onclick="LimpiarControles()">Cancelar</button>
 
             <div style="visibility: hidden;">
                 <asp:Label ID="labCrear" runat="server" ClientIDMode="Static" Font-Size="2px"></asp:Label>
