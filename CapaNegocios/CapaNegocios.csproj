@@ -44,6 +44,7 @@
     <Compile Include="NegConfiguracion.cs" />
     <Compile Include="NegCriptografia.cs" />
     <Compile Include="NegManzanas.cs" />
+    <Compile Include="NegNotificaciones.cs" />
     <Compile Include="NegProyectos.cs" />
     <Compile Include="NegRegionales.cs" />
     <Compile Include="NegLotes.cs" />

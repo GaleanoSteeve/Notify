@@ -3,25 +3,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-    <script type="text/javascript">
-        function LimpiarControles() {
-            document.getElementById('cboTipoDocumento').disabled = false;
-            document.getElementById('cboTipoDocumento').value = "0";
-            document.getElementById('txtDocumento').disabled = false;
-            document.getElementById('txtDocumento').value = "";
-            document.getElementById('txtNombres').value = "";
-            document.getElementById('txtApellidos').value = "";
-            document.getElementById('txtBarrio').value = "";
-            document.getElementById('txtDireccion').value = "";
-            document.getElementById('txtWhatsApp').value = "";
-            document.getElementById('txtTelefono1').value = "";
-            document.getElementById('txtTelefono2').value = "";
-            document.getElementById('txtEmail').value = "";
-            document.getElementById('cboEstado').value = "1";
-            document.getElementById('txtFiltro').focus();
-        }
-    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -52,8 +33,8 @@
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                     </asp:TemplateField>
                     <asp:BoundField DataField="Nombres" HeaderText="Nombres" HeaderStyle-Width="25%" ItemStyle-HorizontalAlign="Left" />
-                    <asp:BoundField DataField="Direccion" HeaderText="Domicilio" HeaderStyle-Width="45%" ItemStyle-HorizontalAlign="Left" />
-                    <asp:BoundField DataField="WhatsApp" HeaderText="WhatsApp" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Left" />
+                    <asp:BoundField DataField="WhatsApp" HeaderText="WhatsApp" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Right" />
+                    <asp:BoundField DataField="Municipio" HeaderText="Municipio" HeaderStyle-Width="20%" ItemStyle-HorizontalAlign="Left" />
                     <asp:BoundField DataField="Activo" HeaderText="Activo" HeaderStyle-Width="5%" ItemStyle-HorizontalAlign="Center" />
                     <asp:TemplateField AccessibleHeaderText="Eliminar" HeaderStyle-Width="5%">
                         <ItemTemplate>
@@ -98,7 +79,7 @@
                             <div class="row ml-1 mt-2 w-100">
 
                                 <div id="divIzquierda" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-
+                                    
                                     <div class="form-group">
                                         <label class="float-left" for="cboTipoDocumento">Tipo Documento</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
                                         <asp:DropDownList ID="cboTipoDocumento" runat="server" CssClass="form-control" ClientIDMode="Static" TabIndex="1"></asp:DropDownList>
@@ -110,35 +91,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="float-left" for="cboPaises">País</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                                        <asp:DropDownList ID="cboPaises" runat="server" CssClass="form-control" ClientIDMode="Static" AutoPostBack="true" TabIndex="5" OnSelectedIndexChanged="cboPaises_SelectedIndexChanged"></asp:DropDownList>
+                                        <label class="float-left" for="cboDepartamentos">Departamento</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                                        <asp:DropDownList ID="cboDepartamentos" runat="server" CssClass="form-control" ClientIDMode="Static" AutoPostBack="true" TabIndex="6" OnSelectedIndexChanged="cboDepartamentos_SelectedIndexChanged"></asp:DropDownList>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="float-left" for="cboMunicipios">Municipio</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                                        <asp:DropDownList ID="cboMunicipios" runat="server" CssClass="form-control" ClientIDMode="Static" AutoPostBack="true" TabIndex="7" OnSelectedIndexChanged="cboMunicipios_SelectedIndexChanged"></asp:DropDownList>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="float-left" for="cboVeredas">Vereda</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                                        <asp:DropDownList ID="cboVeredas" runat="server" CssClass="form-control" ClientIDMode="Static" AutoPostBack="true" TabIndex="9" OnSelectedIndexChanged="cboVeredas_SelectedIndexChanged"></asp:DropDownList>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-9">
-                                            <label class="float-left" for="txtDireccion">Domicilio</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                                            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" Enabled="false" ClientIDMode="Static" Font-Size="10px" Height="38px" TabIndex="11"></asp:TextBox>
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label class="float-left" for="btnConstruirDireccion" style="visibility: hidden;">Construir</label>
-                                            <asp:Button ID="btnConstruirDireccion" runat="server" CssClass="btn btn-success ml-3" Text="Construir" OnClick="btnConstruirDireccion_Click" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="float-left" for="txtTelefono1">Teléfono 1</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                                        <asp:TextBox ID="txtTelefono1" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" autocomplete="off" onkeypress="return Numeros(event)" TabIndex="13"></asp:TextBox>
+                                        <label class="float-left" for="txtWhatsApp">WhatsApp</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                                        <asp:TextBox ID="txtWhatsApp" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" autocomplete="off" onkeypress="return Numeros(event)" TabIndex="12"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group">
@@ -147,7 +106,7 @@
                                     </div>
                                 </div>
 
-                                <div id="divDerecha" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <div id="divDerecha" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">                                    
 
                                     <div class="form-group">
                                         <label class="float-left" for="txtDocumento">Documento</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
@@ -160,28 +119,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="float-left" for="cboDepartamentos">Departamento</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                                        <asp:DropDownList ID="cboDepartamentos" runat="server" CssClass="form-control" ClientIDMode="Static" AutoPostBack="true" TabIndex="6" OnSelectedIndexChanged="cboDepartamentos_SelectedIndexChanged"></asp:DropDownList>
+                                        <label class="float-left" for="cboMunicipios">Municipio</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                                        <asp:DropDownList ID="cboMunicipios" runat="server" CssClass="form-control" ClientIDMode="Static" TabIndex="7"></asp:DropDownList>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="float-left" for="cboCorregimientos">Corregimiento</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                                        <asp:DropDownList ID="cboCorregimientos" runat="server" CssClass="form-control" ClientIDMode="Static" AutoPostBack="true" TabIndex="8" OnSelectedIndexChanged="cboCorregimientos_SelectedIndexChanged"></asp:DropDownList>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="float-left" for="txtBarrio">Barrio</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                                        <asp:TextBox ID="txtBarrio" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="100" TabIndex="10"></asp:TextBox>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="float-left" for="txtWhatsApp">WhatsApp</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
-                                        <asp:TextBox ID="txtWhatsApp" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" autocomplete="off" onkeypress="return Numeros(event)" TabIndex="12"></asp:TextBox>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="float-left" for="txtTelefono2">Teléfono 2</label>
-                                        <asp:TextBox ID="txtTelefono2" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" autocomplete="off" onkeypress="return Numeros(event)" TabIndex="14"></asp:TextBox>
+                                        <label class="float-left" for="txtTelefono">Teléfono</label><span class="float-left font-weight-bold ml-1 text-danger">*</span>
+                                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" ClientIDMode="Static" MaxLength="10" oncopy="return false;" oncut="return false;" onpaste="return false;" autocomplete="off" onkeypress="return Numeros(event)" TabIndex="13"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group">
@@ -211,7 +155,7 @@
                                         <asp:BoundField DataField="IdLote" Visible="false" />
                                         <asp:BoundField DataField="NumeroLote" HeaderText="Número Lote" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" />
                                         <asp:BoundField DataField="Area" HeaderText="Área (m²)" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" />
-                                        <asp:BoundField DataField="Valor" HeaderText="Valor" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:N0}" />
+                                        <asp:BoundField DataField="Valor" HeaderText="Valor" HeaderStyle-Width="15%" ItemStyle-HorizontalAlign="Right" DataFormatString="{0:N0}" />
                                     </Columns>
                                     <HeaderStyle BackColor="#007bff" Font-Bold="False" ForeColor="White" HorizontalAlign="Center" />
                                 </asp:GridView>

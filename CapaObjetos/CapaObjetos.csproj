@@ -45,6 +45,7 @@
     <Compile Include="ObjLotes.cs" />
     <Compile Include="ObjManzanas.cs" />
     <Compile Include="ObjModulos.cs" />
+    <Compile Include="ObjNotificaciones.cs" />
     <Compile Include="ObjPerfiles.cs" />
     <Compile Include="ObjProyectos.cs" />
     <Compile Include="ObjUsuarios.cs" />

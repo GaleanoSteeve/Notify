@@ -199,9 +199,10 @@ namespace CapaPresentacion
             txtCuotaMensual.Text = "";
             txtFechaInicioPagoCuotas.Text = "";
             txtDiaPagoCuota.Text = "";
-            cboProyectos.Focus();
+            cboEstados.Enabled = true;
             labCodigo.Text = "0";
             labCrear.Text = "1";
+            cboProyectos.Focus();
             modLotes.Show();
         }
         protected void btnEditar_Click(object sender, EventArgs e)
@@ -221,13 +222,12 @@ namespace CapaPresentacion
                         LimpiarCombo("Proyectos");
                         LimpiarCombo("Manzanas");
                         LimpiarCombo("Estados");
+                        ListarComboProyectos();
+                        ListarComboEstados();
 
                         int IdProyecto = Convert.ToInt32(dtLote.Rows[0]["IdProyecto"]);
                         int IdManzana = Convert.ToInt32(dtLote.Rows[0]["IdManzana"]);
                         int IdEstado = Convert.ToInt32(dtLote.Rows[0]["IdEstado"]);
-
-                        ListarComboProyectos();
-                        ListarComboEstados();
 
                         this.oLote = new ObjLotes();
                         this.oLote.Operacion = "LCM";
@@ -251,8 +251,6 @@ namespace CapaPresentacion
 
                         cboProyectos.SelectedValue = IdProyecto.ToString();
                         cboManzanas.SelectedValue = IdManzana.ToString();
-                        cboEstados.SelectedValue = IdEstado.ToString();
-
                         labCodigo.Text = dtLote.Rows[0]["IdLote"].ToString();
                         txtNumeroLote.Text = dtLote.Rows[0]["NumeroLote"].ToString();
                         txtArea.Text = dtLote.Rows[0]["Area"].ToString();
@@ -261,6 +259,17 @@ namespace CapaPresentacion
                         txtCuotaMensual.Text = dtLote.Rows[0]["CuotaMensual"].ToString();
                         txtFechaInicioPagoCuotas.Text = Convert.ToDateTime(dtLote.Rows[0]["FechaInicioPagoCuotas"]).ToString("dd-MM-yyyy");
                         txtDiaPagoCuota.Text = dtLote.Rows[0]["DiaPagoCuota"].ToString();
+                        cboEstados.SelectedValue = IdEstado.ToString();
+
+                        if (IdEstado == 4)
+                        {
+                            cboEstados.Enabled = false;
+                        }
+                        else
+                        {
+                            cboEstados.Enabled = true;
+                        }
+
                         cboProyectos.Focus();
                         modLotes.Show();
                     }

@@ -29,6 +29,7 @@ namespace CapaPresentacion
 
             if (!IsPostBack)
             {
+                ListarComboDepartamentos();
                 ListarTipoDocumentos();
                 ListarComboEstados();
                 ListarClientes();
@@ -137,12 +138,11 @@ namespace CapaPresentacion
 
             cboTipoDocumento.Enabled = true;
             txtDocumento.Enabled = true;
+            LimpiarCombo("Municipios");
             Session["dtLotes"] = null;
-            cboTipoDocumento.Focus();
             tabLotes.Visible = false;
             labDocumento.Text = "";
             labCrear.Text = "1";
-            ListarComboPaises();
             modClientes.Show();
         }
         protected void btnEditar_Click(object sender, EventArgs e)
@@ -159,13 +159,8 @@ namespace CapaPresentacion
 
                     if (dsCliente.Tables[0].Rows.Count > 0) //Cliente existe
                     {
-                        DataTable dtCliente = dsCliente.Tables[0];
-
-                        LimpiarCombo("Corregimientos");
-                        LimpiarCombo("Departamentos");
                         LimpiarCombo("Municipios");
-                        LimpiarCombo("Veredas");
-                        LimpiarCombo("Paises");
+                        DataTable dtCliente = dsCliente.Tables[0];
 
                         cboTipoDocumento.SelectedValue = dtCliente.Rows[0]["TipoDocumento"].ToString();
                         txtDocumento.Text = dtCliente.Rows[0]["Documento"].ToString();
@@ -174,24 +169,10 @@ namespace CapaPresentacion
                         txtApellidos.Text = dtCliente.Rows[0]["Apellidos"].ToString();
 
                         //Domicilio
-                        int IdPais = Convert.ToInt32(dtCliente.Rows[0]["IdPais"]);
                         int IdDepartamento = Convert.ToInt32(dtCliente.Rows[0]["IdDepartamento"]);
                         int IdMunicipio = Convert.ToInt32(dtCliente.Rows[0]["IdMunicipio"]);
-                        int IdCorregimiento = Convert.ToInt32(dtCliente.Rows[0]["IdCorregimiento"]);
-                        int IdVereda = Convert.ToInt32(dtCliente.Rows[0]["IdVereda"]);
 
-                        DataTable dtPaises = objRegionales.ListarComboPaises(); //Paises
-
-                        if (dtPaises.Rows.Count > 0)
-                        {
-                            cboPaises.DataSource = dtPaises;
-                            cboPaises.DataValueField = "IdPais";
-                            cboPaises.DataTextField = "Nombre";
-                            cboPaises.DataBind();
-                            cboPaises.SelectedValue = IdPais.ToString();
-                        }
-
-                        DataTable dtDepartamentos = objRegionales.ListarComboDepartamentosPais(IdPais); //Departamentos
+                        DataTable dtDepartamentos = objRegionales.ListarComboDepartamentos(); //Departamentos
 
                         if (dtDepartamentos.Rows.Count > 0)
                         {
@@ -213,33 +194,8 @@ namespace CapaPresentacion
                             cboMunicipios.SelectedValue = IdMunicipio.ToString();
                         }
 
-                        DataTable dtCorregimientos = objRegionales.ListarComboCorregimientosMunicipio(IdMunicipio); //Corregimientos
-
-                        if (dtCorregimientos.Rows.Count > 0)
-                        {
-                            cboCorregimientos.DataSource = dtCorregimientos;
-                            cboCorregimientos.DataValueField = "IdCorregimiento";
-                            cboCorregimientos.DataTextField = "Nombre";
-                            cboCorregimientos.DataBind();
-                            cboCorregimientos.SelectedValue = IdCorregimiento.ToString();
-                        }
-
-                        DataTable dtVeredas = objRegionales.ListarComboVeredasCorregimientos(IdCorregimiento); //Veredas
-
-                        if (dtVeredas.Rows.Count > 0)
-                        {
-                            cboVeredas.DataSource = dtVeredas;
-                            cboVeredas.DataValueField = "IdVereda";
-                            cboVeredas.DataTextField = "Nombre";
-                            cboVeredas.DataBind();
-                            cboVeredas.SelectedValue = IdVereda.ToString();
-                        }
-
-                        txtBarrio.Text = dtCliente.Rows[0]["Barrio"].ToString();
-                        txtDireccion.Text = dtCliente.Rows[0]["Direccion"].ToString();
                         txtWhatsApp.Text = dtCliente.Rows[0]["WhatsApp"].ToString();
-                        txtTelefono1.Text = dtCliente.Rows[0]["Telefono1"].ToString();
-                        txtTelefono2.Text = Convert.ToInt64(dtCliente.Rows[0]["Telefono2"]) > 0 ? dtCliente.Rows[0]["Telefono2"].ToString() : "";
+                        txtTelefono.Text = dtCliente.Rows[0]["Telefono"].ToString();
                         txtEmail.Text = dtCliente.Rows[0]["Email"].ToString();
                         cboEstado.SelectedValue = Convert.ToBoolean(dtCliente.Rows[0]["Estado"]) ? "1" : "0";
                         cboTipoDocumento.Enabled = false;
@@ -336,111 +292,12 @@ namespace CapaPresentacion
         }
 
         //Domicilio
-        private void ListarComboPaises()
-        {
-            try
-            {
-                DataTable dtPaises = objRegionales.ListarComboPaises();
-
-                if (dtPaises.Rows.Count > 0)
-                {
-                    cboPaises.DataSource = dtPaises;
-                    cboPaises.DataValueField = "IdPais";
-                    cboPaises.DataTextField = "Nombre";
-                    cboPaises.DataBind();
-
-                    ListarComboDepartamentosPais(170);
-                    cboPaises.SelectedValue = "170";
-                }
-                else
-                {
-                    labMensaje.Text = "No existen Países creados en base de datos.";
-                    LimpiarCombo("Departamentos");
-                    labError.Visible = true;
-                    modClientes.Show();
-                    cboPaises.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                labMensaje.Text = "Error tratando de listar los Países: " + ex.Message;
-                LimpiarCombo("Departamentos");
-                labError.Visible = true;
-                modClientes.Show();
-            }
-        }
-        private bool ValidarCamposDomicilio()
-        {
-            try
-            {
-                if (cboPaises.SelectedValue == "0")
-                {
-                    labMensaje.Text = "Debe seleccionar un País.";
-                    labError.Visible = true;
-                    cboPaises.Focus();
-                    modClientes.Show();
-                    return false;
-                }
-                else if (cboDepartamentos.SelectedValue == "0")
-                {
-                    labMensaje.Text = "Debe seleccionar un Departamento.";
-                    cboDepartamentos.Focus();
-                    labError.Visible = true;
-                    modClientes.Show();
-                    return false;
-                }
-                else if (cboMunicipios.SelectedValue == "0")
-                {
-                    labMensaje.Text = "Debe seleccionar un Municipio.";
-                    labError.Visible = true;
-                    cboMunicipios.Focus();
-                    modClientes.Show();
-                    return false;
-                }
-                else if (cboCorregimientos.SelectedValue == "0")
-                {
-                    labMensaje.Text = "Debe seleccionar un Corregimiento.";
-                    cboCorregimientos.Focus();
-                    labError.Visible = true;
-                    modClientes.Show();
-                    return false;
-                }
-                else if (cboVeredas.SelectedValue == "0")
-                {
-                    labMensaje.Text = "Debe seleccionar una Vereda.";
-                    labError.Visible = true;
-                    cboVeredas.Focus();
-                    modClientes.Show();
-                    return false;
-                }
-                else if (txtBarrio.Text.Trim() == "")
-                {
-                    labMensaje.Text = "El campo Barrio es obligatorio.";
-                    labError.Visible = true;
-                    txtBarrio.Focus();
-                    modClientes.Show();
-                    return false;
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                labMensaje.Text = "Error tratando de validar los campos del domicilio: " + ex.Message;
-                labError.Visible = true;
-                modClientes.Show();
-                return false;
-            }
-        }
         private void LimpiarCombo(string Combo)
         {
             DataTable dtDatos = new DataTable();
 
             switch (Combo)
             {
-                case "Paises":
-                    cboPaises.DataSource = dtDatos;
-                    cboPaises.DataBind();
-                    break;
                 case "Departamentos":
                     cboDepartamentos.DataSource = dtDatos;
                     cboDepartamentos.DataBind();
@@ -449,21 +306,13 @@ namespace CapaPresentacion
                     cboMunicipios.DataSource = dtDatos;
                     cboMunicipios.DataBind();
                     break;
-                case "Corregimientos":
-                    cboCorregimientos.DataSource = dtDatos;
-                    cboCorregimientos.DataBind();
-                    break;
-                case "Veredas":
-                    cboVeredas.DataSource = dtDatos;
-                    cboVeredas.DataBind();
-                    break;
             }
         }
-        private void ListarComboDepartamentosPais(int IdPais)
+        private void ListarComboDepartamentos()
         {
             try
             {
-                DataTable dtDepartamentos = objRegionales.ListarComboDepartamentosPais(IdPais);
+                DataTable dtDepartamentos = objRegionales.ListarComboDepartamentos();
 
                 if (dtDepartamentos.Rows.Count > 1)
                 {
@@ -471,149 +320,20 @@ namespace CapaPresentacion
                     cboDepartamentos.DataValueField = "IdDepartamento";
                     cboDepartamentos.DataTextField = "Nombre";
                     cboDepartamentos.DataBind();
-
-                    LimpiarCombo("Corregimientos");
                     LimpiarCombo("Municipios");
-                    LimpiarCombo("Veredas");
-                    modClientes.Show();
                 }
                 else
                 {
                     labMensaje.Text = "No existen Departamentos creados en base de datos para el país seleccionado.";
-                    LimpiarCombo("Corregimientos");
-                    LimpiarCombo("Departamentos");
                     LimpiarCombo("Municipios");
-                    LimpiarCombo("Veredas");
                     labError.Visible = true;
-                    modClientes.Show();
-                    cboPaises.Focus();
                 }
             }
             catch (Exception ex)
             {
                 labMensaje.Text = "Error tratando de listar los Departamentos: " + ex.Message;
-                LimpiarCombo("Corregimientos");
-                LimpiarCombo("Departamentos");
                 LimpiarCombo("Municipios");
-                LimpiarCombo("Veredas");
                 labError.Visible = true;
-                modClientes.Show();
-                cboPaises.Focus();
-            }
-        }
-        protected void btnConstruirDireccion_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ValidarCamposDomicilio())
-                {
-                    string Pais = cboPaises.SelectedItem.Text;
-                    string Departamento = cboDepartamentos.SelectedItem.Text;
-                    string Municipio = cboMunicipios.SelectedItem.Text;
-                    string Corregimiento = cboCorregimientos.SelectedItem.Text;
-                    string Vereda = cboVeredas.SelectedItem.Text;
-                    string Barrio = txtBarrio.Text.Trim();
-
-                    string Domicilio = Pais + " - " + Departamento + " - " + Municipio + " - " + Corregimiento + " - " + Vereda + " - " + Barrio;
-                    txtDireccion.Text = Domicilio;
-                    modClientes.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                labMensaje.Text = "Error tratando de construir los datos del domicilio: " + ex.Message;
-                labError.Visible = true;
-                modClientes.Show();
-            }
-        }
-        protected void cboPaises_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int IdPais = Convert.ToInt32(cboPaises.SelectedValue);
-                txtDireccion.Text = "";
-
-                if (IdPais > 0)
-                {
-                    ListarComboDepartamentosPais(IdPais);
-                }
-                else
-                {
-                    labMensaje.Text = "Debe seleccionar un País.";
-                    LimpiarCombo("Corregimientos");
-                    LimpiarCombo("Departamentos");
-                    LimpiarCombo("Municipios");
-                    LimpiarCombo("Veredas");
-                    labError.Visible = true;
-                    modClientes.Show();
-                    cboPaises.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                labMensaje.Text = "Error tratando de listar los Departamentos: " + ex.Message;
-                LimpiarCombo("Corregimientos");
-                LimpiarCombo("Departamentos");
-                LimpiarCombo("Municipios");
-                LimpiarCombo("Veredas");
-                labError.Visible = true;
-                modClientes.Show();
-            }
-        }
-        protected void cboVeredas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtDireccion.Text = "";
-            modClientes.Show();
-        }
-        protected void cboMunicipios_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int IdMunicipio = Convert.ToInt32(cboMunicipios.SelectedValue);
-                txtDireccion.Text = "";
-
-                if (IdMunicipio > 0)
-                {
-                    DataTable dtCorregimientos = objRegionales.ListarComboCorregimientosMunicipio(IdMunicipio);
-
-                    if (dtCorregimientos.Rows.Count > 0)
-                    {
-                        cboCorregimientos.DataSource = dtCorregimientos;
-                        cboCorregimientos.DataValueField = "IdCorregimiento";
-                        cboCorregimientos.DataTextField = "Nombre";
-                        cboCorregimientos.DataBind();
-
-                        LimpiarCombo("Veredas");
-                        modClientes.Show();
-                    }
-                    else
-                    {
-                        labMensaje.Text = "No existen Corregimientos creados en base de datos para el municipio seleccionado.";
-                        LimpiarCombo("Corregimientos");
-                        LimpiarCombo("Veredas");
-                        labError.Visible = true;
-                        cboMunicipios.Focus();
-                        modClientes.Show();
-                    }
-                }
-                else
-                {
-                    labMensaje.Text = "Debe seleccionar un Municipio.";
-                    LimpiarCombo("Corregimientos");
-                    LimpiarCombo("Veredas");
-                    labError.Visible = true;
-                    cboMunicipios.Focus();
-                    modClientes.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                labMensaje.Text = "Error tratando de listar los Corregimientos: " + ex.Message;
-                LimpiarCombo("Corregimientos");
-                LimpiarCombo("Veredas");
-                labError.Visible = true;
-                cboMunicipios.Focus();
-                modClientes.Show();
             }
         }
         protected void cboDepartamentos_SelectedIndexChanged(object sender, EventArgs e)
@@ -621,7 +341,6 @@ namespace CapaPresentacion
             try
             {
                 int IdDepartamento = Convert.ToInt32(cboDepartamentos.SelectedValue);
-                txtDireccion.Text = "";
 
                 if (IdDepartamento > 0)
                 {
@@ -633,18 +352,13 @@ namespace CapaPresentacion
                         cboMunicipios.DataValueField = "IdMunicipio";
                         cboMunicipios.DataTextField = "Nombre";
                         cboMunicipios.DataBind();
-
-                        LimpiarCombo("Corregimientos");
-                        LimpiarCombo("Veredas");
                         modClientes.Show();
                     }
                     else
                     {
                         labMensaje.Text = "No existen Municipios creados en base de datos para el departamento seleccionado.";
-                        LimpiarCombo("Corregimientos");
                         LimpiarCombo("Municipios");
                         cboDepartamentos.Focus();
-                        LimpiarCombo("Veredas");
                         labError.Visible = true;
                         modClientes.Show();
                     }
@@ -652,10 +366,8 @@ namespace CapaPresentacion
                 else
                 {
                     labMensaje.Text = "Debe seleccionar un Departamento.";
-                    LimpiarCombo("Corregimientos");
                     LimpiarCombo("Municipios");
                     cboDepartamentos.Focus();
-                    LimpiarCombo("Veredas");
                     labError.Visible = true;
                     modClientes.Show();
                 }
@@ -663,56 +375,8 @@ namespace CapaPresentacion
             catch (Exception ex)
             {
                 labMensaje.Text = "Error tratando de listar los Municipios: " + ex.Message;
-                LimpiarCombo("Corregimientos");
                 LimpiarCombo("Municipios");
                 cboDepartamentos.Focus();
-                LimpiarCombo("Veredas");
-                labError.Visible = true;
-                modClientes.Show();
-            }
-        }
-        protected void cboCorregimientos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int IdCorregimiento = Convert.ToInt32(cboCorregimientos.SelectedValue);
-                txtDireccion.Text = "";
-
-                if (IdCorregimiento > 0)
-                {
-                    DataTable dtVeredas = objRegionales.ListarComboVeredasCorregimientos(IdCorregimiento);
-
-                    if (dtVeredas.Rows.Count > 0)
-                    {
-                        cboVeredas.DataSource = dtVeredas;
-                        cboVeredas.DataValueField = "IdVereda";
-                        cboVeredas.DataTextField = "Nombre";
-                        cboVeredas.DataBind();
-                        modClientes.Show();
-                    }
-                    else
-                    {
-                        labMensaje.Text = "No existen Veredas creados en base de datos para el corregimiento seleccionado.";
-                        cboCorregimientos.Focus();
-                        LimpiarCombo("Veredas");
-                        labError.Visible = true;
-                        modClientes.Show();
-                    }
-                }
-                else
-                {
-                    labMensaje.Text = "Debe seleccionar un Corregimiento.";
-                    cboCorregimientos.Focus();
-                    LimpiarCombo("Veredas");
-                    labError.Visible = true;
-                    modClientes.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                labMensaje.Text = "Error tratando de listar las Veredas: " + ex.Message;
-                cboCorregimientos.Focus();
-                LimpiarCombo("Veredas");
                 labError.Visible = true;
                 modClientes.Show();
             }
@@ -872,14 +536,6 @@ namespace CapaPresentacion
                     modClientes.Show();
                     return false;
                 }
-                else if (cboPaises.SelectedValue == "0")
-                {
-                    labMensaje.Text = "Debe seleccionar un País.";
-                    labError.Visible = true;
-                    cboPaises.Focus();
-                    modClientes.Show();
-                    return false;
-                }
                 else if (cboDepartamentos.SelectedValue == "0")
                 {
                     labMensaje.Text = "Debe seleccionar un Departamento.";
@@ -893,38 +549,6 @@ namespace CapaPresentacion
                     labMensaje.Text = "Debe seleccionar un Municipio.";
                     labError.Visible = true;
                     cboMunicipios.Focus();
-                    modClientes.Show();
-                    return false;
-                }
-                else if (cboCorregimientos.SelectedValue == "0")
-                {
-                    labMensaje.Text = "Debe seleccionar un Corregimiento.";
-                    cboCorregimientos.Focus();
-                    labError.Visible = true;
-                    modClientes.Show();
-                    return false;
-                }
-                else if (cboVeredas.SelectedValue == "0")
-                {
-                    labMensaje.Text = "Debe seleccionar una Vereda.";
-                    labError.Visible = true;
-                    cboVeredas.Focus();
-                    modClientes.Show();
-                    return false;
-                }
-                else if (txtBarrio.Text.Trim() == "")
-                {
-                    labMensaje.Text = "El campo Barrio es obligatorio.";
-                    labError.Visible = true;
-                    txtBarrio.Focus();
-                    modClientes.Show();
-                    return false;
-                }
-                else if (txtDireccion.Text.Trim() == "")
-                {
-                    labMensaje.Text = "El campo Domicilio es obligatorio.";
-                    labError.Visible = true;
-                    txtDireccion.Focus();
                     modClientes.Show();
                     return false;
                 }
@@ -953,50 +577,30 @@ namespace CapaPresentacion
                     modClientes.Show();
                     return false;
                 }
-                else if (txtTelefono1.Text.Trim() == "")
+                else if (txtTelefono.Text.Trim() == "")
                 {
                     labMensaje.Text = "El campo Teléfono 1 es obligatorio.";
                     labError.Visible = true;
-                    txtTelefono1.Focus();
+                    txtTelefono.Focus();
                     modClientes.Show();
                     return false;
                 }
-                else if (Convert.ToInt64(txtTelefono1.Text.Trim()) <= 0)
+                else if (Convert.ToInt64(txtTelefono.Text.Trim()) <= 0)
                 {
                     labMensaje.Text = "El campo Teléfono 1 debe ser mayor que cero.";
                     labError.Visible = true;
-                    txtTelefono1.Text = "";
-                    txtTelefono1.Focus();
+                    txtTelefono.Text = "";
+                    txtTelefono.Focus();
                     modClientes.Show();
                     return false;
                 }
-                else if (txtTelefono1.Text.Trim().Length < 7)
+                else if (txtTelefono.Text.Trim().Length < 7)
                 {
                     labMensaje.Text = "El campo Teléfono 1 no tiene el formato correcto.";
                     labError.Visible = true;
-                    txtTelefono1.Focus();
+                    txtTelefono.Focus();
                     modClientes.Show();
                     return false;
-                }
-                else if (txtTelefono2.Text.Trim() != "")
-                {
-                    if (Convert.ToInt64(txtTelefono2.Text.Trim()) <= 0)
-                    {
-                        labMensaje.Text = "El campo Teléfono 2 debe ser mayor que cero.";
-                        labError.Visible = true;
-                        txtTelefono2.Text = "";
-                        txtTelefono2.Focus();
-                        modClientes.Show();
-                        return false;
-                    }
-                    else if (txtTelefono2.Text.Trim().Length < 7)
-                    {
-                        labMensaje.Text = "El campo Teléfono 2 no tiene el formato correcto.";
-                        labError.Visible = true;
-                        txtTelefono2.Focus();
-                        modClientes.Show();
-                        return false;
-                    }
                 }
                 else if (txtEmail.Text.Trim() == "")
                 {
@@ -1064,29 +668,16 @@ namespace CapaPresentacion
                     oCliente.Documento = Convert.ToInt64(txtDocumento.Text.Trim());
                     oCliente.Nombres = txtNombres.Text.Trim();
                     oCliente.Apellidos = txtApellidos.Text.Trim();
-                    oCliente.IdPais = Convert.ToInt32(cboPaises.SelectedValue);
-                    oCliente.Pais = cboPaises.SelectedItem.Text;
                     oCliente.IdDepartamento = Convert.ToInt32(cboDepartamentos.SelectedValue);
                     oCliente.Departamento = cboDepartamentos.SelectedItem.Text;
                     oCliente.IdMunicipio = Convert.ToInt32(cboMunicipios.SelectedValue);
                     oCliente.Municipio = cboMunicipios.SelectedItem.Text;
-                    oCliente.IdCorregimiento = Convert.ToInt32(cboCorregimientos.SelectedValue);
-                    oCliente.Corregimiento = cboCorregimientos.SelectedItem.Text;
-                    oCliente.IdVereda = Convert.ToInt32(cboVeredas.SelectedValue);
-                    oCliente.Vereda = cboVeredas.SelectedItem.Text;
-                    oCliente.Barrio = txtBarrio.Text.Trim();
-                    oCliente.Direccion = txtDireccion.Text.Trim();
                     oCliente.WhatsApp = Convert.ToInt64(txtWhatsApp.Text.Trim());
-                    oCliente.Telefono1 = Convert.ToInt64(txtTelefono1.Text.Trim());
+                    oCliente.Telefono = Convert.ToInt64(txtTelefono.Text.Trim());
                     oCliente.Email = txtEmail.Text.Trim();
                     oCliente.Estado = cboEstado.SelectedValue == "1" ? true : false;
                     oCliente.UsuarioCreacion = Session["Usuario"].ToString();
                     oCliente.UsuarioModificacion = Session["Usuario"].ToString();
-
-                    if (txtTelefono2.Text.Trim() != "")
-                    {
-                        oCliente.Telefono2 = Convert.ToInt64(txtTelefono2.Text.Trim());
-                    }
 
                     string strMensaje = labCrear.Text == "1" ? "creado" : "actualizado";
 

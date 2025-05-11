@@ -41,7 +41,7 @@
             te = String.fromCharCode(tecla);
             return patron.test(te);
         }
-</script>
+    </script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
